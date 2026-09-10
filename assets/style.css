@@ -118,3 +118,4 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
 .table-wrap table.t th:first-child,.table-wrap table.t td:first-child{position:sticky;left:0;background:#fff;z-index:1;box-shadow:1px 0 0 var(--line)}
 .table-wrap table.t th:first-child{background:#eef2ef;z-index:2}
 .table-wrap table.t tr:hover td:first-child{background:#f6f9f6}
+.md pre{background:#f1f4f2;border:1px solid var(--line);padding:12px 14px;overflow-x:auto;font-size:.85rem;line-height:1.5}

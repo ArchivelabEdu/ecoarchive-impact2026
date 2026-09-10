@@ -146,10 +146,11 @@
 <p>데이터 랩의 그래프를 그리는 데 쓴 17개 파일입니다. 카드 덱보다 크고 구조가 다양해서, 통계형 게임(어느 해가 더 많을까, 키워드 순위 맞히기 등)에 씁니다. 목록과 필드 설명은 <a href="../data/index.html">데이터·방법</a> 페이지에 있습니다. 주소는 <code>https://archivelabedu.github.io/ecoarchive-impact2026/data/파일이름.json</code> 입니다.</p>
 <h3>C. 풀숲 Omeka API (고급)</h3>
 <p>원본 아카이브(ecoarchive.org)는 Omeka Classic으로 운영되며 REST API가 열려 있습니다. <strong>공개 기록은 키 없이 읽을 수 있고, 키 없이는 아무것도 바꿀 수 없습니다.</strong> 다만 브라우저에서 직접 호출하는 것은 막혀 있으므로(CORS 미허용), 파이썬 스크립트 등으로 데이터를 내려받아 정리하는 용도입니다.</p>
-<p><code>https://ecoarchive.org/api/items?per_page=50&amp;page=1
+<pre><code>https://ecoarchive.org/api/items?per_page=50&amp;page=1
 https://ecoarchive.org/api/items/1134
 https://ecoarchive.org/api/collections
-https://ecoarchive.org/api/files?item=1134</code></p>
+https://ecoarchive.org/api/files?item=1134
+</code></pre>
 <ul>
 <li>한 번에 최대 50건입니다. 전체(11만 건)를 받으면 2,200회가 넘는 요청이 되므로, 필요한 컬렉션이나 기간만 받고 결과를 파일로 저장해 다시 쓰세요.</li>
 <li>원본 아카이브의 서버 부담을 줄이기 위해, 게임에서는 API를 실시간으로 부르지 말고 미리 내려받은 JSON을 쓰는 것이 원칙입니다.</li>
@@ -160,10 +161,11 @@ https://ecoarchive.org/api/files?item=1134</code></p>
 <li><strong>템플릿 복사</strong> — <a href="https://github.com/ArchivelabEdu/ecoarchive-vibe-template">ecoarchive-vibe-template</a> 저장소에서 <strong>Use this template</strong>을 눌러 내 리포지터리를 만듭니다. <code>index.html</code> 하나와 프롬프트 카드(<code>PROMPTS.md</code>)가 들어 있습니다.</li>
 <li><strong>AI 코딩 도구 열기</strong> — Claude Code, Codex 등 어느 것이든 좋습니다. 폴더를 열고 아래 준비 프롬프트를 먼저 넣습니다.</li>
 </ol>
-<p><code>이 폴더의 index.html을 기준으로 작업할 거야. 파일은 index.html 하나만 쓰고, 외부 라이브러리는 CDN으로만 불러와.
+<pre><code>이 폴더의 index.html을 기준으로 작업할 거야. 파일은 index.html 하나만 쓰고, 외부 라이브러리는 CDN으로만 불러와.
 데이터는 https://archivelabedu.github.io/ecoarchive-impact2026/data/cards.json 을 fetch로 읽어.
 카드의 image 값은 상대경로라서 앞에 https://archivelabedu.github.io/ecoarchive-impact2026/games/ 를 붙여야 해.
-한국어로, 모바일에서도 보이게 만들어 줘.</code></p>
+한국어로, 모바일에서도 보이게 만들어 줘.
+</code></pre>
 <ol>
 <li><strong>게임 규칙을 한 문단으로</strong> — 카드 몇 장을 뽑아, 무엇을 보여 주고, 무엇을 맞히면, 몇 점인지. 예시 프롬프트 다섯 개가 <code>PROMPTS.md</code>에 있습니다.</li>
 <li><strong>작게 시작해 한 문장씩 늘리기</strong> — 카드 4장, 1라운드부터. 되면 "6×6으로 늘려 줘", "2인용으로 바꿔 줘"처럼 하나씩 추가합니다.</li>

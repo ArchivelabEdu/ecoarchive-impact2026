@@ -37,7 +37,7 @@ def render(tpl,path,**ctx):
         nav={"title":sub[0],"items":items,"idx":idx,"prev":items[idx-1] if idx not in (None,0) else None,"next":items[idx+1] if idx is not None and idx+1<len(items) else None,"path":path}
     html=env.get_template(tpl).render(S=S,root=root,SLUG=SLUG,NAV=nav,**ctx)
     p=os.path.join(OUT,path); os.makedirs(os.path.dirname(p),exist_ok=True); open(p,"w",encoding="utf-8").write(html)
-md=lambda f: markdown.markdown(open(os.path.join(ROOT,"content",f),encoding="utf-8").read(),extensions=["tables"])
+md=lambda f: markdown.markdown(open(os.path.join(ROOT,"content",f),encoding="utf-8").read(),extensions=["tables","fenced_code"])
 # ---- indicators for impact page
 fmtn=lambda n: f"{n:,}"; pct=lambda x: f"{x*100:.1f}%"
 gen=S["gen_public"]
