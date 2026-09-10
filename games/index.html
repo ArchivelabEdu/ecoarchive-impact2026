@@ -1,16 +1,85 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><title>풀숲 보드게임</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
 <style>
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.g{display:block;color:inherit;text-decoration:none}.g:hover{background:var(--y)}.g h2{margin:.2em 0;font-size:1.1rem;font-weight:900}.g .n{font-size:2rem}
+*{box-sizing:border-box}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:34px 30px;justify-content:center;max-width:1000px;margin:18px auto 0}
+.box{text-decoration:none;color:#111;transition:transform .15s}.box:hover{transform:translate(-3px,-3px);box-shadow:13px 13px 0 #111,13px 13px 0 3px #111}
+@media(max-width:640px){.grid{grid-template-columns:1fr;max-width:320px}}
+.box{position:relative;background:#fff;border:3px solid #111;box-shadow:10px 10px 0 #111,10px 10px 0 3px #111;height:400px;display:flex;flex-direction:column;overflow:hidden}
+.box:before{content:"";position:absolute;right:-3px;top:-3px;bottom:-3px;width:14px;background:repeating-linear-gradient(180deg,#111 0 6px,transparent 6px 12px);opacity:.15}
+.band{background:#ffe95a;border-bottom:3px solid #111;padding:10px 14px 8px}
+.brand{font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.title{font-size:1.5rem;font-weight:900;line-height:1.05;margin-top:2px;letter-spacing:-.02em}
+.art{flex:1;position:relative;overflow:hidden;border-bottom:3px solid #111}
+.info{display:flex;border-top:0;font-size:.72rem;font-weight:800}
+.info span{flex:1;padding:8px 6px;text-align:center;border-right:2px solid #111}.info span:last-child{border-right:0}.info b{display:block;font-size:.95rem}
+.desc{padding:8px 12px;font-size:.78rem;line-height:1.35;color:#333;border-top:2px solid #111;background:#fff}
+.sticker{position:absolute;width:74px;height:74px;background:#ff6b8b;border:3px solid #111;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:.62rem;line-height:1.1;transform:rotate(-12deg);box-shadow:3px 3px 0 #111;z-index:3}
+/* art 1 timeline */
+.a1{background:#9ee6ff}.a1 .c{position:absolute;width:112px;height:130px;background:#fff;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:6px;font-size:.7rem;font-weight:700}
+.a1 .c img{width:100%;height:70px;object-fit:cover;border:2px solid #111;display:block;margin-bottom:4px}.a1 .c .y{background:#111;color:#ffe95a;display:inline-block;padding:0 5px;font-weight:900}
+.a1 .plus{position:absolute;background:#ffe95a;border:2px dashed #111;width:22px;height:60px;display:flex;align-items:center;justify-content:center;font-weight:900}
+/* art 2 who */
+.a2{background:#ff6b8b;display:flex;align-items:center;justify-content:center}
+.a2 .sil{width:140px;height:150px;background:#111;clip-path:polygon(50% 0,68% 4%,80% 18%,78% 40%,66% 52%,100% 70%,100% 100%,0 100%,0 70%,34% 52%,22% 40%,20% 18%,32% 4%);position:relative}
+.a2 .q{position:absolute;font-size:5rem;font-weight:900;color:#ffe95a;-webkit-text-stroke:3px #111;right:26px;top:16px;transform:rotate(10deg)}
+.a2 .h{position:absolute;left:14px;bottom:14px;background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111;padding:5px 9px;font-size:.7rem;font-weight:700}
+.a2 .h2{bottom:48px;left:30px;background:repeating-linear-gradient(45deg,#fbf3e0 0 5px,#fff 5px 10px);color:#777}
+/* art 3 roulette */
+.a3{background:#b8f2a0;display:flex;align-items:center;justify-content:center}
+.a3 .w{width:190px;height:190px;border-radius:50%;border:4px solid #111;box-shadow:5px 5px 0 #111;background:conic-gradient(#ff6b8b 0 30deg,#ffe95a 30deg 60deg,#9ee6ff 60deg 90deg,#fff 90deg 120deg,#b8f2a0 120deg 150deg,#ff6b8b 150deg 180deg,#ffe95a 180deg 210deg,#9ee6ff 210deg 240deg,#fff 240deg 270deg,#b8f2a0 270deg 300deg,#ff6b8b 300deg 330deg,#ffe95a 330deg 360deg);position:relative}
+.a3 .w:after{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;background:#111;border-radius:50%;transform:translate(-50%,-50%);border:3px solid #fff}
+.a3 .pin{position:absolute;top:22px;left:50%;transform:translateX(-50%);border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #111;z-index:2}
+.a3 .kw{position:absolute;background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111;padding:4px 9px;font-weight:800;font-size:.75rem}
+/* art 4 journey */
+.a4{background:#ffe95a}.a4 svg{position:absolute;left:0;top:0}
+.a4 .cell{position:absolute;width:40px;height:40px;background:#fff;border:3px solid #111;font-size:.6rem;font-weight:900;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;box-shadow:2px 2px 0 #111}
+.a4 .cell.ev{background:#b8f2a0}.a4 .cell img{position:absolute;inset:0;width:100%;height:24px;object-fit:cover;border-bottom:2px solid #111}
+.a4 .pawn{position:absolute;width:22px;height:22px;border-radius:50%;border:3px solid #111;background:#2fbf4e;z-index:2}.a4 .pawn.y{background:#ffd400}
+/* art 5 photos */
+.a5{background:#fff;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a5 .p{border:3px solid #111;box-shadow:4px 4px 0 #111;position:relative;overflow:hidden}.a5 .p img{width:100%;height:100%;object-fit:cover;display:block}
+.a5 .n{position:absolute;left:6px;top:6px;background:#ffe95a;border:2px solid #111;border-radius:50%;width:22px;height:22px;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.a5 .lab{position:absolute;right:8px;bottom:8px;background:#fff;border:2px solid #111;font-size:.62rem;font-weight:800;padding:2px 6px}
 </style></head><body>
 <div class="top"><a href="../index.html">‹ 풀숲 데이터 랩</a><h1>풀숲 보드게임</h1></div>
 <div class="wrap">
 <p class="note">풀숲 데이터 랩 공개를 기념해 만든 보드게임입니다. 환경아카이브 풀숲의 기록에서 뽑은 카드 덱(<a href="../data/cards.json">cards.json</a>, 235장: 사건 47·인물 68·단체 40·컬렉션 34·연도 46)과 작품사진 덱(<a href="../data/photo_cards.json">photo_cards.json</a>, 180장·작가 46인)으로 40년 환경운동의 사건·사람·단체를 놀이로 만납니다. 혼자 또는 둘이서, 한 판에 5~10분.</p>
 <div class="grid">
-<a class="card g" href="journey.html"><div class="n">🎲</div><h2>① 40년 여정</h2><p class="note">1982→2025 말판을 주사위로 이동하며 도착한 해의 퀴즈. 두 사람 번갈아.</p></a>
-<a class="card g" href="timeline.html"><div class="n">🃏</div><h2>② 타임라인 끼워 넣기</h2><p class="note">손패의 사건·단체 카드를 연대순 줄의 올바른 자리에 끼워 넣기. 틀리면 카드가 사라진다.</p></a>
-<a class="card g" href="who.html"><div class="n">👤</div><h2>③ 누구일까요</h2><p class="note">힌트가 한 줄씩 열리는 인물·단체 스무고개. 빨리 맞힐수록 높은 점수.</p></a>
-<a class="card g" href="roulette.html"><div class="n">🎡</div><h2>④ 컬렉션 룰렛</h2><p class="note">룰렛이 고른 컬렉션의 특징 키워드 5개만 보고 어느 단체인지 맞히기.</p></a>
-<a class="card g" href="photos.html"><div class="n">🖼️</div><h2>⑤ 사진 연결하기</h2><p class="note">환경사진아카이브 작품사진 4장을 작가·장소·키워드·사건·연대와 짝 짓기. 5라운드.</p></a>
+
+<a class="box" href="journey.html"><div class="band"><div class="brand">풀숲 보드게임 · 주사위 말판</div><div class="title">40년<br>여정</div></div>
+<div class="art a4"><svg width="294" height="240"><path d="M-10,36 L200,36 A34,34 0 0 1 200,104 L60,104 A34,34 0 0 0 60,172 L310,172" fill="none" stroke="#111" stroke-width="30" stroke-linecap="round"/><path d="M-10,36 L200,36 A34,34 0 0 1 200,104 L60,104 A34,34 0 0 0 60,172 L310,172" fill="none" stroke="#ffe95a" stroke-width="22"/><path d="M-10,36 L200,36 A34,34 0 0 1 200,104 L60,104 A34,34 0 0 0 60,172 L310,172" fill="none" stroke="#111" stroke-width="2" stroke-dasharray="7 7"/></svg>
+<div class="cell" style="left:22px;top:16px">1982</div><div class="cell ev" style="left:86px;top:16px"><img src="img/ev_1137.jpg">1992</div><div class="cell" style="left:150px;top:16px">1996</div>
+<div class="cell ev" style="left:150px;top:84px"><img src="img/ev_1149.jpg">2000</div><div class="cell" style="left:86px;top:84px">2004</div><div class="cell ev" style="left:22px;top:84px"><img src="img/ev_1166.jpg">2005</div>
+<div class="cell ev" style="left:86px;top:152px;background:#ff6b8b"><img src="img/ev_1170.jpg">2017</div><div class="cell" style="left:150px;top:152px">2025</div>
+<div class="pawn" style="left:118px;top:140px"></div><div class="pawn y" style="left:40px;top:72px"></div>
+<div class="sticker" style="right:8px;top:56px;background:#9ee6ff">FINISH<br>2025</div></div>
+<div class="desc">1982→2025 말판을 주사위로 이동하며 도착한 해의 퀴즈. 두 사람 번갈아.</div>
+<div class="info"><span>인원<b>2인</b></span><span>시간<b>10분</b></span><span>칸<b>44칸</b></span></div></a>
+
+
+
+<a class="box" href="timeline.html"><div class="band"><div class="brand">풀숲 보드게임 · 연대순 카드 게임</div><div class="title">타임라인<br>끼워 넣기</div></div>
+<div class="art a1"><div class="sticker" style="right:12px;top:12px">틀리면<br>사라짐!</div>
+<div class="c" style="left:18px;top:26px;transform:rotate(-8deg)"><img src="img/ev_1134.jpg"><span class="y">1978</span> 온산병 사태</div>
+<div class="plus" style="left:130px;top:64px">+</div>
+<div class="c" style="left:158px;top:40px;transform:rotate(6deg)"><img src="img/ev_1149.jpg"><span class="y">2000</span> 천성산 터널 반대</div></div>
+<div class="desc">손패의 사건·단체 카드를 연대순 줄의 올바른 자리에 끼워 넣기.</div>
+<div class="info"><span>인원<b>1인</b></span><span>시간<b>5분</b></span><span>카드<b>87장</b></span></div></a>
+
+<a class="box" href="who.html"><div class="band"><div class="brand">풀숲 보드게임 · 스무고개 퀴즈</div><div class="title">누구<br>일까요</div></div>
+<div class="art a2"><div class="sil"></div><div class="q">?</div><div class="h h2">힌트 2 (잠김)</div><div class="h">대표 작업: 스스로 그러하다, 인간의 땅</div></div>
+<div class="desc">힌트가 한 줄씩 열리는 인물·단체 스무고개. 빨리 맞힐수록 높은 점수.</div>
+<div class="info"><span>인원<b>1인</b></span><span>시간<b>5분</b></span><span>카드<b>108장</b></span></div></a>
+
+<a class="box" href="roulette.html"><div class="band"><div class="brand">풀숲 보드게임 · 키워드 추리</div><div class="title">컬렉션<br>룰렛</div></div>
+<div class="art a3"><div class="pin"></div><div class="w"></div><div class="kw" style="left:10px;top:18px;transform:rotate(-6deg)">변전소</div><div class="kw" style="right:10px;bottom:22px;transform:rotate(5deg)">배달환경</div></div>
+<div class="desc">룰렛이 고른 컬렉션의 특징 키워드 5개만 보고 어느 단체인지 맞히기.</div>
+<div class="info"><span>인원<b>1인</b></span><span>시간<b>5분</b></span><span>카드<b>34장</b></span></div></a>
+
+<a class="box" href="photos.html"><div class="band"><div class="brand">풀숲 보드게임 · 작품사진 짝 짓기</div><div class="title">사진<br>연결하기</div></div>
+<div class="art a5"><div class="p"><img src="img/ph_66472.jpg"><span class="n">1</span></div><div class="p"><img src="img/ph_69733.jpg"><span class="n">2</span><span class="lab">박형근</span></div><div class="p"><img src="img/ph_68346.jpg"><span class="lab">노순택</span></div><div class="p"><img src="img/ph_73859.jpg"><span class="n">3</span></div></div>
+<div class="desc">환경사진아카이브 작품사진 4장을 작가·장소·키워드·사건·연대와 짝 짓기. 5라운드.</div>
+<div class="info"><span>인원<b>1인</b></span><span>시간<b>5분</b></span><span>사진<b>180장</b></span></div></a>
+
 </div>
 </div></body></html>
