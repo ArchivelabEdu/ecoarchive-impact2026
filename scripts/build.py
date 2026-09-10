@@ -87,7 +87,7 @@ render("keywords_orgs.html","keywords/orgs.html",title="단체별 키워드",OK=
 render("keywords_dict.html","keywords/dict.html",title="키워드 사전",N=DICT_N,section="keywords")
 T=D("timeline.json"); ERA_TEXT=json.load(open(os.path.join(ROOT,"content","eras.json"),encoding="utf-8"))
 SUBJ_COLOR={"생태계보전":"#2f6f4e","반핵탈핵":"#8ab17d","기후에너지":"#e9c46a","반공해":"#e76f51","자원순환":"#6d597a","생활안전":"#b56576","국제연대":"#355070","대기오염":"#a8dadc","재난재해":"#457b9d","도시환경":"#1d3557","일반":"#f4a261"}
-render("timeline.html","timeline/index.html",title="환경운동 40년",T=T,KW=KW,ERA_TEXT=ERA_TEXT,SUBJ_COLOR=SUBJ_COLOR,section="timeline",desc="풀숲 기록의 연도·주제·키워드와 사건 47건·조직 542건·연표 3,617건으로 본 한국 환경운동 40년")
+render("timeline.html","timeline/index.html",title="환경운동 40년",T=T,KW=KW,YBC=H["year_by_coll"],ERA_TEXT=ERA_TEXT,SUBJ_COLOR=SUBJ_COLOR,section="timeline",desc="풀숲 기록의 연도·주제·키워드와 사건 47건·조직 542건·연표 3,617건으로 본 한국 환경운동 40년")
 render("network.html","network/index.html",title="네트워크",NW=NW,COLS=COLS,section="more")
 render("photos.html","photos/index.html",title="사진 아카이브",PH=PH,section="more")
 render("impact.html","impact/index.html",title="임팩트 지표",IND=IND,section="more")

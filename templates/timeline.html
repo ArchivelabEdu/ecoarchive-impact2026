@@ -2,6 +2,18 @@
 <div class="crumb">환경운동 40년</div><h1>기록으로 본 환경운동 40년 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span></h1>
 <p class="lead">풀숲에 남은 기록의 연도, 주제, 키워드와 정보사전의 사건 {{ T.events|length }}건·조직 {{ T.orgs|length }}건·연표 {{ '{:,}'.format(S.chron) }}건을 한 축에 놓았습니다. 어떤 시기의 활동이 얼마나 두텁게 남았는지, 사건마다 기록이 얼마나 쌓였는지, 조직은 언제 생겨나고 무엇을 남겼는지를 봅니다.</p>
 
+<div class="grid g2" style="margin-top:6px">
+  <div class="card"><h3 style="margin-top:0">한눈에 보는 다섯 가지</h3>
+  <ol style="margin:0;padding-left:1.2em;line-height:1.7">
+    <li><b>기록의 무게중심은 1991~2009년</b>입니다. 이 19년에 전체 기록의 64%가 생산되었고, 1980년대 이전은 2.4%에 그칩니다. 반공해운동기의 1차 기록은 서진옥·환경운동연합·기독교환경운동연대 컬렉션이 지탱합니다.</li>
+    <li><b>의제는 공해 → 핵 → 생태·숲 → 기후로 이동</b>했습니다. 주제 구성에서 반공해가 1980년대 47%에서 1%로 사라지고, 생태계보전이 2000년대 59%로 정점을 찍은 뒤 기후에너지가 2020년대 32%로 최대가 됩니다. 어휘도 같은 궤적을 그립니다.</li>
+    <li><b>사건의 크기와 기록의 두께는 다릅니다.</b> 새만금·4대강·기후위기는 각 1천 건 안팎의 기록이 있지만, 매향리(27년) 178건, 온산병 72건, 시화호 60건처럼 오래 이어졌거나 상징적인 사건의 기록은 그 10분의 1 이하입니다. 이 간극이 수집의 우선순위입니다.</li>
+    <li><b>컬렉션은 시대의 층을 이룹니다.</b> 1990년대는 환경운동연합·녹색교통·한겨레, 2000년대는 생명의숲·생태보전시민모임·국립공원을지키는시민의모임, 2010년대 이후는 기후변화행동연구소·여성환경연대·더나은미래·숲과나눔이 기록의 주된 공급원입니다.</li>
+    <li><b>조직 542건 가운데 296건만 기록으로 남았습니다.</b> 1990년대에 가장 많은 조직(95개)이 생겨났고, 연합체 관계 140건이 전거에 기록되어 있습니다. 이름만 남은 246개 조직은 기록을 찾아야 할 목록입니다.</li>
+  </ol></div>
+  <div class="card"><p class="chart-title">컬렉션으로 본 다섯 시대</p><p class="chart-sub">시대별 기록을 어느 컬렉션이 공급했는가 (상위 12개 컬렉션 + 기타, 행 합 = 100%)</p><div id="c_ce" class="chart" style="height:420px"></div></div>
+</div>
+
 <h2 id="strip">40년 한 줄 타임라인</h2>
 <div class="card"><p class="chart-sub">위: 사건 {{ T.events|length }}건의 기간(막대 굵기 = 관련 기록 수) · 아래: 연도별 생산 기록 수(막대)와 그 해 설립된 조직 수(선) · 연도에 마우스를 올리면 그 해의 특징 키워드가 보입니다. 1999년 급증은 한겨레 컬렉션.</p><div id="c_strip" class="chart" style="height:760px"></div></div>
 
@@ -66,7 +78,12 @@
 .chron-row .d{color:var(--muted);font-variant-numeric:tabular-nums}.chron-row .o{color:var(--muted);font-size:.8rem;text-align:right}
 </style>
 {% endblock %}{% block script %}<script>
-const T={{ T|tojson }}, KW={{ KW|tojson }};
+const T={{ T|tojson }}, KW={{ KW|tojson }}, YBC={{ YBC|tojson }};
+// ---- collections x eras
+(function(){const eras=T.eras;const tot={};Object.entries(YBC).forEach(([c,arr])=>{tot[c]=arr.reduce((s,d)=>s+d.v,0)});const top=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]).slice(0,12);
+ const val=(c,e)=>(YBC[c]||[]).filter(d=>d.k>=e.a&&d.k<=e.b).reduce((s,d)=>s+d.v,0);
+ const series=top.map(c=>({name:c,data:eras.map(e=>val(c,e))}));series.push({name:"기타",data:eras.map(e=>Object.keys(YBC).filter(c=>!top.includes(c)).reduce((s,c)=>s+val(c,e),0)),color:"#cfd6d1"});
+ stacked("c_ce",eras.map(e=>e.label),series,{percent:true,horizontal:true,left:90});})();
 const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=years.map(y=>T.org_founded_by_year[y]||0);
 // ---- strip: events gantt (top grid) + records/orgs (bottom grid)
 (function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start)).map(e=>({...e,s:+e.start,e2:(/^\d{4}$/.test(e.end)?+e.end:(e.end==="현재"||!e.end?2025:+e.start))})).sort((a,b)=>a.s-b.s||b.n-a.n);
