@@ -12,15 +12,16 @@ function mk(el){ const dom = typeof el==="string"?document.getElementById(el):el
   const c = echarts.init(dom,null,{renderer:"canvas"}); charts.push(c); return c; }
 window.addEventListener("resize",()=>charts.forEach(c=>c.resize()));
 function opt(o){ return Object.assign({},BASE,o); }
+function leftFor(c,want){ const w=c.getDom().clientWidth||600; return Math.min(want, Math.max(84, Math.round(w*0.36))); }
 function subjColor(k){ return SUBJ[k]||"#999"; }
 
 /* horizontal bar: items [{k,v}] */
 function hbar(el, items, o={}){
-  const c=mk(el); if(!c) return; const it=[...items].reverse();
-  c.setOption(opt({grid:{left:o.left||150,right:70,top:o.title?40:10,bottom:20,containLabel:false},
+  const c=mk(el); if(!c) return; const it=[...items].reverse(); const L=leftFor(c,o.left||150);
+  c.setOption(opt({grid:{left:L,right:60,top:o.title?40:10,bottom:20,containLabel:false},
     title:o.title?{text:o.title,left:0,textStyle:{fontSize:14}}:null,
     xAxis:{type:"value",splitLine:{lineStyle:{color:"#eef2ef"}},axisLabel:{formatter:v=>o.pct?(v*100).toFixed(0)+"%":fmtN(v)}},
-    yAxis:{type:"category",data:it.map(d=>d.k),axisLabel:{fontSize:12,width:o.left?o.left-10:140,overflow:"truncate"},axisTick:{show:false},axisLine:{show:false}},
+    yAxis:{type:"category",data:it.map(d=>d.k),axisLabel:{fontSize:12,width:L-10,overflow:"truncate"},axisTick:{show:false},axisLine:{show:false}},
     tooltip:{trigger:"axis",axisPointer:{type:"shadow"},valueFormatter:v=>o.pct?fmtP(v):fmtN(v)},
     series:[{type:"bar",data:it.map(d=>({value:d.v,itemStyle:{color:o.color?o.color(d):"#2f6f4e"}})),barMaxWidth:22,
       label:{show:true,position:"right",fontSize:11,color:"#5f6b65",formatter:p=>o.pct?fmtP(p.value):fmtN(p.value)}}]}));
@@ -57,12 +58,12 @@ function stacked(el, cats, series, o={}){
 }
 /* heatmap: rows[], cols[], matrix[r][c] (0..1 or counts) */
 function heat(el, rows, cols, m, o={}){
-  const c=mk(el); if(!c) return;
+  const c=mk(el); if(!c) return; const L=leftFor(c,o.left||170);
   const data=[]; let mx=0;
   rows.forEach((r,i)=>cols.forEach((k,j)=>{const v=m[i][j]||0; data.push([j,i,v]); if(v>mx) mx=v;}));
-  c.setOption(opt({grid:{left:o.left||170,right:20,top:10,bottom:o.bottom||90},
+  c.setOption(opt({grid:{left:L,right:16,top:10,bottom:o.bottom||90},
     xAxis:{type:"category",data:cols,position:"bottom",axisLabel:{rotate:o.rotate??45,fontSize:11},splitArea:{show:true}},
-    yAxis:{type:"category",data:rows,inverse:true,axisLabel:{fontSize:11,width:o.left?o.left-14:156,overflow:"truncate"},splitArea:{show:true}},
+    yAxis:{type:"category",data:rows,inverse:true,axisLabel:{fontSize:11,width:L-14,overflow:"truncate"},splitArea:{show:true}},
     visualMap:{min:0,max:o.max||mx||1,show:false,inRange:{color:["#f7faf7","#cfe3d5","#8ab17d","#2f6f4e","#163b28"]}},
     tooltip:{formatter:p=>`${rows[p.value[1]]} × ${cols[p.value[0]]}<br><b>${o.pct?fmtP(p.value[2]):fmtN(p.value[2])}</b>`},
     series:[{type:"heatmap",data,label:{show:o.label!==false,fontSize:9.5,formatter:p=>{const v=p.value[2]; if(o.pct) return v>=(o.min||0.05)?(v*100).toFixed(0)+"%":""; return v>=(o.min||1)?fmtN(v):"";}},

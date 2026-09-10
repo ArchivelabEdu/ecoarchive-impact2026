@@ -115,3 +115,6 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
 @media(max-width:700px){.report-card{grid-template-columns:1fr}.report-cover{max-width:200px}.report-card h2{font-size:1.25rem!important}}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1em}
 .table-wrap>table.t{min-width:520px}
+.table-wrap table.t th:first-child,.table-wrap table.t td:first-child{position:sticky;left:0;background:#fff;z-index:1;box-shadow:1px 0 0 var(--line)}
+.table-wrap table.t th:first-child{background:#eef2ef;z-index:2}
+.table-wrap table.t tr:hover td:first-child{background:#f6f9f6}
