@@ -1,18 +1,18 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><title>사진 연결하기 · 풀숲 보드게임</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
 <style>
-.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:640px){.photos{grid-template-columns:repeat(2,1fr)}}
-.ph{position:relative;border:3px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;aspect-ratio:1}
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media(max-width:640px){.photos{grid-template-columns:repeat(2,1fr)}}
+.ph{position:relative;border:3px solid #111;overflow:hidden;cursor:pointer;background:#fff;aspect-ratio:1;box-shadow:5px 5px 0 #111}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.ph.sel{border-color:var(--g);box-shadow:0 0 0 3px #dfeee4}
-.ph .badge{position:absolute;left:8px;top:8px;background:var(--g);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:.9rem}
-.ph .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.62);color:#fff;font-size:.72rem;padding:6px 8px;line-height:1.3;display:none}
-.ph.reveal .cap{display:block}.ph.ok{border-color:var(--g)}.ph.bad{border-color:#e76f51}
-.labels{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
-.lab{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font:inherit;font-size:1rem;cursor:pointer}
-.lab:hover{border-color:var(--g2)}.lab.used{background:#eef2ef;color:var(--muted)}
-.lab .b{display:inline-block;background:var(--g);color:#fff;border-radius:999px;padding:0 8px;font-weight:800;margin-right:6px;font-size:.85rem}
-.modes{display:flex;flex-wrap:wrap;gap:6px}.modes button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;cursor:pointer}.modes button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.ph.sel{box-shadow:5px 5px 0 #111,0 0 0 4px var(--b)}
+.ph .badge{position:absolute;left:8px;top:8px;background:var(--y);color:#111;font-weight:900;border:2px solid #111;border-radius:999px;padding:2px 10px;font-size:.9rem}
+.ph .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.72);color:#fff;font-size:.72rem;padding:6px 8px;line-height:1.3;display:none}
+.ph.reveal .cap{display:block}.ph.ok{box-shadow:5px 5px 0 #111,0 0 0 4px var(--ok)}.ph.bad{box-shadow:5px 5px 0 #111,0 0 0 4px var(--bad)}
+.labels{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.lab{border:3px solid #111;background:#fff;border-radius:999px;padding:8px 16px;font:inherit;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 #111}
+.lab:hover{background:var(--y)}.lab.used{background:#ddd;color:#777;box-shadow:none}
+.lab .b{display:inline-block;background:#111;color:var(--y);border-radius:999px;padding:0 8px;font-weight:800;margin-right:6px;font-size:.85rem}
+.modes{display:flex;flex-wrap:wrap;gap:8px}.modes button{border:2px solid #111;background:#fff;padding:6px 12px;font:inherit;font-weight:700;cursor:pointer;box-shadow:2px 2px 0 #111}.modes button.on{background:#111;color:var(--y)}
 </style></head><body>
 <div class="top"><a href="index.html">‹ 게임 목록</a><h1>⑤ 사진 연결하기</h1><span class="sc" id="score"></span></div>
 <div class="wrap">

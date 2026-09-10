@@ -2,12 +2,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
 <style>
 .board{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin:10px 0}
-.cell{aspect-ratio:1;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:.7rem;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;color:var(--muted)}
-.cell b{color:var(--ink);font-size:.78rem}.cell.ev{background:#eef4ef;border-color:var(--g2)}.cell.here{background:var(--g);color:#fff}.cell.here b{color:#fff}
+.cell{aspect-ratio:1;background:#fff;border:2px solid #111;font-size:.7rem;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;color:var(--muted)}
+.cell b{color:#111;font-size:.78rem}.cell.ev{background:var(--ok)}.cell.here{background:var(--p);color:#111}.cell.here b{color:#111}
 .cell .pawn{position:absolute;top:-6px;right:-4px;font-size:1.1rem}
 .dice{font-size:3rem;line-height:1;display:inline-block;min-width:60px;text-align:center}
-.players{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.pl{padding:6px 12px;border-radius:10px;background:#fff;border:2px solid var(--line)}.pl.turn{border-color:var(--g)}
-.qcard{background:#fff;border:2px solid var(--g2);border-radius:14px;padding:14px;margin-top:12px}
+.players{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.pl{padding:6px 12px;background:#fff;border:3px solid #111;font-weight:700}.pl.turn{background:var(--y);box-shadow:3px 3px 0 #111}
+.qcard{background:#fff;border:3px solid #111;box-shadow:6px 6px 0 #111;padding:14px;margin-top:14px}
 </style></head><body>
 <div class="top"><a href="index.html">‹ 게임 목록</a><h1>④ 40년 여정</h1><span class="sc" id="score"></span></div>
 <div class="wrap">

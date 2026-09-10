@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
 <style>
 .wheelbox{display:flex;justify-content:center;margin:10px 0;position:relative}
-.wheel{width:260px;height:260px;border-radius:50%;border:8px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:transform 3s cubic-bezier(.17,.67,.12,1);background:conic-gradient(#2f6f4e 0 30deg,#8ab17d 30deg 60deg,#e9c46a 60deg 90deg,#f4a261 90deg 120deg,#e76f51 120deg 150deg,#6d597a 150deg 180deg,#b56576 180deg 210deg,#355070 210deg 240deg,#a8dadc 240deg 270deg,#457b9d 270deg 300deg,#1d3557 300deg 330deg,#999 330deg 360deg)}
-.pin{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--ink)}
-.kw{font-size:1.15rem;margin:6px 4px;padding:6px 14px;background:#fff;border:2px solid var(--g2);border-radius:999px;display:inline-block;animation:pop .35s both}
+.wheel{width:260px;height:260px;border-radius:50%;border:4px solid #111;box-shadow:6px 6px 0 #111;transition:transform 3s cubic-bezier(.17,.67,.12,1);background:conic-gradient(#ff6b8b 0 30deg,#ffe95a 30deg 60deg,#9ee6ff 60deg 90deg,#fff 90deg 120deg,#b8f2a0 120deg 150deg,#ff6b8b 150deg 180deg,#ffe95a 180deg 210deg,#9ee6ff 210deg 240deg,#fff 240deg 270deg,#b8f2a0 270deg 300deg,#ff6b8b 300deg 330deg,#ffe95a 330deg 360deg)}
+.pin{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid #111}
+.kw{font-size:1.15rem;margin:6px 4px;padding:6px 14px;background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111;display:inline-block;animation:pop .35s both;font-weight:700;transform:rotate(-2deg)}.kw:nth-child(even){background:var(--y);transform:rotate(2deg)}
 @keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 </style></head><body>
 <div class="top"><a href="index.html">‹ 게임 목록</a><h1>③ 컬렉션 룰렛</h1><span class="sc" id="score"></span></div>
