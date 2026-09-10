@@ -2,7 +2,7 @@
 <div class="hero">
   <div class="kicker">환경아카이브 풀숲 · Omeka 전수 분석</div>
   <h1>기록으로 본 한국 환경운동 40년 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span><br><span style="color:var(--green)">소장현황 데이터 사이트</span></h1>
-  <p class="lead">환경아카이브 풀숲(ecoarchive.org)에 등록된 {{ '{:,}'.format(S['items']) }}건의 아이템을 REST API로 전수 수집해, 컬렉션·시간·주제·지역·키워드의 관점에서 무엇이 얼마나 쌓였는지를 보여줍니다. 데이터 기준 {{ S.snapshot }}.</p>
+  <p class="lead">환경아카이브 풀숲(ecoarchive.org)에 등록된 {{ '{:,}'.format(S['items']) }}건의 아이템을 컬렉션·시간·주제·지역·키워드의 관점으로 분석한 사이트입니다. 데이터 기준 {{ S.snapshot }}.</p>
 </div>
 <div class="grid g4">
   <div class="kpi"><div class="v">{{ '{:,}'.format(S['items']) }}</div><div class="l">등록 아이템</div><div class="s">공개 {{ '{:,}'.format(S['public']) }}건 ({{ '%.1f'|format(S['public']/S['items']*100) }}%)</div></div>
