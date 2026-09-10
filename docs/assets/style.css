@@ -97,7 +97,7 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
 .subnav{position:sticky}
 .subnav-wrap{position:relative}
 .subnav-wrap::after{content:"";position:absolute;right:0;top:0;bottom:0;width:44px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff 70%);pointer-events:none;opacity:1;transition:opacity .2s}
-.subnav-wrap.at-end::after{opacity:0}
+.subnav-wrap.at-end::after{display:none}
 @media(max-width:600px){
   .subnav-title{display:none}
   .subnav-in a.pn{display:none}
