@@ -1,19 +1,24 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><title>40년 여정 · 풀숲 보드게임</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
 <style>
-.board{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin:10px 0}
-.cell{aspect-ratio:1;background:#fff;border:2px solid #111;font-size:.7rem;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;color:var(--muted)}
-.cell b{color:#111;font-size:.78rem}.cell.ev{background:var(--ok)}.cell.here{background:var(--p);color:#111}.cell.here b{color:#111}
-.cell .pawn{position:absolute;top:-6px;right:-4px;font-size:1.1rem}
+.boardbox{position:relative;background:#fff;border:3px solid #111;box-shadow:6px 6px 0 #111;overflow:hidden;margin:10px 0}
+.boardbox svg{position:absolute;left:0;top:0}
+.road{fill:none;stroke:#111;stroke-width:34;stroke-linecap:round}.road2{fill:none;stroke:var(--y);stroke-width:26;stroke-linecap:round}.dash{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:8 8}
+.cell{position:absolute;background:#fff;border:3px solid #111;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.72rem;box-shadow:3px 3px 0 #111;color:#111}
+.cell b{font-weight:900}.cell.ev{background:var(--ok)}.cell.ev img{width:100%;flex:1;min-height:0;object-fit:cover;border-bottom:2px solid #111}.cell.ev b{font-size:.68rem;padding:2px 0;line-height:1.2}
+.cell.here{background:var(--p)}.cell.start,.cell.end{background:var(--y)}
+.pawn{position:absolute;font-size:1.3rem;filter:drop-shadow(1px 1px 0 #111);transition:all .25s}.pawn.g{top:-14px;right:-12px}.pawn.y{bottom:-14px;left:-12px}
+.star{position:absolute;width:84px;height:84px;background:var(--p);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:.74rem;line-height:1.1;transform:rotate(-10deg);clip-path:polygon(50% 0%,63% 30%,95% 25%,78% 52%,98% 80%,65% 75%,50% 100%,35% 75%,2% 80%,22% 52%,5% 25%,37% 30%)}
+.star.fin{background:var(--b);transform:rotate(8deg)}
 .dice{font-size:3rem;line-height:1;display:inline-block;min-width:60px;text-align:center}
 .players{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.pl{padding:6px 12px;background:#fff;border:3px solid #111;font-weight:700}.pl.turn{background:var(--y);box-shadow:3px 3px 0 #111}
 .qcard{background:#fff;border:3px solid #111;box-shadow:6px 6px 0 #111;padding:14px;margin-top:14px}
 </style></head><body>
 <div class="top"><a href="index.html">‹ 게임 목록</a><h1>④ 40년 여정</h1><span class="sc" id="score"></span></div>
 <div class="wrap">
-<p class="note">1982년에서 출발해 2025년 결승선까지. 주사위를 굴려 이동하고, 도착한 해의 퀴즈를 맞히면 그 해의 기록 두께만큼 점수(기록 100건당 1점, 최대 40점)를 얻습니다. 두 사람이 번갈아 굴립니다. 초록 칸은 사건이 시작된 해.</p>
+<p class="note">1982년에서 출발해 2025년 결승선까지. 주사위를 굴려 이동하고, 도착한 해의 퀴즈를 맞히면 그 해의 기록 두께만큼 점수(기록 100건당 1점, 최대 40점)를 얻습니다. 두 사람이 번갈아 굴립니다. 초록 칸은 사건이 시작된 해(사진).</p>
 <div class="players" id="players"></div>
-<div class="board" id="board"></div>
+<div class="boardbox" id="board"></div>
 <p><span class="dice" id="dice">🎲</span> <button class="btn" id="roll" onclick="roll()">주사위 굴리기</button></p>
 <div class="qcard" id="q" hidden></div>
 <div class="result" id="result" hidden></div>
@@ -21,10 +26,21 @@
 <script src="common.js"></script><script>
 const FACES=["⚀","⚁","⚂","⚃","⚄","⚅"];let ALL=[],YEARS=[],pos=[0,0],score=[0,0],turn=0,busy=false;
 function y(i){return YEARS[i]}
-function board(){document.getElementById("board").innerHTML=YEARS.map((c,i)=>`<div class="cell ${c.events.length?'ev':''} ${pos[turn]===i?'here':''}"><b>${c.year}</b>${c.events.length?"📌":""}${pos[0]===i?'<span class="pawn">🟢</span>':''}${pos[1]===i?'<span class="pawn" style="top:auto;bottom:-6px">🟡</span>':''}</div>`).join("");
+let EVIMG={};
+function layout(){const box=document.getElementById("board");const W=box.clientWidth-6;const mob=W<760;const COLS=mob?(W>=460?7:5):11;const rows=Math.ceil(YEARS.length/COLS);
+ const pad=mob?44:96;const cw=Math.max(40,Math.min(64,Math.floor((W-2*pad-(COLS-1)*6)/COLS)));const gap=(W-2*pad-COLS*cw)/(COLS-1);const rh=cw+48;const top=mob?86:50;
+ const pts=YEARS.map((_,i)=>{let r=Math.floor(i/COLS),c=i%COLS;if(r%2)c=COLS-1-c;return [pad+c*(cw+gap)+cw/2,top+r*rh+cw/2];});
+ let d=`M${pts[0][0]},${pts[0][1]}`;for(let i=1;i<pts.length;i++){const [x,y]=pts[i];if(i%COLS===0)d+=` A${rh/2},${rh/2} 0 0 ${Math.floor(i/COLS)%2===1?1:0} ${x},${y}`;else d+=` L${x},${y}`;}
+ return {W,H:top+rows*rh+(mob?70:10),pts,cw,d,COLS,mob};}
+function board(){const L=layout();const b=document.getElementById("board");b.style.height=L.H+"px";const n=YEARS.length-1;
+ b.innerHTML=`<svg width="${L.W}" height="${L.H}"><path class="road" d="${L.d}"/><path class="road2" d="${L.d}"/><path class="dash" d="${L.d}"/></svg>`+
+ YEARS.map((c,i)=>{const [x,y]=L.pts[i];const img=EVIMG[c.year];return `<div class="cell ${c.events.length?'ev':''} ${pos[turn]===i?'here':''} ${i===0?'start':''} ${i===n?'end':''}" style="left:${x-L.cw/2}px;top:${y-L.cw/2}px;width:${L.cw}px;height:${L.cw}px">${img?`<img src="${img}" alt="">`:""}<b>${c.year}</b>${pos[0]===i?'<span class="pawn g">🟢</span>':''}${pos[1]===i?'<span class="pawn y">🟡</span>':''}</div>`}).join("")+
+ (L.mob?`<div class="star" style="left:${L.pts[0][0]-L.cw/2-6}px;top:${L.pts[0][1]-L.cw/2-84}px">START<br>1982</div><div class="star fin" style="left:${L.pts[n][0]-L.cw/2-6}px;top:${L.pts[n][1]+L.cw/2+2}px">FINISH<br>2025</div>`
+ :`<div class="star" style="left:${L.pts[0][0]-L.cw/2-88}px;top:${L.pts[0][1]-46}px">START<br>1982</div><div class="star fin" style="left:${L.pts[n][0]-L.cw/2-88}px;top:${L.pts[n][1]-40}px">FINISH<br>2025</div>`);
  document.getElementById("players").innerHTML=[0,1].map(p=>`<div class="pl ${turn===p?'turn':''}">${p?'🟡':'🟢'} ${p+1}번 · ${score[p]}점 · ${y(pos[p]).year}년</div>`).join("");
  document.getElementById("score").textContent=`${turn+1}번 차례`;}
-function roll(){if(busy)return;busy=true;document.getElementById("roll").disabled=true;let k=0;const t=setInterval(()=>{document.getElementById("dice").textContent=FACES[Math.floor(Math.random()*6)];if(++k>10){clearInterval(t);const d=1+Math.floor(Math.random()*6);document.getElementById("dice").textContent=FACES[d-1];pos[turn]=Math.min(YEARS.length-1,pos[turn]+d);board();ask();}},70);}
+window.addEventListener("resize",()=>{if(YEARS.length)board();});
+function roll(){if(busy)return;busy=true;document.getElementById("roll").disabled=true;let k=0;const t=setInterval(()=>{document.getElementById("dice").textContent=FACES[Math.floor(Math.random()*6)];if(++k>10){clearInterval(t);const d=1+Math.floor(Math.random()*6);document.getElementById("dice").textContent=FACES[d-1];const target=Math.min(YEARS.length-1,pos[turn]+d);const step=()=>{if(pos[turn]<target){pos[turn]++;board();setTimeout(step,220);}else{board();ask();}};setTimeout(step,200);}},70);}
 function ask(){const c=y(pos[turn]);const q=document.getElementById("q");q.hidden=false;
  let type,question,answer,opts;
  if(c.events.length){type="ev";answer=c.events[0];question=`<b>${c.year}년</b>에 시작된 환경 사건은?`;const wrong=pick(ALL.filter(x=>x.type==="event"&&x.year&&Math.abs(x.year-c.year)>=3).map(x=>x.front),3);opts=shuffle([answer,...wrong]);}
@@ -36,5 +52,5 @@ function answer(btn,v,ans){const c=y(pos[turn]);const ok=v===ans;const pts=Math.
  if(pos[turn]>=YEARS.length-1){finish();return;}
  turn=1-turn;busy=false;board();setTimeout(()=>{document.getElementById("roll").disabled=false;},400);}
 function finish(){board();const r=document.getElementById("result");r.hidden=false;const w=score[0]===score[1]?"무승부":(score[0]>score[1]?"🟢 1번":"🟡 2번")+" 승리";r.innerHTML=`<b>결승선 도착!</b> 🟢 ${score[0]}점 · 🟡 ${score[1]}점 — ${w} <button class="btn" onclick="location.reload()">다시</button>`;document.getElementById("roll").disabled=true;}
-loadCards().then(c=>{ALL=c;YEARS=c.filter(x=>x.type==="year"&&x.year>=1982&&x.year<=2025).sort((a,b)=>a.year-b.year);board();});
+loadCards().then(c=>{ALL=c;YEARS=c.filter(x=>x.type==="year"&&x.year>=1982&&x.year<=2025).sort((a,b)=>a.year-b.year);c.filter(x=>x.type==="event"&&x.image&&x.year).forEach(x=>{if(!EVIMG[x.year])EVIMG[x.year]=x.image;});board();});
 </script></body></html>
