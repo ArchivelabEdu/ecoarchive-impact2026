@@ -25,7 +25,7 @@ open(os.path.join(OUT,".nojekyll"),"w").close()
 SECTIONS={
  "holdings":("소장 현황",[("규모와 구성","holdings/composition.html"),("시간","holdings/time.html"),("주제","holdings/subject.html"),("지역","holdings/region.html"),("메타데이터 품질","holdings/quality.html")]),
  "keywords":("키워드",[("연대별 변화","keywords/change.html"),("키워드 생애곡선","keywords/life.html"),("공출현 네트워크","keywords/cooc.html"),("단체별 키워드","keywords/orgs.html"),("키워드 사전","keywords/dict.html")]),
- "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("보드게임","games/index.html"),("보드게임 만들기 가이드","guide/index.html"),("임팩트 측정","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
+ "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("보드게임","games/index.html"),("임팩트 측정","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
  "collections":("컬렉션",[("컬렉션 비교","collections/index.html")]+[(c["name"],f"collections/{c['slug']}.html") for c in COLS]),
 }
 def render(tpl,path,**ctx):
