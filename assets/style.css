@@ -17,7 +17,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:#eef2ef
 .nav{position:sticky;top:0;z-index:50;background:rgba(250,251,249,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
 .nav-in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:56px;gap:22px}
 .brand{font-weight:800;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:center;gap:8px}
-.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}
+.brand .logo{height:26px;width:auto;display:block}.brand .brand-sub{color:var(--muted);font-weight:600;padding-left:8px;border-left:1px solid var(--line);white-space:nowrap}
 .menu{display:flex;gap:4px;margin-left:auto;list-style:none;padding:0;margin-top:0;margin-bottom:0}
 .menu>li{position:relative}
 .menu a,.menu span{display:block;padding:8px 12px;border-radius:8px;color:var(--ink);font-weight:600;font-size:.93rem;cursor:pointer}

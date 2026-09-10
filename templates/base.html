@@ -6,13 +6,16 @@
 <title>{{ title }} · 환경아카이브 풀숲 소장현황</title>
 <meta name="description" content="{{ desc or '환경아카이브 풀숲 Omeka 전수 111,106건의 소장현황·컬렉션·키워드 분석' }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ root }}assets/favicon-32.png">
+<link rel="icon" href="{{ root }}assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="{{ root }}assets/apple-touch-icon.png">
 <link rel="stylesheet" href="{{ root }}assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
 <script src="{{ root }}assets/charts.js"></script>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="{{ root }}index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <a class="brand" href="{{ root }}index.html"><img src="{{ root }}assets/logo-green.png" alt="환경아카이브 풀숲" class="logo"><span class="brand-sub">소장현황</span></a>
   <button class="burger" aria-label="menu">☰</button>
   <ul class="menu">
     <li><a href="{{ root }}holdings/composition.html" class="{{ 'active' if section=='holdings' }}">소장 현황</a>
