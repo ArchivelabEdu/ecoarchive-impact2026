@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>제주참여환경연대 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="제주참여환경연대 컬렉션 387건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>제주참여환경연대 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">1991년 제주도개발특별법 제정을 반대하는 자발적 도민운동 과정에서 '범도민회'라는 이름으로 창립되었습니다. 이후 '주민주체, 자연환경보전, 향토문화의 계승 발전'이라는 특별법 반대운동의 정신을 살려 각종 개발정책에 대한 감시활동을 펴왔으며, 1997년 이후에는 '참여자치, 환경 보전, 도민의 삶의 질 향상'이라는 모토하에 명실상부한 시민운동단체를 지향하며 그 활동영역을 넓혀 왔습니다. 2001년에는 제주참여환경연대로의 재창립을 통해 감시와 비판이라는 시민단체 본연의 활동뿐만 아니라, 지속가능한 제주발전과 지역사회의 개혁을 위한 대안마련 활동에도 적극 나서고 있습니다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/50" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">387</div><div class="l">등록</div><div class="s">공개 387 · 비공개 0.0%</div></div>
+  <div class="kpi"><div class="v">1999–2023</div><div class="l">생산연도</div><div class="s">중앙값 2013 · 2020s 19%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 95% · 지역 식별 100%</div></div>
+  <div class="kpi"><div class="v">0%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 0건 · 기술자 1명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1990s</td><td class="tags"><span class="tag">제주도 <small>21</small></span><span class="tag">제주도의회 특별법 개정안 <small>5</small></span><span class="tag">도박산업 <small>5</small></span><span class="tag">한라산 케이블카 설치 <small>4</small></span><span class="tag">한라산 <small>4</small></span><span class="tag">제주국제자유도시 <small>3</small></span><span class="tag">국제자유도시추진계획 <small>2</small></span><span class="tag">제주도개발특별법 <small>2</small></span></td></tr><tr><td>2000s</td><td class="tags"><span class="tag">제주도 <small>127</small></span><span class="tag">지하수 <small>12</small></span><span class="tag">한라산 케이블카 <small>12</small></span><span class="tag">골프장 <small>7</small></span><span class="tag">제주특별자치도 <small>6</small></span><span class="tag">환경영향평가 <small>6</small></span><span class="tag">화순항 해군전략기지 <small>5</small></span><span class="tag">해군기지 <small>5</small></span></td></tr><tr><td>2010s</td><td class="tags"><span class="tag">제주도 <small>159</small></span><span class="tag">난개발 <small>20</small></span><span class="tag">지하수 <small>16</small></span><span class="tag">환경영향평가 <small>14</small></span><span class="tag">정보공개청구 <small>8</small></span><span class="tag">카지노 <small>8</small></span><span class="tag">곶자왈 <small>8</small></span><span class="tag">먹는샘물 <small>7</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">제주도 <small>74</small></span><span class="tag">도시공원 민간특례사업 <small>18</small></span><span class="tag">오등봉공원 민간특례사업 <small>12</small></span><span class="tag">환경영향평가 <small>9</small></span><span class="tag">난개발 <small>8</small></span><span class="tag">하수처리 <small>8</small></span><span class="tag">카지노산업 <small>7</small></span><span class="tag">중부공원 <small>5</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 387건 중 외부 생산 0%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c30.html" style="width:200px">녹색연합</a><div class="bar" style="flex:1"><i style="width:4.0%"></i></div><span class="note">0.04</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:4.0%"></i></div><span class="note">0.04</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c43.html" style="width:200px">환경교육센터</a><div class="bar" style="flex:1"><i style="width:1.0%"></i></div><span class="note">0.01</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c31.html" style="width:200px">숲과나눔</a><div class="bar" style="flex:1"><i style="width:1.0%"></i></div><span class="note">0.01</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c34.html" style="width:200px">환경운동연합</a><div class="bar" style="flex:1"><i style="width:1.0%"></i></div><span class="note">0.01</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/94017" target="_blank"><div>제주도의회 제주도종합발전지원법안 심사특위 특별법 개정안 심사에 따른 공대위 성명</div><div class="y">1999 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93839" target="_blank"><div>감사원 결과에 따른 환경단체 공동 긴급기자회견</div><div class="y">2002 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93947" target="_blank"><div>먹는샘물 행정심판 결과에 대한 논평</div><div class="y">2005 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93822" target="_blank"><div>[보도자료] 제주도내 학원분포현황 관련</div><div class="y">2011 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/94115" target="_blank"><div>[성명] 변정일 JDC직전이사장 란딩그룹 고문 관련</div><div class="y">2014 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/94130" target="_blank"><div>[성명] 오라관광단지는 '지속가능한 제주'에 부합하지 않는 사업</div><div class="y">2016 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93900" target="_blank"><div>[기자회견] 오등봉공원 민간특례사업 원점 재검토 요구 오등봉공원비상대책위원회x(사)제주참여환경연대 공동 기자</div><div class="y">2021 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93918" target="_blank"><div>서귀포 KAL호텔의 오.폐수 무단 방류에 대한 논평</div><div class="y"> · 일반문서</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "제주참여환경연대", "id": 50, "slug": "c50", "kind": "단체", "desc": "1991년 제주도개발특별법 제정을 반대하는 자발적 도민운동 과정에서 '범도민회'라는 이름으로 창립되었습니다. 이후 '주민주체, 자연환경보전, 향토문화의 계승 발전'이라는 특별법 반대운동의 정신을 살려 각종 개발정책에 대한 감시활동을 펴왔으며, 1997년 이후에는 '참여자치, 환경 보전, 도민의 삶의 질 향상'이라는 모토하에 명실상부한 시민운동단체를 지향하며 그 활동영역을 넓혀 왔습니다. 2001년에는 제주참여환경연대로의 재창립을 통해 감시와 비판이라는 시민단체 본연의 활동뿐만 아니라, 지속가능한 제주발전과 지역사회의 개혁을 위한 대안마련 활동에도 적극 나서고 있습니다.", "total": 387, "public": 387, "private_rate": 0.0, "access_rate": 1.0, "year_min": 1999, "year_max": 2023, "year_median": 2013, "share_2020s": 0.1912, "share_pre1990": 0.0, "subject_rate": 0.9535, "region_rate": 1.0, "descriptors": 1, "added": [{"k": "2023", "v": 387}], "rtype": [{"k": "문서류", "v": 386}, {"k": "영상음성류", "v": 1}], "rform": [{"k": "일반문서", "v": 374}, {"k": "기자회견문", "v": 12}, {"k": "동영상", "v": 1}], "orig": [{"k": "전자", "v": 387}], "subject": [{"k": "생태계보전", "v": 321}, {"k": "도시환경", "v": 21}, {"k": "재난재해", "v": 12}, {"k": "기후에너지", "v": 5}, {"k": "생활안전", "v": 4}, {"k": "국제연대", "v": 3}, {"k": "자원순환", "v": 2}, {"k": "대기오염", "v": 1}], "year": [{"k": 1999, "v": 21}, {"k": 2000, "v": 10}, {"k": 2001, "v": 17}, {"k": 2002, "v": 17}, {"k": 2003, "v": 31}, {"k": 2004, "v": 13}, {"k": 2005, "v": 11}, {"k": 2006, "v": 18}, {"k": 2007, "v": 1}, {"k": 2008, "v": 4}, {"k": 2009, "v": 7}, {"k": 2010, "v": 13}, {"k": 2011, "v": 8}, {"k": 2012, "v": 4}, {"k": 2013, "v": 24}, {"k": 2014, "v": 35}, {"k": 2015, "v": 24}, {"k": 2016, "v": 25}, {"k": 2017, "v": 9}, {"k": 2018, "v": 13}, {"k": 2019, "v": 6}, {"k": 2020, "v": 13}, {"k": 2021, "v": 30}, {"k": 2022, "v": 18}, {"k": 2023, "v": 13}], "decade": [{"k": "1990s", "v": 21}, {"k": "2000s", "v": 129}, {"k": "2010s", "v": 161}, {"k": "2020s", "v": 74}], "regions": [{"k": "제주", "v": 387}, {"k": "부산", "v": 1}, {"k": "경남", "v": 1}], "top_kw": [{"k": "제주도", "v": 383}, {"k": "지하수", "v": 31}, {"k": "환경영향평가", "v": 30}, {"k": "난개발", "v": 29}, {"k": "도시공원 민간특례사업", "v": 18}, {"k": "곶자왈", "v": 14}, {"k": "한라산 케이블카", "v": 12}, {"k": "오등봉공원 민간특례사업", "v": 12}, {"k": "카지노", "v": 11}, {"k": "먹는샘물", "v": 9}, {"k": "해군기지", "v": 9}, {"k": "오름", "v": 9}, {"k": "제주국제자유도시", "v": 9}, {"k": "정보공개청구", "v": 8}, {"k": "골프장", "v": 8}, {"k": "환경파괴", "v": 8}, {"k": "한라산 케이블카 설치", "v": 8}, {"k": "제주도의회", "v": 8}, {"k": "카지노산업", "v": 8}, {"k": "하수처리", "v": 8}, {"k": "공공자원", "v": 8}, {"k": "노형동 드림타워 조성사업", "v": 7}, {"k": "한국공항㈜", "v": 7}, {"k": "제주해군기지", "v": 7}, {"k": "도박산업", "v": 7}], "distinct_kw": [{"k": "화순항 해군전략기지", "v": 5}, {"k": "한라산 케이블카 설치", "v": 8}, {"k": "제주도 해군기지", "v": 5}, {"k": "드림타워", "v": 6}, {"k": "제주도의회", "v": 8}, {"k": "한라산 케이블카", "v": 12}, {"k": "한진그룹", "v": 6}, {"k": "카지노산업", "v": 8}, {"k": "신화역사공원", "v": 5}, {"k": "제주국제자유도시개발센터", "v": 5}, {"k": "제주오라관광단지 개발사업", "v": 5}, {"k": "오등봉공원 민간특례사업", "v": 12}, {"k": "중부공원", "v": 5}, {"k": "제주도의회 특별법 개정안", "v": 5}, {"k": "제주도의회 환경도시위원회", "v": 5}, {"k": "제주도특별법 개정안", "v": 5}, {"k": "공공자원", "v": 8}, {"k": "오라관광단지 개발사업", "v": 5}, {"k": "지하수 공수화", "v": 5}, {"k": "노형동 드림타워 조성사업", "v": 7}, {"k": "한국공항㈜", "v": 7}, {"k": "도시공원 민간특례사업", "v": 18}, {"k": "도박산업", "v": 7}, {"k": "제주국제자유도시", "v": 9}, {"k": "카지노", "v": 11}], "kw_by_decade": {"1990s": [{"k": "제주도", "v": 21}, {"k": "제주도의회 특별법 개정안", "v": 5}, {"k": "도박산업", "v": 5}, {"k": "한라산 케이블카 설치", "v": 4}, {"k": "한라산", "v": 4}, {"k": "제주국제자유도시", "v": 3}, {"k": "국제자유도시추진계획", "v": 2}, {"k": "제주도개발특별법", "v": 2}], "2000s": [{"k": "제주도", "v": 127}, {"k": "지하수", "v": 12}, {"k": "한라산 케이블카", "v": 12}, {"k": "골프장", "v": 7}, {"k": "제주특별자치도", "v": 6}, {"k": "환경영향평가", "v": 6}, {"k": "화순항 해군전략기지", "v": 5}, {"k": "해군기지", "v": 5}], "2010s": [{"k": "제주도", "v": 159}, {"k": "난개발", "v": 20}, {"k": "지하수", "v": 16}, {"k": "환경영향평가", "v": 14}, {"k": "정보공개청구", "v": 8}, {"k": "카지노", "v": 8}, {"k": "곶자왈", "v": 8}, {"k": "먹는샘물", "v": 7}], "2020s": [{"k": "제주도", "v": 74}, {"k": "도시공원 민간특례사업", "v": 18}, {"k": "오등봉공원 민간특례사업", "v": 12}, {"k": "환경영향평가", "v": 9}, {"k": "난개발", "v": 8}, {"k": "하수처리", "v": 8}, {"k": "카지노산업", "v": 7}, {"k": "중부공원", "v": 5}]}, "creators": [], "external_rate": 0.0, "gov_n": 0, "creator_n": 387, "quality": {"설명": 1.0, "키워드": 1.0, "생산연도": 0.9948, "주제": 0.9535, "연관": 0.0052, "권리": 0.0, "원문": 1.0}, "samples": [{"id": 94017, "title": "제주도의회 제주도종합발전지원법안 심사특위 특별법 개정안 심사에 따른 공대위 성명", "year": 1999, "type": "일반문서", "preview": ""}, {"id": 93839, "title": "감사원 결과에 따른 환경단체 공동 긴급기자회견", "year": 2002, "type": "일반문서", "preview": ""}, {"id": 93947, "title": "먹는샘물 행정심판 결과에 대한 논평", "year": 2005, "type": "일반문서", "preview": ""}, {"id": 93822, "title": "[보도자료] 제주도내 학원분포현황 관련", "year": 2011, "type": "일반문서", "preview": ""}, {"id": 94115, "title": "[성명] 변정일 JDC직전이사장 란딩그룹 고문 관련", "year": 2014, "type": "일반문서", "preview": ""}, {"id": 94130, "title": "[성명] 오라관광단지는 '지속가능한 제주'에 부합하지 않는 사업", "year": 2016, "type": "일반문서", "preview": ""}, {"id": 93900, "title": "[기자회견] 오등봉공원 민간특례사업 원점 재검토 요구 오등봉공원비상대책위원회x(사)제주참여환경연대 공동 기자", "year": 2021, "type": "일반문서", "preview": ""}, {"id": 93918, "title": "서귀포 KAL호텔의 오.폐수 무단 방류에 대한 논평", "year": null, "type": "일반문서", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/50", "similar": [{"k": "녹색연합", "v": 0.044}, {"k": "함께사는길", "v": 0.039}, {"k": "환경교육센터", "v": 0.014}, {"k": "숲과나눔", "v": 0.014}, {"k": "환경운동연합", "v": 0.012}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

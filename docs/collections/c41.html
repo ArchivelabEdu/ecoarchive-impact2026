@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>환경법률센터 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="환경법률센터 컬렉션 333건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>환경법률센터 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">미래를 생각하지 않는 급속한 경제발전과 산업화가 엄청난 공해를 뿜어내던 시절, 공해추방운동연합의 환경법률상담실을 시작으로 시민단체 최초로 상근 변호사가 근무하는 환경운동연합의 법률 전문기관이 되었다. 새만금 사업 취소, 군부대 이전사업취소, 해인자 56번 도로 도로구역결정 취소사건, 4대강 소송등 환경법률센터는 추상적 권리였던 환경권을 좀더 실질적인 권리로 인정받을 수 있는 기반을 마련하기 위해 노력하고 있다. 또한 시멘트 손해배상소송, 가습기 손해배상소송 등을 통해 환경피해자들의 무거운 입증책임을 완화하기 위한 노력을 지속하고 있으며 환경관련 제도의 연구와 법률 제· 개정 활동을 통한 국내 환경법 개선을 위한 활동을 해 오고 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/41" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">333</div><div class="l">등록</div><div class="s">공개 327 · 비공개 1.8%</div></div>
+  <div class="kpi"><div class="v">1999–2020</div><div class="l">생산연도</div><div class="s">중앙값 2010 · 2020s 0%</div></div>
+  <div class="kpi"><div class="v">44.6%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 82% · 지역 식별 15%</div></div>
+  <div class="kpi"><div class="v">94%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 80건 · 기술자 2명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1990s</td><td class="tags"><span class="tag">충청북도 <small>1</small></span><span class="tag">쓰레기문제 <small>1</small></span><span class="tag">시민운동 <small>1</small></span></td></tr><tr><td>2000s</td><td class="tags"><span class="tag">새만금 <small>27</small></span><span class="tag">낙동강 <small>21</small></span><span class="tag">서증 <small>14</small></span><span class="tag">정부조치계획취소 <small>13</small></span><span class="tag">환경영향평가서 <small>8</small></span><span class="tag">폐기물처리시설 <small>7</small></span><span class="tag">을호증 <small>6</small></span><span class="tag">낙동강살리기사업 <small>6</small></span></td></tr><tr><td>2010s</td><td class="tags"><span class="tag">낙동강 <small>27</small></span><span class="tag">채무부존재 <small>19</small></span><span class="tag">손해배상 <small>11</small></span><span class="tag">아세아시멘트 <small>11</small></span><span class="tag">임실 <small>11</small></span><span class="tag">사실조회 <small>10</small></span><span class="tag">현대시멘트 <small>10</small></span><span class="tag">국방군사시설 <small>10</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">팔당호 <small>1</small></span><span class="tag">대청호 <small>1</small></span><span class="tag">상수원 <small>1</small></span><span class="tag">입지규제 <small>1</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 284건 중 외부 생산 94%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c40.html" style="width:200px">불교환경연대</a><div class="bar" style="flex:1"><i style="width:30.0%"></i></div><span class="note">0.30</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:26.0%"></i></div><span class="note">0.26</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c55.html" style="width:200px">한겨레</a><div class="bar" style="flex:1"><i style="width:21.0%"></i></div><span class="note">0.21</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c22.html" style="width:200px">구도완</a><div class="bar" style="flex:1"><i style="width:18.0%"></i></div><span class="note">0.18</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c24.html" style="width:200px">장재연</a><div class="bar" style="flex:1"><i style="width:15.0%"></i></div><span class="note">0.15</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/50166" target="_blank"><div>21세기 쓰레기문제 해결을 위한 시민운동의 방향</div><div class="y">1999 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/50294" target="_blank"><div>환경보건관련 법령체계 개선방안 연구 자료집</div><div class="y">2006 · 자료집</div></a><a href="https://ecoarchive.org/items/show/50202" target="_blank"><div>비교법학연구소 환경법센터 학술대회</div><div class="y">2009 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/50298" target="_blank"><div>환경오염피해 구제제도 도입의 과제와 방향 토론회 자료집</div><div class="y">2013 · 자료집</div></a><a href="https://ecoarchive.org/items/show/50279" target="_blank"><div>제3차 안전 사각지대 워크숍 자료집</div><div class="y">2015 · 자료집</div></a><a href="https://ecoarchive.org/items/show/50189" target="_blank"><div>MB의 4대강</div><div class="y">2017 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/50239" target="_blank"><div>2017년 환경판례 평석집</div><div class="y">2018 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/50307" target="_blank"><div>지구지역 지정규제 통합안의 자문사항</div><div class="y"> · 임의제본물</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "환경법률센터", "id": 41, "slug": "c41", "kind": "단체", "desc": "미래를 생각하지 않는 급속한 경제발전과 산업화가 엄청난 공해를 뿜어내던 시절, 공해추방운동연합의 환경법률상담실을 시작으로 시민단체 최초로 상근 변호사가 근무하는 환경운동연합의 법률 전문기관이 되었다. 새만금 사업 취소, 군부대 이전사업취소, 해인자 56번 도로 도로구역결정 취소사건, 4대강 소송등 환경법률센터는 추상적 권리였던 환경권을 좀더 실질적인 권리로 인정받을 수 있는 기반을 마련하기 위해 노력하고 있다. 또한 시멘트 손해배상소송, 가습기 손해배상소송 등을 통해 환경피해자들의 무거운 입증책임을 완화하기 위한 노력을 지속하고 있으며 환경관련 제도의 연구와 법률 제· 개정 활동을 통한 국내 환경법 개선을 위한 활동을 해 오고 있다.", "total": 333, "public": 327, "private_rate": 0.018, "access_rate": 0.4465, "year_min": 1999, "year_max": 2020, "year_median": 2010, "share_2020s": 0.0031, "share_pre1990": 0.0, "subject_rate": 0.8165, "region_rate": 0.1498, "descriptors": 2, "added": [{"k": "2020", "v": 1}, {"k": "2021", "v": 332}], "rtype": [{"k": "문서류", "v": 187}, {"k": "도서간행물류", "v": 140}], "rform": [{"k": "일반문서", "v": 132}, {"k": "임의제본물", "v": 120}, {"k": "보고서", "v": 54}, {"k": "자료집", "v": 20}, {"k": "보도자료", "v": 1}], "orig": [{"k": "비전자", "v": 326}, {"k": "전자", "v": 1}], "subject": [{"k": "생태계보전", "v": 156}, {"k": "반공해", "v": 48}, {"k": "생활안전", "v": 34}, {"k": "기후에너지", "v": 12}, {"k": "반핵탈핵", "v": 9}, {"k": "자원순환", "v": 6}, {"k": "대기오염", "v": 1}, {"k": "도시환경", "v": 1}], "year": [{"k": 1999, "v": 1}, {"k": 2000, "v": 1}, {"k": 2001, "v": 5}, {"k": 2002, "v": 7}, {"k": 2003, "v": 4}, {"k": 2004, "v": 16}, {"k": 2005, "v": 26}, {"k": 2006, "v": 19}, {"k": 2007, "v": 6}, {"k": 2008, "v": 6}, {"k": 2009, "v": 44}, {"k": 2010, "v": 33}, {"k": 2011, "v": 15}, {"k": 2012, "v": 21}, {"k": 2013, "v": 22}, {"k": 2014, "v": 9}, {"k": 2015, "v": 18}, {"k": 2016, "v": 20}, {"k": 2017, "v": 21}, {"k": 2018, "v": 16}, {"k": 2019, "v": 3}, {"k": 2020, "v": 1}], "decade": [{"k": "1990s", "v": 1}, {"k": "2000s", "v": 134}, {"k": "2010s", "v": 178}, {"k": "2020s", "v": 1}], "regions": [{"k": "전북", "v": 32}, {"k": "서울", "v": 5}, {"k": "부산", "v": 4}, {"k": "경북", "v": 3}, {"k": "충북", "v": 2}, {"k": "충남", "v": 1}, {"k": "경남", "v": 1}, {"k": "경기", "v": 1}], "top_kw": [{"k": "낙동강", "v": 49}, {"k": "새만금", "v": 32}, {"k": "서증", "v": 20}, {"k": "채무부존재", "v": 19}, {"k": "손해배상", "v": 14}, {"k": "을호증", "v": 13}, {"k": "정부조치계획취소", "v": 13}, {"k": "하천공사시행계획취소", "v": 13}, {"k": "4대강", "v": 12}, {"k": "아세아시멘트", "v": 11}, {"k": "임실", "v": 11}, {"k": "사실조회", "v": 10}, {"k": "현대시멘트", "v": 10}, {"k": "국방군사시설", "v": 10}, {"k": "35사단", "v": 10}, {"k": "갑호증", "v": 9}, {"k": "수리모형시험", "v": 9}, {"k": "가습기살균제", "v": 9}, {"k": "낙동강살리기사업", "v": 8}, {"k": "환경영향평가서", "v": 8}, {"k": "시설승인무효", "v": 8}, {"k": "회신", "v": 7}, {"k": "수리모형실험", "v": 7}, {"k": "폐기물처리시설", "v": 7}, {"k": "환경소송", "v": 7}], "distinct_kw": [{"k": "갑호증", "v": 9}, {"k": "채무부존재", "v": 19}, {"k": "현대시멘트", "v": 10}, {"k": "낙동강살리기사업", "v": 8}, {"k": "유역종합치수계획", "v": 5}, {"k": "수리모형시험", "v": 9}, {"k": "국방군사시설", "v": 10}, {"k": "35사단", "v": 10}, {"k": "시설승인무효", "v": 8}, {"k": "을호증", "v": 13}, {"k": "하천공사시행계획취소", "v": 13}, {"k": "수리모형실험", "v": 7}, {"k": "아세아시멘트", "v": 11}, {"k": "임실", "v": 11}, {"k": "서증", "v": 20}, {"k": "사실조회", "v": 10}, {"k": "함안보", "v": 5}, {"k": "하천기본계획", "v": 5}, {"k": "동양시멘트", "v": 6}, {"k": "상고", "v": 5}, {"k": "정부조치계획취소", "v": 13}, {"k": "집행정지", "v": 6}, {"k": "폐기물처리시설", "v": 7}, {"k": "손해배상", "v": 14}, {"k": "환경소송", "v": 7}], "kw_by_decade": {"1990s": [{"k": "충청북도", "v": 1}, {"k": "쓰레기문제", "v": 1}, {"k": "시민운동", "v": 1}], "2000s": [{"k": "새만금", "v": 27}, {"k": "낙동강", "v": 21}, {"k": "서증", "v": 14}, {"k": "정부조치계획취소", "v": 13}, {"k": "환경영향평가서", "v": 8}, {"k": "폐기물처리시설", "v": 7}, {"k": "을호증", "v": 6}, {"k": "낙동강살리기사업", "v": 6}], "2010s": [{"k": "낙동강", "v": 27}, {"k": "채무부존재", "v": 19}, {"k": "손해배상", "v": 11}, {"k": "아세아시멘트", "v": 11}, {"k": "임실", "v": 11}, {"k": "사실조회", "v": 10}, {"k": "현대시멘트", "v": 10}, {"k": "국방군사시설", "v": 10}], "2020s": [{"k": "팔당호", "v": 1}, {"k": "대청호", "v": 1}, {"k": "상수원", "v": 1}, {"k": "입지규제", "v": 1}]}, "creators": [{"k": "국토해양부 부산지방국토관리청", "v": 19}, {"k": "법무법인태평양", "v": 9}, {"k": "종합법률사무소누하", "v": 9}, {"k": "한국환경정책평가연구원", "v": 6}, {"k": "법무법인누하; 법무법인태평양", "v": 4}, {"k": "한국행정연구원", "v": 4}, {"k": "강원대학교 비교법학연구소 환경법센터", "v": 4}, {"k": "경상남도", "v": 4}, {"k": "한국법제연구원", "v": 3}, {"k": "환경운동연합", "v": 3}, {"k": "KOMIPO한국중부발전", "v": 3}, {"k": "서울특별시수돗물평가위원회", "v": 3}, {"k": "대우건설", "v": 3}, {"k": "GS건설주식회사", "v": 3}, {"k": "법무법인누하; 정부법무공단", "v": 3}], "external_rate": 0.9401, "gov_n": 80, "creator_n": 284, "quality": {"설명": 1.0, "키워드": 1.0, "생산연도": 0.9602, "주제": 0.8165, "연관": 0.4159, "권리": 0.0, "원문": 0.4465}, "samples": [{"id": 50166, "title": "21세기 쓰레기문제 해결을 위한 시민운동의 방향", "year": 1999, "type": "임의제본물", "preview": ""}, {"id": 50294, "title": "환경보건관련 법령체계 개선방안 연구 자료집", "year": 2006, "type": "자료집", "preview": ""}, {"id": 50202, "title": "비교법학연구소 환경법센터 학술대회", "year": 2009, "type": "임의제본물", "preview": ""}, {"id": 50298, "title": "환경오염피해 구제제도 도입의 과제와 방향 토론회 자료집", "year": 2013, "type": "자료집", "preview": ""}, {"id": 50279, "title": "제3차 안전 사각지대 워크숍 자료집", "year": 2015, "type": "자료집", "preview": ""}, {"id": 50189, "title": "MB의 4대강", "year": 2017, "type": "임의제본물", "preview": ""}, {"id": 50239, "title": "2017년 환경판례 평석집", "year": 2018, "type": "임의제본물", "preview": ""}, {"id": 50307, "title": "지구지역 지정규제 통합안의 자문사항", "year": null, "type": "임의제본물", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/41", "similar": [{"k": "불교환경연대", "v": 0.298}, {"k": "함께사는길", "v": 0.255}, {"k": "한겨레", "v": 0.209}, {"k": "구도완", "v": 0.178}, {"k": "장재연", "v": 0.154}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

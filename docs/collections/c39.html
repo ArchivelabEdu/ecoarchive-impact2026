@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>함께사는길 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="함께사는길 컬렉션 368건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>함께사는길 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">1993년 7월 1일 창간호를 낸 이래 매월 환경뉴스와 담론을 보도해온 우리 사회의 대표적인 환경 월간지이다. 특별히 ‘지구를 지키는 사람들’이라는 정체성을 가진 정기 구독자들을 이어주는 시민 연대의 통로로서 기능하고 있다. 『함께사는길』은 사람과 자연의 지속가능한 공생을 위한 보도를 임무로, 사회·생태적 약자의 대변인이자 시민환경운동의 기록자로서 활동하고 있다. 기증한 자료에서는 시기별 시민환경운동의 주요의제 관련 보도를 찾아볼 수 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/39" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">368</div><div class="l">등록</div><div class="s">공개 366 · 비공개 0.5%</div></div>
+  <div class="kpi"><div class="v">1993–2024</div><div class="l">생산연도</div><div class="s">중앙값 2008 · 2020s 13%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 89% · 지역 식별 30%</div></div>
+  <div class="kpi"><div class="v">100%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 0건 · 기술자 1명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1990s</td><td class="tags"><span class="tag">골프장 <small>15</small></span><span class="tag">굴업도 <small>9</small></span><span class="tag">동강 <small>8</small></span><span class="tag">갯벌 <small>7</small></span><span class="tag">그린벨트 <small>7</small></span><span class="tag">환경영향평가 <small>6</small></span><span class="tag">댐 <small>6</small></span><span class="tag">핵발전소 <small>5</small></span></td></tr><tr><td>2000s</td><td class="tags"><span class="tag">새만금 <small>23</small></span><span class="tag">골프장 <small>20</small></span><span class="tag">고래 <small>15</small></span><span class="tag">새만금갯벌 <small>15</small></span><span class="tag">기후변화 <small>14</small></span><span class="tag">매향리 <small>12</small></span><span class="tag">석면 <small>12</small></span><span class="tag">지구온난화 <small>12</small></span></td></tr><tr><td>2010s</td><td class="tags"><span class="tag">4대강사업 <small>31</small></span><span class="tag">가습기살균제 <small>18</small></span><span class="tag">4대강 <small>17</small></span><span class="tag">석면 <small>12</small></span><span class="tag">후쿠시마 <small>12</small></span><span class="tag">수돗물 <small>12</small></span><span class="tag">미세먼지 <small>12</small></span><span class="tag">월성1호기 <small>10</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">예산 <small>16</small></span><span class="tag">시민참여 <small>8</small></span><span class="tag">기후위기 <small>6</small></span><span class="tag">온실가스 <small>5</small></span><span class="tag">에너지협동조합 <small>5</small></span><span class="tag">재생에너지 <small>5</small></span><span class="tag">그린뉴딜 <small>3</small></span><span class="tag">oda <small>3</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 366건 중 외부 생산 100%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c34.html" style="width:200px">환경운동연합</a><div class="bar" style="flex:1"><i style="width:31.0%"></i></div><span class="note">0.31</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c22.html" style="width:200px">구도완</a><div class="bar" style="flex:1"><i style="width:27.0%"></i></div><span class="note">0.27</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c40.html" style="width:200px">불교환경연대</a><div class="bar" style="flex:1"><i style="width:26.0%"></i></div><span class="note">0.26</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c41.html" style="width:200px">환경법률센터</a><div class="bar" style="flex:1"><i style="width:26.0%"></i></div><span class="note">0.26</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c30.html" style="width:200px">녹색연합</a><div class="bar" style="flex:1"><i style="width:26.0%"></i></div><span class="note">0.26</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/28758" target="_blank"><div>월간 환경 7월 창간호 통권1호</div><div class="y">1993 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/28806" target="_blank"><div>환경운동 토권48호</div><div class="y">1997 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/28868" target="_blank"><div>함께 사는 길 2002년 8월호</div><div class="y">2002 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/28912" target="_blank"><div>함께 사는 길 2006년 4월호</div><div class="y">2006 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/28962" target="_blank"><div>함께 사는 길 2010년 6월호</div><div class="y">2010 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/29027" target="_blank"><div>함께 사는 길 2015년 11월호</div><div class="y">2015 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/29069" target="_blank"><div>함께 사는 길 2019년 5월호</div><div class="y">2019 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/94890" target="_blank"><div>함께사는길 2024년 1월호 NO.367</div><div class="y">2024 · 정기간행물</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "함께사는길", "id": 39, "slug": "c39", "kind": "단체", "desc": "1993년 7월 1일 창간호를 낸 이래 매월 환경뉴스와 담론을 보도해온 우리 사회의 대표적인 환경 월간지이다. 특별히 ‘지구를 지키는 사람들’이라는 정체성을 가진 정기 구독자들을 이어주는 시민 연대의 통로로서 기능하고 있다. 『함께사는길』은 사람과 자연의 지속가능한 공생을 위한 보도를 임무로, 사회·생태적 약자의 대변인이자 시민환경운동의 기록자로서 활동하고 있다. 기증한 자료에서는 시기별 시민환경운동의 주요의제 관련 보도를 찾아볼 수 있다.", "total": 368, "public": 366, "private_rate": 0.0054, "access_rate": 1.0, "year_min": 1993, "year_max": 2024, "year_median": 2008, "share_2020s": 0.1339, "share_pre1990": 0.0, "subject_rate": 0.888, "region_rate": 0.3033, "descriptors": 1, "added": [{"k": "2020", "v": 327}, {"k": "2024", "v": 41}], "rtype": [{"k": "도서간행물류", "v": 366}], "rform": [{"k": "정기간행물", "v": 366}], "orig": [{"k": "비전자", "v": 325}, {"k": "전자", "v": 41}], "subject": [{"k": "생태계보전", "v": 130}, {"k": "반핵탈핵", "v": 107}, {"k": "반공해", "v": 65}, {"k": "국제연대", "v": 15}, {"k": "기후에너지", "v": 5}, {"k": "자원순환", "v": 1}, {"k": "생활안전", "v": 1}, {"k": "재난재해", "v": 1}], "year": [{"k": 1993, "v": 7}, {"k": 1994, "v": 12}, {"k": 1995, "v": 11}, {"k": 1996, "v": 11}, {"k": 1997, "v": 12}, {"k": 1998, "v": 12}, {"k": 1999, "v": 12}, {"k": 2000, "v": 12}, {"k": 2001, "v": 12}, {"k": 2002, "v": 12}, {"k": 2003, "v": 12}, {"k": 2004, "v": 12}, {"k": 2005, "v": 12}, {"k": 2006, "v": 12}, {"k": 2007, "v": 12}, {"k": 2008, "v": 12}, {"k": 2009, "v": 12}, {"k": 2010, "v": 12}, {"k": 2011, "v": 12}, {"k": 2012, "v": 12}, {"k": 2013, "v": 12}, {"k": 2014, "v": 12}, {"k": 2015, "v": 12}, {"k": 2016, "v": 12}, {"k": 2017, "v": 12}, {"k": 2018, "v": 12}, {"k": 2019, "v": 12}, {"k": 2020, "v": 12}, {"k": 2021, "v": 12}, {"k": 2022, "v": 12}, {"k": 2023, "v": 12}, {"k": 2024, "v": 1}], "decade": [{"k": "1990s", "v": 77}, {"k": "2000s", "v": 120}, {"k": "2010s", "v": 120}, {"k": "2020s", "v": 49}], "regions": [{"k": "전북", "v": 34}, {"k": "강원", "v": 27}, {"k": "경기", "v": 23}, {"k": "인천", "v": 13}, {"k": "서울", "v": 8}, {"k": "충남", "v": 8}, {"k": "제주", "v": 4}, {"k": "전남", "v": 1}, {"k": "울산", "v": 1}, {"k": "경남", "v": 1}, {"k": "광주", "v": 1}, {"k": "경북", "v": 1}], "top_kw": [{"k": "골프장", "v": 40}, {"k": "4대강사업", "v": 34}, {"k": "새만금", "v": 32}, {"k": "석면", "v": 26}, {"k": "수돗물", "v": 24}, {"k": "기후변화", "v": 24}, {"k": "고래", "v": 19}, {"k": "낙동강", "v": 18}, {"k": "가습기살균제", "v": 18}, {"k": "새만금갯벌", "v": 17}, {"k": "4대강", "v": 17}, {"k": "지구온난화", "v": 16}, {"k": "동강", "v": 16}, {"k": "예산", "v": 16}, {"k": "지리산", "v": 15}, {"k": "그린벨트", "v": 14}, {"k": "핵발전소", "v": 13}, {"k": "갯벌", "v": 13}, {"k": "저어새", "v": 13}, {"k": "서울환경영화제", "v": 13}, {"k": "후쿠시마", "v": 13}, {"k": "미세먼지", "v": 13}, {"k": "굴업도", "v": 12}, {"k": "매향리", "v": 12}, {"k": "광우병", "v": 12}], "distinct_kw": [{"k": "경주방사능폐기물처리장", "v": 6}, {"k": "강정마을", "v": 7}, {"k": "환경영웅", "v": 5}, {"k": "골드만상", "v": 7}, {"k": "초록정치", "v": 5}, {"k": "골드만환경상", "v": 6}, {"k": "동물원", "v": 9}, {"k": "해양투기", "v": 8}, {"k": "서울환경영화제", "v": 13}, {"k": "10대환경뉴스", "v": 7}, {"k": "독수리", "v": 5}, {"k": "학교급식", "v": 6}, {"k": "람사르총회", "v": 5}, {"k": "아파트", "v": 7}, {"k": "돌고래", "v": 6}, {"k": "석면", "v": 26}, {"k": "녹색정치", "v": 5}, {"k": "저어새", "v": 13}, {"k": "기후변화대응", "v": 6}, {"k": "시화호", "v": 11}, {"k": "두루미", "v": 8}, {"k": "무등산", "v": 7}, {"k": "전자파", "v": 6}, {"k": "고래", "v": 19}, {"k": "수달", "v": 5}], "kw_by_decade": {"1990s": [{"k": "골프장", "v": 15}, {"k": "굴업도", "v": 9}, {"k": "동강", "v": 8}, {"k": "갯벌", "v": 7}, {"k": "그린벨트", "v": 7}, {"k": "환경영향평가", "v": 6}, {"k": "댐", "v": 6}, {"k": "핵발전소", "v": 5}], "2000s": [{"k": "새만금", "v": 23}, {"k": "골프장", "v": 20}, {"k": "고래", "v": 15}, {"k": "새만금갯벌", "v": 15}, {"k": "기후변화", "v": 14}, {"k": "매향리", "v": 12}, {"k": "석면", "v": 12}, {"k": "지구온난화", "v": 12}], "2010s": [{"k": "4대강사업", "v": 31}, {"k": "가습기살균제", "v": 18}, {"k": "4대강", "v": 17}, {"k": "석면", "v": 12}, {"k": "후쿠시마", "v": 12}, {"k": "수돗물", "v": 12}, {"k": "미세먼지", "v": 12}, {"k": "월성1호기", "v": 10}], "2020s": [{"k": "예산", "v": 16}, {"k": "시민참여", "v": 8}, {"k": "기후위기", "v": 6}, {"k": "온실가스", "v": 5}, {"k": "에너지협동조합", "v": 5}, {"k": "재생에너지", "v": 5}, {"k": "그린뉴딜", "v": 3}, {"k": "oda", "v": 3}]}, "creators": [{"k": "환경운동연합", "v": 366}], "external_rate": 1.0, "gov_n": 0, "creator_n": 366, "quality": {"설명": 1.0, "키워드": 0.9945, "생산연도": 1.0, "주제": 0.888, "연관": 0.2732, "권리": 0.0, "원문": 1.0}, "samples": [{"id": 28758, "title": "월간 환경 7월 창간호 통권1호", "year": 1993, "type": "정기간행물", "preview": ""}, {"id": 28806, "title": "환경운동 토권48호", "year": 1997, "type": "정기간행물", "preview": ""}, {"id": 28868, "title": "함께 사는 길 2002년 8월호", "year": 2002, "type": "정기간행물", "preview": ""}, {"id": 28912, "title": "함께 사는 길 2006년 4월호", "year": 2006, "type": "정기간행물", "preview": ""}, {"id": 28962, "title": "함께 사는 길 2010년 6월호", "year": 2010, "type": "정기간행물", "preview": ""}, {"id": 29027, "title": "함께 사는 길 2015년 11월호", "year": 2015, "type": "정기간행물", "preview": ""}, {"id": 29069, "title": "함께 사는 길 2019년 5월호", "year": 2019, "type": "정기간행물", "preview": ""}, {"id": 94890, "title": "함께사는길 2024년 1월호 NO.367", "year": 2024, "type": "정기간행물", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/39", "similar": [{"k": "환경운동연합", "v": 0.309}, {"k": "구도완", "v": 0.266}, {"k": "불교환경연대", "v": 0.256}, {"k": "환경법률센터", "v": 0.255}, {"k": "녹색연합", "v": 0.255}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

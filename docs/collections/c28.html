@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>윤제용 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="윤제용 컬렉션 5건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 개인</div>
+<h1>윤제용 <span class="pill person">개인 컬렉션</span></h1>
+<p class="lead">서울대 공업화학과를 졸업하고 미국 뉴욕주립대에서 환경공학으로 박사학위를 받았다. 서울대 공과대 화학생물공학부 교수로 재직중이며, 1998년~2004년까지 서울특별시 수돗물수질평가위원회 위원, 2000년~2001년 지속가능발전위원회 수자원분과 위원, 2007년~2008년 시민환경연구소 소장, 2013년~2016년 국경없는 과학기술자회 회장 등 과학기술의 나눔과 사회적 공헌에 관심을 가지고 다양한 활동을 하고 있다. 기증자료는 서울특별시 수돗물수질평가위원회 보고서, 국립환경연구원 보고서 등이다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/28" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">5</div><div class="l">등록</div><div class="s">공개 5 · 비공개 0.0%</div></div>
+  <div class="kpi"><div class="v">2002–2009</div><div class="l">생산연도</div><div class="s">중앙값 2003 · 2020s 0%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 100% · 지역 식별 0%</div></div>
+  <div class="kpi"><div class="v">100%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 1건 · 기술자 1명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>2000s</td><td class="tags"><span class="tag">정수장 <small>4</small></span><span class="tag">수돗물 <small>3</small></span><span class="tag">정수처리기술 <small>3</small></span><span class="tag">국립환경연구원 <small>2</small></span><span class="tag">한국수자원공사 <small>2</small></span><span class="tag">수자원연구소 <small>2</small></span><span class="tag">수질관리 <small>2</small></span><span class="tag">먹는물 <small>2</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 4건 중 외부 생산 100%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c24.html" style="width:200px">장재연</a><div class="bar" style="flex:1"><i style="width:14.0%"></i></div><span class="note">0.14</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c35.html" style="width:200px">환경정의</a><div class="bar" style="flex:1"><i style="width:8.0%"></i></div><span class="note">0.08</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:7.0%"></i></div><span class="note">0.07</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c40.html" style="width:200px">불교환경연대</a><div class="bar" style="flex:1"><i style="width:5.0%"></i></div><span class="note">0.05</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c37.html" style="width:200px">수원환경운동센터</a><div class="bar" style="flex:1"><i style="width:5.0%"></i></div><span class="note">0.05</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/86639" target="_blank"><div>우리나라 정수장의 정수처리기술기준 제정에 관한 연구 요약보고서</div><div class="y">2002 · 보고서</div></a><a href="https://ecoarchive.org/items/show/86640" target="_blank"><div>우리나라 정수장의 정수처리기술기준 제정에 관한 연구 최종보고서</div><div class="y">2002 · 보고서</div></a><a href="https://ecoarchive.org/items/show/86643" target="_blank"><div>서울특별시수돗물수질평가위원회 2003년 활동보고서</div><div class="y">2003 · 보고서</div></a><a href="https://ecoarchive.org/items/show/86641" target="_blank"><div>정수처리기술에 관한 연구 보고서</div><div class="y">2009 · 보고서</div></a><a href="https://ecoarchive.org/items/show/86642" target="_blank"><div>생명의 강 살리기' 의 방안과 대안 모색</div><div class="y">2009 · 보고서</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "윤제용", "id": 28, "slug": "c28", "kind": "개인", "desc": "서울대 공업화학과를 졸업하고 미국 뉴욕주립대에서 환경공학으로 박사학위를 받았다. 서울대 공과대 화학생물공학부 교수로 재직중이며, 1998년~2004년까지 서울특별시 수돗물수질평가위원회 위원, 2000년~2001년 지속가능발전위원회 수자원분과 위원, 2007년~2008년 시민환경연구소 소장, 2013년~2016년 국경없는 과학기술자회 회장 등 과학기술의 나눔과 사회적 공헌에 관심을 가지고 다양한 활동을 하고 있다. 기증자료는 서울특별시 수돗물수질평가위원회 보고서, 국립환경연구원 보고서 등이다.", "total": 5, "public": 5, "private_rate": 0.0, "access_rate": 1.0, "year_min": 2002, "year_max": 2009, "year_median": 2003, "share_2020s": 0.0, "share_pre1990": 0.0, "subject_rate": 1.0, "region_rate": 0.0, "descriptors": 1, "added": [{"k": "2023", "v": 5}], "rtype": [{"k": "문서류", "v": 5}], "rform": [{"k": "보고서", "v": 5}], "orig": [{"k": "비전자", "v": 5}], "subject": [{"k": "반공해", "v": 3}, {"k": "생태계보전", "v": 2}], "year": [{"k": 2002, "v": 2}, {"k": 2003, "v": 1}, {"k": 2009, "v": 2}], "decade": [{"k": "2000s", "v": 5}], "regions": [], "top_kw": [{"k": "정수장", "v": 4}, {"k": "수돗물", "v": 3}, {"k": "정수처리기술", "v": 3}, {"k": "국립환경연구원", "v": 2}, {"k": "한국수자원공사", "v": 2}, {"k": "수자원연구소", "v": 2}, {"k": "수질관리", "v": 2}, {"k": "먹는물", "v": 2}, {"k": "오염물질", "v": 2}, {"k": "바이러스처리기술", "v": 2}, {"k": "공정개선", "v": 2}, {"k": "미생물관리", "v": 2}, {"k": "정수처리기준", "v": 2}, {"k": "정수장안전관리인증제도", "v": 2}, {"k": "정수", "v": 1}, {"k": "지표수", "v": 1}, {"k": "지하수", "v": 1}, {"k": "호소수", "v": 1}, {"k": "원수", "v": 1}, {"k": "부유물질", "v": 1}, {"k": "중금속", "v": 1}, {"k": "유기물질", "v": 1}, {"k": "유해물질", "v": 1}, {"k": "물", "v": 1}, {"k": "고도정수시설", "v": 1}], "distinct_kw": [], "kw_by_decade": {"2000s": [{"k": "정수장", "v": 4}, {"k": "수돗물", "v": 3}, {"k": "정수처리기술", "v": 3}, {"k": "국립환경연구원", "v": 2}, {"k": "한국수자원공사", "v": 2}, {"k": "수자원연구소", "v": 2}, {"k": "수질관리", "v": 2}, {"k": "먹는물", "v": 2}]}, "creators": [{"k": "한국수자원공사 수자원연구소", "v": 2}, {"k": "생명의강연구단", "v": 1}, {"k": "서울특별시수돗물수질평가위원회", "v": 1}], "external_rate": 1.0, "gov_n": 1, "creator_n": 4, "quality": {"설명": 1.0, "키워드": 1.0, "생산연도": 1.0, "주제": 1.0, "연관": 0.0, "권리": 0.0, "원문": 1.0}, "samples": [{"id": 86639, "title": "우리나라 정수장의 정수처리기술기준 제정에 관한 연구 요약보고서", "year": 2002, "type": "보고서", "preview": ""}, {"id": 86640, "title": "우리나라 정수장의 정수처리기술기준 제정에 관한 연구 최종보고서", "year": 2002, "type": "보고서", "preview": ""}, {"id": 86643, "title": "서울특별시수돗물수질평가위원회 2003년 활동보고서", "year": 2003, "type": "보고서", "preview": ""}, {"id": 86641, "title": "정수처리기술에 관한 연구 보고서", "year": 2009, "type": "보고서", "preview": ""}, {"id": 86642, "title": "생명의 강 살리기' 의 방안과 대안 모색", "year": 2009, "type": "보고서", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/28", "similar": [{"k": "장재연", "v": 0.144}, {"k": "환경정의", "v": 0.076}, {"k": "함께사는길", "v": 0.067}, {"k": "불교환경연대", "v": 0.051}, {"k": "수원환경운동센터", "v": 0.047}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

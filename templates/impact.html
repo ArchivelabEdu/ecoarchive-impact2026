@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">임팩트 지표</div><h1>Omeka 목록에서 산출한 임팩트 지표</h1>
+<p class="lead">「환경아카이브 풀숲 통합 임팩트 측정 보고서」의 다섯 임팩트 영역(학술·지식 생산, 사회·운동사, 정책·제도, 이용자 경험, 조직·운영)에 대응하는 22개 지표입니다. 모두 Omeka 필드에서 직접 산출되며 매년 API로 재산출할 수 있습니다.</p>
+{% for area, rows in IND %}<h2>{{ area }}</h2>
+<table class="t"><thead><tr><th>지표</th><th>정의·산출</th><th class="n">값</th><th>Omeka 원천</th></tr></thead><tbody>{% for r in rows %}<tr><td><b>{{ r[0] }}</b></td><td>{{ r[1] }}</td><td class="n">{{ r[2] }}</td><td><code>{{ r[3] }}</code></td></tr>{% endfor %}</tbody></table>{% endfor %}
+<div class="callout"><b>보완 지표(비-Omeka)</b> Google Scholar·RISS 인용 검색, 논문 공모 응모·수상 편수, 오류신고·목록받기 GA4 이벤트, 접속통계와 결합한 "많이 읽힌 기록"의 프로파일.</div>
+{% endblock %}

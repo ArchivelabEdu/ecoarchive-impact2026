@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>한겨레 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="한겨레 컬렉션 9,464건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>한겨레 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">한겨레는 창간 초기부터 환경 문제를 사회의 주요 의제로 다루어 온 언론사입니다. 최근에는 국내 언론 최초로 2020년 4월 '기후변화팀'을 신설하며 환경·기후위기 보도에 선도적 역할을 해오고 있습니다. 
+본 컬렉션은 한겨레가 기록해 온 방대한 환경 관련 보도를 담고 있습니다. 현재는 창간 이후 1999년까지의 환경 기사 만을 담고 있으나 추후 계속해서 추가될 예정입니다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/55" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">9,464</div><div class="l">등록</div><div class="s">공개 9,464 · 비공개 0.0%</div></div>
+  <div class="kpi"><div class="v">1988–1999</div><div class="l">생산연도</div><div class="s">중앙값 1996 · 2020s 0%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 38% · 지역 식별 4%</div></div>
+  <div class="kpi"><div class="v">0%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 0건 · 기술자 0명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1980s</td><td class="tags"><span class="tag">방사능 <small>27</small></span><span class="tag">인터뷰 <small>8</small></span><span class="tag">낙동강 <small>7</small></span><span class="tag">연구 <small>7</small></span><span class="tag">한강 <small>7</small></span><span class="tag">서울시 <small>6</small></span><span class="tag">생태계 <small>5</small></span><span class="tag">국립공원 <small>5</small></span></td></tr><tr><td>1990s</td><td class="tags"><span class="tag">재활용 <small>288</small></span><span class="tag">생태계 <small>202</small></span><span class="tag">생태 <small>195</small></span><span class="tag">낙동강 <small>142</small></span><span class="tag">안전 <small>122</small></span><span class="tag">방사능 <small>110</small></span><span class="tag">인터뷰 <small>98</small></span><span class="tag">서울시 <small>92</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 9,464건 중 외부 생산 0%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c41.html" style="width:200px">환경법률센터</a><div class="bar" style="flex:1"><i style="width:21.0%"></i></div><span class="note">0.21</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c38.html" style="width:200px">국립공원을지키는시민의모임</a><div class="bar" style="flex:1"><i style="width:18.0%"></i></div><span class="note">0.18</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c24.html" style="width:200px">장재연</a><div class="bar" style="flex:1"><i style="width:15.0%"></i></div><span class="note">0.15</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:13.0%"></i></div><span class="note">0.13</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c22.html" style="width:200px">구도완</a><div class="bar" style="flex:1"><i style="width:13.0%"></i></div><span class="note">0.13</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/105160" target="_blank"><div>교통체증 대기오염 악화요인</div><div class="y">1988 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/106768" target="_blank"><div>정부기관,재활용품 우선 구입</div><div class="y">1992 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/108332" target="_blank"><div>영광·고리 원전균열 긴급제보'소동</div><div class="y">1994 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/108505" target="_blank"><div>종량제 경제효과 한해 5천5백억</div><div class="y">1995 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/109776" target="_blank"><div>공동주택 녹지기준 서울시, 강화 건의</div><div class="y">1996 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/112366" target="_blank"><div>놀이기구 안전점검 '하는둥 마는둥'</div><div class="y">1998 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/114621" target="_blank"><div>항공사고는 필연이다</div><div class="y">1999 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/114617" target="_blank"><div>원전 출력 60~80%로 낮춰 비상상황 국민에 공개 원전 대비 어떻게</div><div class="y">1999 · 정기간행물</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "한겨레", "id": 55, "slug": "c55", "kind": "단체", "desc": "한겨레는 창간 초기부터 환경 문제를 사회의 주요 의제로 다루어 온 언론사입니다. 최근에는 국내 언론 최초로 2020년 4월 '기후변화팀'을 신설하며 환경·기후위기 보도에 선도적 역할을 해오고 있습니다. \r\n본 컬렉션은 한겨레가 기록해 온 방대한 환경 관련 보도를 담고 있습니다. 현재는 창간 이후 1999년까지의 환경 기사 만을 담고 있으나 추후 계속해서 추가될 예정입니다.", "total": 9464, "public": 9464, "private_rate": 0.0, "access_rate": 0.9999, "year_min": 1988, "year_max": 1999, "year_median": 1996, "share_2020s": 0.0, "share_pre1990": 0.045, "subject_rate": 0.3774, "region_rate": 0.0388, "descriptors": 0, "added": [{"k": "2026", "v": 9464}], "rtype": [{"k": "도서간행물류", "v": 9464}], "rform": [{"k": "정기간행물", "v": 9464}], "orig": [{"k": "비전자", "v": 9464}], "subject": [{"k": "반공해", "v": 994}, {"k": "자원순환", "v": 914}, {"k": "반핵탈핵", "v": 520}, {"k": "생태계보전", "v": 438}, {"k": "대기오염", "v": 259}, {"k": "국제연대", "v": 219}, {"k": "재난재해", "v": 84}, {"k": "기후에너지", "v": 54}, {"k": "도시환경", "v": 51}, {"k": "생활안전", "v": 39}], "year": [{"k": 1988, "v": 197}, {"k": 1989, "v": 229}, {"k": 1990, "v": 330}, {"k": 1991, "v": 516}, {"k": 1992, "v": 537}, {"k": 1993, "v": 492}, {"k": 1994, "v": 1024}, {"k": 1995, "v": 1005}, {"k": 1996, "v": 1110}, {"k": 1997, "v": 943}, {"k": 1998, "v": 1085}, {"k": 1999, "v": 1996}], "decade": [{"k": "1980s", "v": 426}, {"k": "1990s", "v": 9038}], "regions": [{"k": "서울", "v": 190}, {"k": "전북", "v": 51}, {"k": "강원", "v": 43}, {"k": "대구", "v": 38}, {"k": "제주", "v": 31}, {"k": "광주", "v": 15}, {"k": "경기", "v": 4}], "top_kw": [{"k": "재활용", "v": 289}, {"k": "생태계", "v": 207}, {"k": "생태", "v": 199}, {"k": "낙동강", "v": 149}, {"k": "방사능", "v": 137}, {"k": "안전", "v": 126}, {"k": "인터뷰", "v": 106}, {"k": "서울시", "v": 98}, {"k": "한강", "v": 94}, {"k": "국립공원", "v": 91}, {"k": "연구", "v": 86}, {"k": "바다", "v": 71}, {"k": "에너지", "v": 55}, {"k": "농약", "v": 47}, {"k": "하천", "v": 46}, {"k": "환경부", "v": 46}, {"k": "환경영향평가", "v": 45}, {"k": "새만금", "v": 44}, {"k": "환경문제", "v": 43}, {"k": "환경영향", "v": 42}, {"k": "환경정책", "v": 40}, {"k": "대구", "v": 38}, {"k": "건강", "v": 35}, {"k": "금강", "v": 32}, {"k": "교통", "v": 31}], "distinct_kw": [{"k": "환경영향", "v": 42}, {"k": "농약", "v": 47}, {"k": "생태", "v": 199}, {"k": "연구", "v": 86}, {"k": "인터뷰", "v": 106}, {"k": "생태계", "v": 207}, {"k": "재활용", "v": 289}, {"k": "바다", "v": 71}, {"k": "안전", "v": 126}, {"k": "방사능", "v": 137}, {"k": "대구", "v": 38}, {"k": "낙동강", "v": 149}, {"k": "한강", "v": 94}, {"k": "서울시", "v": 98}, {"k": "환경영향평가", "v": 45}, {"k": "환경문제", "v": 43}, {"k": "환경정책", "v": 40}, {"k": "하천", "v": 46}, {"k": "에너지", "v": 55}, {"k": "환경부", "v": 46}, {"k": "새만금", "v": 44}, {"k": "국립공원", "v": 91}], "kw_by_decade": {"1980s": [{"k": "방사능", "v": 27}, {"k": "인터뷰", "v": 8}, {"k": "낙동강", "v": 7}, {"k": "연구", "v": 7}, {"k": "한강", "v": 7}, {"k": "서울시", "v": 6}, {"k": "생태계", "v": 5}, {"k": "국립공원", "v": 5}], "1990s": [{"k": "재활용", "v": 288}, {"k": "생태계", "v": 202}, {"k": "생태", "v": 195}, {"k": "낙동강", "v": 142}, {"k": "안전", "v": 122}, {"k": "방사능", "v": 110}, {"k": "인터뷰", "v": 98}, {"k": "서울시", "v": 92}]}, "creators": [], "external_rate": 0.0, "gov_n": 0, "creator_n": 9464, "quality": {"설명": 0.0, "키워드": 1.0, "생산연도": 1.0, "주제": 0.3774, "연관": 0.0, "권리": 0.0, "원문": 0.9999}, "samples": [{"id": 105160, "title": "교통체증 대기오염 악화요인", "year": 1988, "type": "정기간행물", "preview": ""}, {"id": 106768, "title": "정부기관,재활용품 우선 구입", "year": 1992, "type": "정기간행물", "preview": ""}, {"id": 108332, "title": "영광·고리 원전균열 긴급제보'소동", "year": 1994, "type": "정기간행물", "preview": ""}, {"id": 108505, "title": "종량제 경제효과 한해 5천5백억", "year": 1995, "type": "정기간행물", "preview": ""}, {"id": 109776, "title": "공동주택 녹지기준 서울시, 강화 건의", "year": 1996, "type": "정기간행물", "preview": ""}, {"id": 112366, "title": "놀이기구 안전점검 '하는둥 마는둥'", "year": 1998, "type": "정기간행물", "preview": ""}, {"id": 114621, "title": "항공사고는 필연이다", "year": 1999, "type": "정기간행물", "preview": ""}, {"id": 114617, "title": "원전 출력 60~80%로 낮춰 비상상황 국민에 공개 원전 대비 어떻게", "year": 1999, "type": "정기간행물", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/55", "similar": [{"k": "환경법률센터", "v": 0.209}, {"k": "국립공원을지키는시민의모임", "v": 0.182}, {"k": "장재연", "v": 0.151}, {"k": "함께사는길", "v": 0.132}, {"k": "구도완", "v": 0.132}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

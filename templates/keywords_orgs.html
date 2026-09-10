@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">키워드</div><h1>단체별 키워드</h1>
+<p class="lead">여러 단체가 공유하는 키워드 40개에 대해, 각 단체 컬렉션 기록 중 그 키워드가 붙은 비율입니다. 색은 행(단체) 안에서의 상대값이라 단체별 주력 의제가 드러납니다.</p>
+<div class="card"><div id="c_h" class="chart" style="height:640px"></div></div>
+<h2>단체별 특징 키워드</h2>
+<p class="note">전체 대비 그 컬렉션에서 출현 비율이 높은 키워드 상위 12개.</p>
+<table class="t"><thead><tr><th>컬렉션</th><th>특징 키워드</th></tr></thead><tbody>{% for c in COLS if c.kind=='단체' and c.distinct_kw %}<tr><td><a href="../collections/{{ c.slug }}.html">{{ c.name }}</a></td><td class="tags">{% for k in c.distinct_kw[:12] %}<span class="tag">{{ k.k }}</span>{% endfor %}</td></tr>{% endfor %}</tbody></table>
+{% endblock %}{% block script %}<script>
+const OK={{ OK|tojson }};
+(function(){const m=OK.matrix.map(r=>{const mx=Math.max(...r)||1;return r.map(v=>v/mx)});const c=mk("c_h");const data=[];OK.orgs.forEach((o,i)=>OK.keywords.forEach((k,j)=>data.push([j,i,m[i][j],OK.matrix[i][j]])));
+ c.setOption(opt({grid:{left:170,right:20,top:10,bottom:110},xAxis:{type:"category",data:OK.keywords,axisLabel:{rotate:55,fontSize:11}},yAxis:{type:"category",data:OK.orgs,inverse:true,axisLabel:{fontSize:11}},
+  visualMap:{min:0,max:1,show:false,inRange:{color:["#f7faf7","#cfe3d5","#8ab17d","#2f6f4e","#163b28"]}},tooltip:{formatter:p=>`${OK.orgs[p.value[1]]} × ${OK.keywords[p.value[0]]}<br><b>${fmtP(p.value[3])}</b> 의 기록에 출현`},
+  series:[{type:"heatmap",data:data.map(d=>d.slice(0,3)),label:{show:true,fontSize:9,formatter:p=>{const v=data[p.dataIndex][3];return v>=.02?(v*100).toFixed(0)+"%":""}},itemStyle:{borderColor:"#fff",borderWidth:1}}]}));})();
+</script>{% endblock %}

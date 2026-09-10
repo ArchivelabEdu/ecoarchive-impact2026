@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">소장 현황</div><h1>규모와 구성</h1>
+<p class="lead">등록 {{ '{:,}'.format(S['items']) }}건 중 공개 {{ '{:,}'.format(S['public']) }}건. 기록-일반 {{ '{:,}'.format(S.gen_public) }}건의 {{ '%.1f'|format(S.access_rate*100) }}%가 원문 또는 영상 임베드로 열람 가능하며, 쪽수가 기재된 문서의 원문 합계는 {{ '{:,}'.format(S.pages_sum) }}쪽입니다.</p>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">목록유형별 등록·공개</p><p class="chart-sub">비공개는 기록-일반에만 존재</p><div id="c_type" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록유형 구성 (기록-일반 공개)</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위 30</p><div id="c_rform" class="chart xtall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">원본 형태</p><p class="chart-sub">비전자(종이) 원본은 스캐닝을 거친 디지털화 결과물</p><div id="c_orig" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">기록유형별 원문 열람 가능 비율</p><p class="chart-sub">영상음성류는 YouTube 임베드로 제공</p><div id="c_file" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">문서 쪽수 분포</p><p class="chart-sub">쪽수 기재 {{ '{:,}'.format(S.pages_n) }}건 · 중앙값 4쪽, 평균 31쪽</p><div id="c_pages" class="chart short"></div></div>
+  </div>
+  <div class="card"><p class="chart-title">언어</p><div id="c_lang" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">의제 발신형 기록 {{ '{:,}'.format(S.adv_n) }}건</p><p class="chart-sub">단체가 외부로 내보낸 기록의 형태별 건수</p><div id="c_adv" class="chart short"></div></div>
+</div>
+<div class="callout"><b>읽기</b> 문서류 51%·도서간행물류 34%로 문헌 중심이지만, 사진 7,118건·영상 2,659건·전자기록 2,348건이 함께 있어 매체가 다양합니다. 원본의 75%가 종이라는 점은 이 아카이브가 "이미 있던 디지털 파일을 모은 것"이 아니라 "스캐닝으로 새로 만든 접근권"임을 뜻합니다.</div>
+{% endblock %}{% block script %}<script>
+const H={{ H|tojson }};
+(function(){const t=H.type_public;stacked("c_type",t.map(d=>d.k),[{name:"공개",data:t.map(d=>d.pub),color:"#2f6f4e"},{name:"비공개",data:t.map(d=>d.priv),color:"#cfd6d1"}],{horizontal:true,left:130});})();
+donut("c_rtype",H.rtype);
+hbar("c_rform",H.rform,{left:130});
+donut("c_orig",H.orig);
+hbar("c_file",H.file_by_type.sort((a,b)=>b.v-a.v),{pct:true,left:120});
+vbar("c_pages",H.pages_hist,{});
+hbar("c_lang",H.lang.slice(0,10),{left:110});
+hbar("c_adv",H.adv,{left:120});
+</script>{% endblock %}

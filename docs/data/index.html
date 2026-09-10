@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>데이터·방법 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="환경아카이브 풀숲 Omeka 전수 111,106건의 소장현황·컬렉션·키워드 분석">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb">데이터·방법</div><h1>데이터와 산출 방법</h1>
+<h2>데이터 내려받기</h2>
+<p>이 사이트의 모든 그래프는 아래 JSON에서 그려집니다. 라이선스 CC BY 4.0(집계 데이터). 원자료의 저작권은 각 기증주체와 재단법인 숲과나눔에 있으며 풀숲 이용약관을 따릅니다.</p>
+<table class="t"><thead><tr><th>파일</th><th>내용</th></tr></thead><tbody>
+<tr><td><a href="../data/summary.json">summary.json</a></td><td>핵심 수치</td></tr><tr><td><a href="../data/holdings.json">holdings.json</a></td><td>유형·형태·연도·주제·지역·품질·등록 추이</td></tr><tr><td><a href="../data/collections.json">collections.json</a></td><td>컬렉션 34개 상세(유형·연도·주제·지역·키워드·생산자·품질·예시)</td></tr><tr><td><a href="../data/keywords_windows.json">keywords_windows.json</a></td><td>5년 단위 상위·특징 키워드</td></tr><tr><td><a href="../data/keywords_series.json">keywords_series.json</a></td><td>상위 400 키워드의 연도별 건수</td></tr><tr><td><a href="../data/keywords_life.json">keywords_life.json</a></td><td>키워드 등장·정점·퇴장</td></tr><tr><td><a href="../data/keywords_change.json">keywords_change.json</a></td><td>연대 간 급상승·급락</td></tr><tr><td><a href="../data/keywords_cooc.json">keywords_cooc.json</a></td><td>공출현 네트워크</td></tr><tr><td><a href="../data/keywords_dict.json">keywords_dict.json</a></td><td>키워드 사전(3건 이상)</td></tr><tr><td><a href="../data/org_keywords.json">org_keywords.json</a></td><td>단체 × 공통 키워드</td></tr><tr><td><a href="../data/network.json">network.json</a></td><td>생산자→기증주체, 공공기관 문서</td></tr><tr><td><a href="../data/events.json">events.json</a></td><td>사건 47건</td></tr><tr><td><a href="../data/orgs.json">orgs.json</a></td><td>조직 전거 542건</td></tr><tr><td><a href="../data/chronology.json">chronology.json</a></td><td>연표 집계</td></tr><tr><td><a href="../data/photos.json">photos.json</a></td><td>작품사진 집계</td></tr><tr><td><a href="../data/season.json">season.json</a></td><td>생산 월 분포</td></tr>
+</tbody></table>
+<h2>산출 방법</h2>
+<div class="md"><h3>수집</h3>
+<ul>
+<li>환경아카이브 풀숲 Omeka Classic 3.0.3 REST API(<code>/api/items</code>, <code>per_page=50</code>)로 2026-09-10에 전수 111,106건을 수집했습니다. 컬렉션·아이템유형·전시 메타데이터도 함께 받았습니다.</li>
+<li>각 아이템의 Dublin Core·Item Type Metadata 요소를 평탄화해 <code>omeka_items_full.jsonl.gz</code>로 보관합니다(GitHub Releases).</li>
+</ul>
+<h3>기본 단위</h3>
+<ul>
+<li>비율 지표는 특별한 언급이 없으면 <strong>공개된 기록-일반 82,023건</strong> 기준입니다. 정보사전(연표·조직·사건·사진작가)과 작품사진은 별도로 집계합니다.</li>
+<li>생산연도는 <code>Year of Creation</code> → <code>Date of Creation</code> → <code>Dublin Core:Date</code> 순으로 앞 4자리를 취했고, 1900~2026 범위 밖은 제외했습니다.</li>
+</ul>
+<h3>키워드</h3>
+<ul>
+<li><code>Keyword</code> 요소를 <code>;</code>와 <code>,</code>로 분리하고 태그를 합친 뒤 중복을 제거했습니다.</li>
+<li>상위·특징 키워드 분석에서는 <strong>한겨레 컬렉션을 제외</strong>했습니다. 지면 분류(정치·경제·문화·과학)가 키워드로 등록되어 1990년대 상위권을 왜곡하기 때문입니다. 컬렉션명, '환경'·'사회'·'환경운동' 같은 범용어, 숫자가 포함되거나 10자를 넘는 키워드도 제외했습니다.</li>
+<li><strong>특징 키워드</strong>는 (구간 내 출현 비율) ÷ (전체 출현 비율)이 큰 순서이며, 구간 25건(연대 30건) 이상만 대상입니다.</li>
+<li>급상승·급락은 인접 연대 간 점유율의 log₂ 비율이며, 어느 한쪽 연대에 30건 이상인 키워드만 포함합니다.</li>
+<li>공출현 네트워크는 상위 150개 키워드 사이에서 같은 기록에 함께 붙은 횟수를 셌습니다.</li>
+</ul>
+<h3>지역</h3>
+<ul>
+<li>풀숲에는 지역 필드가 없습니다. 키워드·태그·촬영지에서 17개 시도명과 주요 현장 지명 90여 개(새만금→전북, 매향리→경기, 온산→울산, 가리왕산→강원, 강정→제주 등)를 찾아 시도로 매핑했습니다. '광주'는 광주광역시로, '한강'은 서울로 처리했고 낙동강·지리산·4대강처럼 여러 시도에 걸친 지명은 제외했습니다.</li>
+<li>기록-일반은 7.5%만 식별되므로 모든 지역 그래프는 "식별된 기록 중 분포"입니다.</li>
+</ul>
+<h3>외부 생산·공공기관</h3>
+<ul>
+<li>생산자(<code>Dublin Core:Creator</code>) 첫 값을 대괄호·공백을 제거해 컬렉션명과 비교하여 다르면 "외부 생산"으로 보았습니다. "환경운동연합"과 "서울환경운동연합"처럼 지부·전신은 외부로 잡히므로 상한 추정입니다.</li>
+<li>공공기관은 생산자 이름이 부·처·청·원·시·도·군·구·위원회·공사·공단·국회·의원·연구원·진흥원으로 끝나면서 연합·연대·모임·센터·협의회·네트워크·시민·환경운동을 포함하지 않는 경우로 추정했습니다.</li>
+</ul>
+<h3>컬렉션 유사도</h3>
+<ul>
+<li>컬렉션별 키워드 빈도 벡터의 코사인 유사도입니다.</li>
+</ul>
+<h3>재현</h3>
+<ul>
+<li><code>scripts/omeka_api_pull.py</code> → <code>scripts/omeka_full_build.py</code> → <code>scripts/site_data.py</code> → <code>scripts/build.py</code>. Python 3.9+, pandas, jinja2, markdown.</li>
+</ul></div>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+
+</body>
+</html>

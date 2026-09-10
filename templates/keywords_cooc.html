@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">키워드</div><h1>키워드 공출현 네트워크</h1>
+<p class="lead">같은 기록에 함께 붙은 키워드 쌍을 연결했습니다. 상위 150개 키워드, 8건 이상 함께 등장한 쌍만 표시합니다. 드래그로 움직이고 휠로 확대할 수 있습니다.</p>
+<div class="card"><div class="controls"><label>최소 공출현 <input type="range" id="rng" min="8" max="80" value="15" style="width:200px"> <span id="rngv">15</span>건</label></div><div id="c_g" class="chart" style="height:760px"></div></div>
+<div class="callout"><b>읽기</b> 반핵·핵폐기물·핵발전소·핵폐기장·부안이 한 덩어리, 기후변화·온실가스·재생에너지·에너지·탄소중립이 한 덩어리, 국립공원·지리산·북한산·케이블카가 한 덩어리를 이룹니다. 덩어리 사이를 잇는 키워드(예: 에너지, 환경교육)가 의제 간 다리 역할을 합니다.</div>
+{% endblock %}{% block script %}<script>
+const G={{ G|tojson }};const rng=document.getElementById("rng");
+function draw(){const min=+rng.value;document.getElementById("rngv").textContent=min;const edges=G.edges.filter(e=>e.w>=min);const used=new Set();edges.forEach(e=>{used.add(e.s);used.add(e.t)});const nodes=G.nodes.filter(n=>used.has(n.id));
+ charts.filter(c=>c.getDom().id==="c_g").forEach(c=>c.dispose());graph("c_g",nodes,edges,{rep:260,len:[30,120],maxSize:50,labelMin:0});}
+rng.oninput=draw;draw();
+</script>{% endblock %}

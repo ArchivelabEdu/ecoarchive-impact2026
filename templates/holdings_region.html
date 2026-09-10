@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">소장 현황</div><h1>지역</h1>
+<p class="lead">풀숲에는 지역 필드가 없어, 키워드·태그의 지명(시도명과 새만금·매향리·온산 등 주요 현장 90여 개)으로 시도를 추정했습니다. 기록-일반은 {{ '%.1f'|format(H.region_rate*100) }}%만 식별되므로 "식별된 기록 중 분포"로 읽어야 합니다. 작품사진은 촬영지 필드가 있어 98.6%가 식별됩니다.</p>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">기록의 지역 분포 (기록-일반, 식별 {{ '{:,}'.format(H.regions|sum(attribute='v')) }}건)</p><div id="c_reg" class="chart"></div></div>
+  <div class="card"><p class="chart-title">작품사진의 촬영지 분포 ({{ '{:,}'.format(H.regions_photo|sum(attribute='v')) }}건)</p><div id="c_regp" class="chart"></div></div>
+</div>
+<div class="card" style="margin-top:18px"><p class="chart-title">컬렉션 × 지역 (행 합 = 100%)</p><p class="chart-sub">식별 건수 30건 이상 컬렉션</p><div id="c_cr" class="chart xtall"></div></div>
+<div class="callout"><b>읽기</b> 기록에서 전북이 2위인 것은 새만금과 부안 방폐장이라는 두 사건의 기록 밀도 때문이고, 제주가 4위인 것은 제주참여환경연대 컬렉션과 강정·비자림로 현장 때문입니다. 사진은 경기·서울·전남·강원·제주로 고르게 퍼져 있습니다. 지역 필드를 신설하면 이 추정을 실측으로 바꿀 수 있습니다.</div>
+{% endblock %}{% block script %}<script>
+const H={{ H|tojson }}, COLS={{ COLS|tojson }};const ORDER=["서울","경기","인천","강원","충북","충남","대전","세종","전북","전남","광주","경북","경남","대구","울산","부산","제주"];
+function ord(items){const m={};items.forEach(d=>m[d.k]=d.v);return ORDER.map(k=>({k,v:m[k]||0}));}
+vbar("c_reg",ord(H.regions),{});vbar("c_regp",ord(H.regions_photo),{color:"#e9c46a"});
+(function(){const cs=COLS.filter(c=>c.regions.reduce((s,d)=>s+d.v,0)>=30);const m=cs.map(c=>{const t=c.regions.reduce((s,d)=>s+d.v,0);const mm={};c.regions.forEach(d=>mm[d.k]=d.v);return ORDER.map(k=>(mm[k]||0)/t);});
+ heat("c_cr",cs.map(c=>`${c.name} (${c.regions.reduce((s,d)=>s+d.v,0)})`),ORDER,m,{pct:true,left:230,rotate:0,min:.08});})();
+</script>{% endblock %}

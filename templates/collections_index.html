@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">컬렉션</div><h1>컬렉션 비교</h1>
+<p class="lead">기록이 소속된 컬렉션은 단체 {{ S.orgs }}개, 개인 {{ S.persons }}명의 {{ S.collections }}개입니다. 열 제목을 누르면 정렬됩니다. 이름을 누르면 상세 페이지로 이동합니다.</p>
+<table class="t sortable"><thead><tr><th>컬렉션</th><th>구분</th><th class="n">등록</th><th class="n">공개</th><th class="n">비공개율</th><th class="n">원문률</th><th class="n">최초</th><th class="n">최종</th><th class="n">중앙연도</th><th class="n">2020s 비중</th><th class="n">주제 부여율</th><th>주요 유형</th><th>주요 주제</th><th>주요 지역</th></tr></thead><tbody>
+{% for c in COLS %}<tr><td><a href="{{ c.slug }}.html">{{ c.name }}</a></td><td><span class="pill {{ 'person' if c.kind=='개인' }}">{{ c.kind }}</span></td><td class="n" data-v="{{ c.total }}">{{ '{:,}'.format(c.total) }}</td><td class="n" data-v="{{ c.public }}">{{ '{:,}'.format(c.public) }}</td><td class="n" data-v="{{ c.private_rate }}">{{ '%.1f'|format(c.private_rate*100) }}%</td><td class="n" data-v="{{ c.access_rate or 0 }}">{{ '%.1f'|format((c.access_rate or 0)*100) }}%</td><td class="n">{{ c.year_min or '' }}</td><td class="n">{{ c.year_max or '' }}</td><td class="n">{{ c.year_median or '' }}</td><td class="n" data-v="{{ c.share_2020s }}">{{ '%.0f'|format(c.share_2020s*100) }}%</td><td class="n" data-v="{{ c.subject_rate }}">{{ '%.0f'|format(c.subject_rate*100) }}%</td><td>{{ c.rtype[0].k if c.rtype }}</td><td>{{ c.subject[0].k if c.subject }}</td><td>{{ c.regions[0].k if c.regions }}</td></tr>{% endfor %}
+</tbody></table>
+<h2>히트맵으로 비교</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">기록유형 구성비</p><div id="h_type" class="chart xtall"></div></div>
+  <div class="card"><p class="chart-title">생산연대 분포</p><div id="h_dec" class="chart xtall"></div></div>
+</div>
+<div class="card" style="margin-top:18px"><p class="chart-title">주제 분포 (주제 부여 기록 기준)</p><div id="h_subj" class="chart xtall"></div></div>
+<h2>컬렉션 목록</h2>
+<div class="list-cards">{% for c in COLS %}<a class="card" href="{{ c.slug }}.html"><div class="nm">{{ c.name }} <span class="pill {{ 'person' if c.kind=='개인' }}">{{ c.kind }}</span></div><div class="meta">{{ '{:,}'.format(c.total) }}건 · {{ c.year_min }}–{{ c.year_max }} · {{ c.subject[0].k if c.subject else '주제 미부여' }}</div></a>{% endfor %}</div>
+{% endblock %}{% block script %}<script>
+const COLS={{ COLS|tojson }};const cs=COLS.filter(c=>c.total>=100);
+(function(){const T=["문서류","도서간행물류","사진그림류","영상음성류","특수전자기록물류"];heat("h_type",cs.map(c=>c.name),T,cs.map(c=>{const m={};c.rtype.forEach(d=>m[d.k]=d.v);const t=c.public||1;return T.map(k=>(m[k]||0)/t)}),{pct:true,left:180,rotate:0,min:.05,max:1});})();
+(function(){const D=["1970s","1980s","1990s","2000s","2010s","2020s"];heat("h_dec",cs.map(c=>c.name),D,cs.map(c=>{const m={};c.decade.forEach(d=>m[d.k]=d.v);const t=Object.values(m).reduce((a,b)=>a+b,0)||1;return D.map(k=>(m[k]||0)/t)}),{pct:true,left:180,rotate:0,min:.05,max:1});})();
+(function(){const SU=["생태계보전","반핵탈핵","기후에너지","반공해","자원순환","생활안전","국제연대","대기오염","재난재해","도시환경","일반"];heat("h_subj",cs.map(c=>c.name),SU,cs.map(c=>{const m={};c.subject.forEach(d=>m[d.k]=d.v);const t=SU.reduce((s,k)=>s+(m[k]||0),0)||1;return SU.map(k=>(m[k]||0)/t)}),{pct:true,left:180,rotate:0,min:.05,max:1});})();
+</script>{% endblock %}

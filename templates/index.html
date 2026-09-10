@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% block body %}
+<div class="hero">
+  <div class="kicker">환경아카이브 풀숲 · Omeka 전수 분석</div>
+  <h1>기록으로 본 한국 환경운동 40년 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span><br><span style="color:var(--green)">소장현황 데이터 사이트</span></h1>
+  <p class="lead">환경아카이브 풀숲(ecoarchive.org)에 등록된 {{ '{:,}'.format(S['items']) }}건의 아이템을 REST API로 전수 수집해, 컬렉션·시간·주제·지역·키워드의 관점에서 무엇이 얼마나 쌓였는지를 보여줍니다. 데이터 기준 {{ S.snapshot }}.</p>
+</div>
+<div class="grid g4">
+  <div class="kpi"><div class="v">{{ '{:,}'.format(S['items']) }}</div><div class="l">등록 아이템</div><div class="s">공개 {{ '{:,}'.format(S['public']) }}건 ({{ '%.1f'|format(S['public']/S['items']*100) }}%)</div></div>
+  <div class="kpi"><div class="v">{{ S.collections }}</div><div class="l">컬렉션</div><div class="s">단체 {{ S.orgs }} · 개인 {{ S.persons }}</div></div>
+  <div class="kpi"><div class="v">{{ '%.1f'|format(S.access_rate*100) }}%</div><div class="l">원문 열람 가능 기록</div><div class="s">원문 {{ '{:,}'.format((S.pages_sum/10000)|round|int) }}만 쪽 (기재분)</div></div>
+  <div class="kpi"><div class="v">{{ S.year_min }}–{{ S.year_max }}</div><div class="l">생산연도 범위</div><div class="s">중앙값 {{ S.year_median }}년</div></div>
+  <div class="kpi"><div class="v">{{ '{:,}'.format(S.keywords_unique) }}</div><div class="l">고유 키워드</div><div class="s">건당 {{ S.kw_mean }}개</div></div>
+  <div class="kpi"><div class="v">{{ '{:,}'.format(S.creators_unique) }}</div><div class="l">고유 생산자</div><div class="s">기증주체 외부 생산 {{ '%.1f'|format(S.external_rate*100) }}%</div></div>
+  <div class="kpi"><div class="v">{{ '{:,}'.format(S.gov_n) }}</div><div class="l">행정·공공기관 생산 문서</div><div class="s">시민단체 컬렉션에 보존</div></div>
+  <div class="kpi"><div class="v">{{ '{:,}'.format(S.adv_n) }}</div><div class="l">의제 발신형 기록</div><div class="s">보도자료·성명서·공문 등</div></div>
+</div>
+
+<h2>한눈에 보기</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">소장 기록의 생산연도 분포</p><p class="chart-sub">기록-일반, 공개 · 1999년 급증은 한겨레 컬렉션 스캔분</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">연대별 주제 구성비</p><p class="chart-sub">주제가 부여된 기록 기준 · 반공해 → 생태계보전 → 기후에너지</p><div id="c_subj" class="chart"></div></div>
+  <div class="card"><p class="chart-title">컬렉션별 등록 기록 수</p><p class="chart-sub">상위 20개 · 회색은 비공개</p><div id="c_coll" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">5년 단위 상위 키워드 순위 변화</p><p class="chart-sub">각 구간 상위 12위 · 언론(한겨레) 컬렉션 제외</p><div id="c_bump" class="chart tall"></div></div>
+</div>
+
+<h2>둘러보기</h2>
+<div class="list-cards">
+  <a class="card" href="holdings/composition.html"><div class="nm">소장 현황</div><div class="meta">규모·구성·시간·주제·지역·메타데이터 품질</div></a>
+  <a class="card" href="collections/index.html"><div class="nm">컬렉션 34개</div><div class="meta">비교표·히트맵과 컬렉션별 상세 페이지</div></a>
+  <a class="card" href="keywords/change.html"><div class="nm">키워드</div><div class="meta">연대별 변화·생애곡선·공출현·단체별·사전</div></a>
+  <a class="card" href="timeline/index.html"><div class="nm">환경운동 40년</div><div class="meta">사건 47건·연표 3,617건 위에 기록 밀도</div></a>
+  <a class="card" href="network/index.html"><div class="nm">네트워크</div><div class="meta">누가 만든 기록을 누가 보존했나 · 공공기관 문서</div></a>
+  <a class="card" href="impact/index.html"><div class="nm">임팩트 지표</div><div class="meta">Omeka 목록에서 산출한 22개 지표</div></a>
+</div>
+{% endblock %}{% block script %}<script>
+const H={{ H|tojson }}, COLS={{ COLS|tojson }}, KW={{ KW|tojson }};
+vbar("c_year",H.year.filter(d=>d.k>=1975),{});
+(function(){const dec=H.subject_by_decade;const subs=["반공해","반핵탈핵","생태계보전","기후에너지","자원순환","생활안전","재난재해","국제연대","대기오염","도시환경","일반"];
+ stacked("c_subj",dec.map(d=>d.decade),subs.map(s=>({name:s,data:dec.map(d=>d[s]||0)})),{percent:true,subj:true});})();
+(function(){const it=COLS.slice(0,20);const c=mk("c_coll");c.setOption(opt({grid:{left:150,right:80,top:10,bottom:20},xAxis:{type:"value",splitLine:{lineStyle:{color:"#eef2ef"}}},yAxis:{type:"category",inverse:true,data:it.map(d=>d.name),axisLabel:{fontSize:12}},tooltip:{trigger:"axis",axisPointer:{type:"shadow"},valueFormatter:fmtN},
+ series:[{name:"공개",type:"bar",stack:"a",data:it.map(d=>({value:d.public,itemStyle:{color:d.kind==="개인"?"#e9c46a":"#2f6f4e"}})),barMaxWidth:18},{name:"비공개",type:"bar",stack:"a",data:it.map(d=>d.total-d.public),itemStyle:{color:"#cfd6d1"},label:{show:true,position:"right",fontSize:11,color:"#5f6b65",formatter:p=>fmtN(it[p.dataIndex].total)}}]}));})();
+(function(){const wins=KW.map(w=>w.win);const K=12;const names={};KW.forEach((w,i)=>w.top.slice(0,K).forEach((t,r)=>{(names[t.k]=names[t.k]||wins.map(()=>null))[i]=r+1;}));bump("c_bump",wins,names,{k:K});})();
+</script>{% endblock %}

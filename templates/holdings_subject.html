@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">소장 현황</div><h1>주제</h1>
+<p class="lead">풀숲은 11개 주제분류를 씁니다. 주제가 부여된 기록은 {{ '%.1f'|format(S.subject_rate*100) }}%이며, 아래 그래프는 부여된 기록만을 기준으로 합니다. 미부여 41%는 정비 과제입니다.</p>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">주제별 기록 수</p><div id="c_subj" class="chart"></div></div>
+  <div class="card"><p class="chart-title">연대별 주제 구성비</p><div id="c_sd" class="chart"></div></div>
+</div>
+<div class="card" style="margin-top:18px"><p class="chart-title">주제 × 연대 (건수)</p><div id="c_heat" class="chart"></div></div>
+<div class="card" style="margin-top:18px"><p class="chart-title">연대별 주제 건수 흐름</p><p class="chart-sub">스트림그래프 · 폭 = 해당 연대의 기록 수</p><div id="c_river" class="chart"></div></div>
+<div class="callout"><b>읽기</b> 반공해는 1980년대 47%에서 사라졌고, 생태계보전이 2000년대 59%로 정점을 찍은 뒤 기후에너지가 2020년대 32%로 최대 주제가 되었습니다. 자원순환은 1990년대(쓰레기·재활용)와 2020년대(플라스틱·탄소중립)에 두 번 부상합니다. 주제 필드의 오기(자연순환·도시생활·누추)는 제외했습니다.</div>
+{% endblock %}{% block script %}<script>
+const H={{ H|tojson }};const SUBS=["생태계보전","반핵탈핵","기후에너지","반공해","자원순환","생활안전","국제연대","대기오염","재난재해","도시환경","일반"];
+hbar("c_subj",H.subject.filter(d=>SUBS.includes(d.k)),{left:100,color:d=>subjColor(d.k)});
+const dec=H.subject_by_decade;
+stacked("c_sd",dec.map(d=>d.decade),SUBS.map(s=>({name:s,data:dec.map(d=>d[s]||0)})),{percent:true,subj:true});
+heat("c_heat",SUBS,dec.map(d=>d.decade),SUBS.map(s=>dec.map(d=>d[s]||0)),{left:110,rotate:0});
+(function(){const rows=[];dec.forEach(d=>SUBS.forEach(s=>rows.push([d.decade,d[s]||0,s])));river("c_river",rows,SUBS);})();
+</script>{% endblock %}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>더나은미래 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="더나은미래 컬렉션 2,744건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>더나은미래 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">조선일보 공익섹션 '더나은미래'를 발간하고, 다양한 공익사업과 컨설팅을 하기 위해 2010년 5월 4일 설립되었다. 슬로건은 "자본이나 시스템 대신 사람이 중심이 되는 세상, '더나은미래'가 꿈꾸는 '진짜 미래'입니다." 이며, 미션은 '다 함께 행복할 수 있는 사회를 꿈꾸며' 이다. 2010년 설립 이래 공익섹션 발간 이외에도 포럼, 컨퍼런스, 심포지움 등 다양한 행사 주최를 통해 공익 캠페인 활동을 지속해오고 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/47" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">2,744</div><div class="l">등록</div><div class="s">공개 2,738 · 비공개 0.2%</div></div>
+  <div class="kpi"><div class="v">2010–2023</div><div class="l">생산연도</div><div class="s">중앙값 2020 · 2020s 56%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 49% · 지역 식별 3%</div></div>
+  <div class="kpi"><div class="v">0%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 0건 · 기술자 1명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>2010s</td><td class="tags"><span class="tag">사회공헌 <small>132</small></span><span class="tag">사회적기업 <small>95</small></span><span class="tag">사회문제 <small>86</small></span><span class="tag">기후변화 <small>77</small></span><span class="tag">기업의 사회적 책임(CSR) <small>51</small></span><span class="tag">사회적 가치 <small>43</small></span><span class="tag">친환경 <small>42</small></span><span class="tag">협동조합 <small>37</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">기후변화 <small>233</small></span><span class="tag">코로나19 <small>201</small></span><span class="tag">탄소중립 <small>156</small></span><span class="tag">ESG 경영 <small>137</small></span><span class="tag">기후위기 <small>136</small></span><span class="tag">온실가스 <small>92</small></span><span class="tag">사회문제 <small>88</small></span><span class="tag">재생에너지 <small>85</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 2,738건 중 외부 생산 0%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c29.html" style="width:200px">기후변화행동연구소</a><div class="bar" style="flex:1"><i style="width:42.0%"></i></div><span class="note">0.42</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c24.html" style="width:200px">장재연</a><div class="bar" style="flex:1"><i style="width:23.0%"></i></div><span class="note">0.23</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c49.html" style="width:200px">녹색전환연구소</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c31.html" style="width:200px">숲과나눔</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:17.0%"></i></div><span class="note">0.17</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/87777" target="_blank"><div>더나은미래 2010년 제1호</div><div class="y">2010 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/88355" target="_blank"><div>매달 15곳 돌아도 상법만 따지다 돌아와... 공공기관.사회적기업, 동행 가능한가</div><div class="y">2014 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/90291" target="_blank"><div>(사)푸른아시아, 28일 '석탄화력발전, 공적금융의 역할' 국회세미나 개최</div><div class="y">2017 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/87954" target="_blank"><div>더나은미래 2019년 제178호</div><div class="y">2019 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/89807" target="_blank"><div>제각각 ESG지표 혼란 줄인다... 정부, 'K-ESG' 가이드라인 발표</div><div class="y">2021 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/89762" target="_blank"><div>근로소득 격차 좁혀온 10년... 코로나19로 다시 벌어져</div><div class="y">2022 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/89663" target="_blank"><div>지구 온도 1.5도 상승 제한, 5년 안에 넘을 수 있다</div><div class="y">2022 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/90474" target="_blank"><div>"업사이클링하며 순환경제 중요성 배워"... 청세담14기 워크숍 개최</div><div class="y">2023 · 정기간행물</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "더나은미래", "id": 47, "slug": "c47", "kind": "단체", "desc": "조선일보 공익섹션 '더나은미래'를 발간하고, 다양한 공익사업과 컨설팅을 하기 위해 2010년 5월 4일 설립되었다. 슬로건은 \"자본이나 시스템 대신 사람이 중심이 되는 세상, '더나은미래'가 꿈꾸는 '진짜 미래'입니다.\" 이며, 미션은 '다 함께 행복할 수 있는 사회를 꿈꾸며' 이다. 2010년 설립 이래 공익섹션 발간 이외에도 포럼, 컨퍼런스, 심포지움 등 다양한 행사 주최를 통해 공익 캠페인 활동을 지속해오고 있다.", "total": 2744, "public": 2738, "private_rate": 0.0022, "access_rate": 1.0, "year_min": 2010, "year_max": 2023, "year_median": 2020, "share_2020s": 0.5621, "share_pre1990": 0.0, "subject_rate": 0.489, "region_rate": 0.0281, "descriptors": 1, "added": [{"k": "2023", "v": 2744}], "rtype": [{"k": "도서간행물류", "v": 2738}], "rform": [{"k": "정기간행물", "v": 2738}], "orig": [{"k": "전자", "v": 2738}], "subject": [{"k": "기후에너지", "v": 462}, {"k": "자원순환", "v": 264}, {"k": "재난재해", "v": 207}, {"k": "국제연대", "v": 135}, {"k": "생태계보전", "v": 119}, {"k": "일반", "v": 66}, {"k": "도시환경", "v": 34}, {"k": "대기오염", "v": 21}, {"k": "반핵탈핵", "v": 18}, {"k": "생활안전", "v": 7}, {"k": "반공해", "v": 5}, {"k": "자연순환", "v": 1}], "year": [{"k": 2010, "v": 54}, {"k": 2011, "v": 62}, {"k": 2012, "v": 97}, {"k": 2013, "v": 137}, {"k": 2014, "v": 139}, {"k": 2015, "v": 138}, {"k": 2016, "v": 142}, {"k": 2017, "v": 150}, {"k": 2018, "v": 139}, {"k": 2019, "v": 141}, {"k": 2020, "v": 251}, {"k": 2021, "v": 495}, {"k": 2022, "v": 587}, {"k": 2023, "v": 206}], "decade": [{"k": "2010s", "v": 1199}, {"k": "2020s", "v": 1539}], "regions": [{"k": "서울", "v": 15}, {"k": "인천", "v": 11}, {"k": "제주", "v": 11}, {"k": "충남", "v": 7}, {"k": "강원", "v": 6}, {"k": "경북", "v": 6}, {"k": "경기", "v": 6}, {"k": "전남", "v": 5}, {"k": "대구", "v": 5}, {"k": "부산", "v": 2}, {"k": "경남", "v": 2}, {"k": "전북", "v": 2}, {"k": "충북", "v": 1}, {"k": "세종", "v": 1}], "top_kw": [{"k": "기후변화", "v": 310}, {"k": "코로나19", "v": 201}, {"k": "사회문제", "v": 174}, {"k": "탄소중립", "v": 157}, {"k": "사회공헌", "v": 156}, {"k": "기후위기", "v": 137}, {"k": "ESG 경영", "v": 137}, {"k": "사회적기업", "v": 112}, {"k": "온실가스", "v": 107}, {"k": "재생에너지", "v": 103}, {"k": "친환경", "v": 79}, {"k": "사회적 가치", "v": 69}, {"k": "환경문제", "v": 68}, {"k": "ESG", "v": 66}, {"k": "지속가능성", "v": 65}, {"k": "재활용", "v": 64}, {"k": "기업의 사회적 책임(CSR)", "v": 57}, {"k": "환경 문제", "v": 54}, {"k": "지구온난화", "v": 49}, {"k": "공정무역", "v": 45}, {"k": "지속가능경영", "v": 45}, {"k": "사회적경제", "v": 44}, {"k": "ESG(환경.사회.지배구조)", "v": 41}, {"k": "비영리단체", "v": 40}, {"k": "협동조합", "v": 40}], "distinct_kw": [{"k": "임팩트 투자", "v": 40}, {"k": "지배구조", "v": 29}, {"k": "기업의 사회적 책임(CSR)", "v": 57}, {"k": "ISO 26000", "v": 27}, {"k": "환경 문제", "v": 54}, {"k": "CSR(기업의 사회적 책임)", "v": 31}, {"k": "기업의 사회적 책임", "v": 16}, {"k": "굿네이버스", "v": 32}, {"k": "사회적 기업", "v": 15}, {"k": "기업 사회공헌", "v": 12}, {"k": "공익", "v": 12}, {"k": "환경 보호", "v": 16}, {"k": "긴급구호", "v": 17}, {"k": "사회공헌 프로그램", "v": 14}, {"k": "환경 활동가", "v": 16}, {"k": "글로벌 기업", "v": 18}, {"k": "협업", "v": 21}, {"k": "월드비전", "v": 17}, {"k": "기업의 사회적책임(CSR)", "v": 21}, {"k": "CSV(공유가치창출)", "v": 15}, {"k": "CSR(기업의 사회적책임)", "v": 16}, {"k": "소셜벤처", "v": 34}, {"k": "환경 파괴", "v": 12}, {"k": "제3섹터", "v": 14}, {"k": "ESG(환경.사회.거버넌스)", "v": 18}], "kw_by_decade": {"2010s": [{"k": "사회공헌", "v": 132}, {"k": "사회적기업", "v": 95}, {"k": "사회문제", "v": 86}, {"k": "기후변화", "v": 77}, {"k": "기업의 사회적 책임(CSR)", "v": 51}, {"k": "사회적 가치", "v": 43}, {"k": "친환경", "v": 42}, {"k": "협동조합", "v": 37}], "2020s": [{"k": "기후변화", "v": 233}, {"k": "코로나19", "v": 201}, {"k": "탄소중립", "v": 156}, {"k": "ESG 경영", "v": 137}, {"k": "기후위기", "v": 136}, {"k": "온실가스", "v": 92}, {"k": "사회문제", "v": 88}, {"k": "재생에너지", "v": 85}]}, "creators": [], "external_rate": 0.0, "gov_n": 0, "creator_n": 2738, "quality": {"설명": 1.0, "키워드": 0.9069, "생산연도": 1.0, "주제": 0.489, "연관": 0.0, "권리": 0.0, "원문": 1.0}, "samples": [{"id": 87777, "title": "더나은미래 2010년 제1호", "year": 2010, "type": "정기간행물", "preview": ""}, {"id": 88355, "title": "매달 15곳 돌아도 상법만 따지다 돌아와... 공공기관.사회적기업, 동행 가능한가", "year": 2014, "type": "정기간행물", "preview": ""}, {"id": 90291, "title": "(사)푸른아시아, 28일 '석탄화력발전, 공적금융의 역할' 국회세미나 개최", "year": 2017, "type": "정기간행물", "preview": ""}, {"id": 87954, "title": "더나은미래 2019년 제178호", "year": 2019, "type": "정기간행물", "preview": ""}, {"id": 89807, "title": "제각각 ESG지표 혼란 줄인다... 정부, 'K-ESG' 가이드라인 발표", "year": 2021, "type": "정기간행물", "preview": ""}, {"id": 89762, "title": "근로소득 격차 좁혀온 10년... 코로나19로 다시 벌어져", "year": 2022, "type": "정기간행물", "preview": ""}, {"id": 89663, "title": "지구 온도 1.5도 상승 제한, 5년 안에 넘을 수 있다", "year": 2022, "type": "정기간행물", "preview": ""}, {"id": 90474, "title": "\"업사이클링하며 순환경제 중요성 배워\"... 청세담14기 워크숍 개최", "year": 2023, "type": "정기간행물", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/47", "similar": [{"k": "기후변화행동연구소", "v": 0.423}, {"k": "장재연", "v": 0.233}, {"k": "녹색전환연구소", "v": 0.193}, {"k": "숲과나눔", "v": 0.187}, {"k": "함께사는길", "v": 0.171}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">키워드</div><h1>연대별 키워드 변화</h1>
+<p class="lead">키워드가 기재된 기록의 5년 단위 상위 키워드와 특징 키워드입니다. 한겨레 컬렉션은 지면 분류(정치·경제·문화)가 키워드로 등록되어 있어 제외했고, 컬렉션명·'환경'·'사회' 같은 범용어도 뺐습니다.</p>
+<div class="card"><p class="chart-title">상위 키워드 순위 변화 (5년 단위, 상위 15위)</p><p class="chart-sub">선 위에 마우스를 올리면 강조됩니다</p><div id="c_bump" class="chart xtall"></div></div>
+<div class="card" style="margin-top:18px"><p class="chart-title">상위 25 키워드의 연도별 흐름</p><p class="chart-sub">스트림그래프 · 폭 = 해당 연도의 출현 건수(3년 이동평균)</p><div id="c_river" class="chart tall"></div></div>
+<h2>구간별 상위·특징 키워드</h2>
+<div class="controls"><label>구간 <select id="selWin"></select></label></div>
+<div class="grid g2"><div class="card"><p class="chart-title">상위 키워드 (출현 건수)</p><div id="c_top" class="chart tall"></div></div><div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 출현 비율(배수) · 25건 이상</p><div id="c_dis" class="chart tall"></div></div></div>
+<h2>연대 사이의 급상승·급락 키워드</h2>
+<div class="controls"><label>비교 <select id="selPair"></select></label></div>
+<div class="grid g2"><div class="card"><p class="chart-title">급상승 (log₂ 점유율 변화)</p><div id="c_up" class="chart tall"></div></div><div class="card"><p class="chart-title">급락</p><div id="c_dn" class="chart tall"></div></div></div>
+<h2>키워드의 생애 — 등장·정점·퇴장</h2>
+<p class="note">상위 60개 키워드. 막대 = 출현 연도의 5~95백분위 구간, 점 = 최다 출현 연도.</p>
+<div class="card"><div id="c_life" class="chart" style="height:1300px"></div></div>
+<div class="callout"><b>읽기</b> 공해(1980년대) → 핵폐기물·반핵(1990년대) → 학교숲·국립공원·새만금(2000년대) → 기후변화·탈핵·4대강·미세먼지(2010년대) → 기후위기·탄소중립(2020년대)의 어휘 세대교체가 뚜렷합니다. '반핵'과 '탈핵'은 같은 의제의 이름이 2010년대에 바뀐 사례이고, '기후변화'가 '기후위기'로 바뀐 시점은 2019년입니다.</div>
+{% endblock %}{% block script %}<script>
+const KW={{ KW|tojson }}, SER={{ SER|tojson }}, CH={{ CH|tojson }}, LIFE={{ LIFE|tojson }};
+(function(){const wins=KW.map(w=>w.win);const K=15;const names={};KW.forEach((w,i)=>w.top.slice(0,K).forEach((t,r)=>{(names[t.k]=names[t.k]||wins.map(()=>null))[i]=r+1;}));bump("c_bump",wins,names,{k:K});})();
+(function(){const years=SER.years.filter(y=>y>=1985&&y<=2024);const tot={};Object.values(SER.series).forEach(s=>{});const top=Object.entries(SER.series).map(([k,s])=>[k,Object.values(s).reduce((a,b)=>a+b,0)]).sort((a,b)=>b[1]-a[1]).slice(0,25).map(x=>x[0]);
+ const rows=[];top.forEach(k=>{const s=SER.series[k];years.forEach((y,i)=>{const v=((s[y]||0)+(s[y-1]||0)+(s[y+1]||0))/3;rows.push([String(y),Math.round(v*10)/10,k]);});});river("c_river",rows,top);})();
+(function(){const sel=document.getElementById("selWin");KW.forEach((w,i)=>{const o=document.createElement("option");o.value=i;o.textContent=`${w.win} (${fmtN(w.n)}건)`;sel.appendChild(o);});sel.value=KW.length-1;
+ function draw(){const w=KW[sel.value];charts.filter(c=>["c_top","c_dis"].includes(c.getDom().id)).forEach(c=>c.dispose());hbar("c_top",w.top.slice(0,20),{left:150});hbar("c_dis",w.distinct.slice(0,20).map(d=>({k:d.k,v:d.score})),{left:170,color:()=>"#8ab17d"});}
+ sel.onchange=draw;draw();})();
+(function(){const pairs=[...new Set(CH.map(d=>d.from+"→"+d.to))];const sel=document.getElementById("selPair");pairs.forEach(p=>{const o=document.createElement("option");o.value=p;o.textContent=p;sel.appendChild(o);});sel.value=pairs[pairs.length-1];
+ function draw(){const [f,t]=sel.value.split("→");const rows=CH.filter(d=>d.from===f&&d.to===t);const up=rows.filter(d=>d.b>=30).sort((a,b)=>b.ratio-a.ratio).slice(0,18);const dn=rows.filter(d=>d.a>=30).sort((a,b)=>a.ratio-b.ratio).slice(0,18);
+  charts.filter(c=>["c_up","c_dn"].includes(c.getDom().id)).forEach(c=>c.dispose());hbar("c_up",up.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:d.ratio})),{left:190});hbar("c_dn",dn.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:-d.ratio})),{left:190,color:()=>"#e76f51"});}
+ sel.onchange=draw;draw();})();
+ranges("c_life",LIFE.slice(0,60),{min:1980,max:2026});
+</script>{% endblock %}

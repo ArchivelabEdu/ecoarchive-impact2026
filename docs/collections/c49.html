@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>녹색전환연구소 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="녹색전환연구소 컬렉션 150건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>녹색전환연구소 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">2013년 7월, 생명, 평화, 공생의 가치를 바탕으로 지속가능한 사회로의 전환에 대한 정책연구 및 교육사업을 하기 위해 만들어졌습니다. 지역전환과 경제전환을 전환의 큰 두축으로 기후위기 시대의 새로운 기후에너지 및 사회, 산업 정책에 대한 연구를 이어가면서, 경제성장주의, 과학기술제일주의, 인간예외주의 등에서 벗어나 성찰하는 힘을 가진 새로운 언어를 만들기 위해 노력하고 있습니다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/49" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">150</div><div class="l">등록</div><div class="s">공개 150 · 비공개 0.0%</div></div>
+  <div class="kpi"><div class="v">2015–2023</div><div class="l">생산연도</div><div class="s">중앙값 2022 · 2020s 80%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 71% · 지역 식별 51%</div></div>
+  <div class="kpi"><div class="v">0%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 0건 · 기술자 2명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>2010s</td><td class="tags"><span class="tag">기본소득 <small>12</small></span><span class="tag">그린뉴딜 <small>5</small></span><span class="tag">기후위기 <small>5</small></span><span class="tag">기본소득포럼 <small>5</small></span><span class="tag">녹색강좌 <small>4</small></span><span class="tag">제1회녹색강좌 <small>4</small></span><span class="tag">서울NPO지원센터 <small>4</small></span><span class="tag">청년배당 <small>4</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">기후위기 <small>73</small></span><span class="tag">녹색전환 <small>72</small></span><span class="tag">녹색전환공론장 <small>35</small></span><span class="tag">녹색일자리 <small>27</small></span><span class="tag">녹색일자리진단 <small>17</small></span><span class="tag">카드뉴스 <small>13</small></span><span class="tag">탄소중립 <small>10</small></span><span class="tag">녹색오리 <small>8</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 150건 중 외부 생산 0%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c46.html" style="width:200px">생명평화아시아</a><div class="bar" style="flex:1"><i style="width:20.0%"></i></div><span class="note">0.20</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c47.html" style="width:200px">더나은미래</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c35.html" style="width:200px">환경정의</a><div class="bar" style="flex:1"><i style="width:18.0%"></i></div><span class="note">0.18</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c29.html" style="width:200px">기후변화행동연구소</a><div class="bar" style="flex:1"><i style="width:15.0%"></i></div><span class="note">0.15</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c34.html" style="width:200px">환경운동연합</a><div class="bar" style="flex:1"><i style="width:14.0%"></i></div><span class="note">0.14</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/93676" target="_blank"><div>청년정책 2015 토론회</div><div class="y">2015 · 일반문서</div></a><a href="https://ecoarchive.org/items/show/93692" target="_blank"><div>2019 서울시 청년 녹색일자리 에너지 현황과 문제점 분석 최종보고서</div><div class="y">2019 · 보고서</div></a><a href="https://ecoarchive.org/items/show/93767" target="_blank"><div>되살리고 적응하는 세계 생물다양성을 지킬 크고 작은 지혜</div><div class="y">2021 · 동영상 · 영상</div></a><a href="https://ecoarchive.org/items/show/93775" target="_blank"><div>기후위기 시대 인천 녹색전환 정책 모여서 상상하고 이야기하기</div><div class="y">2022 · 동영상 · 영상</div></a><a href="https://ecoarchive.org/items/show/93706" target="_blank"><div>시민이 만든 11가지 녹색전환 정책 카드뉴스</div><div class="y">2022 · 사진</div></a><a href="https://ecoarchive.org/items/show/93786" target="_blank"><div>기업의 그린워싱 TCFD 보고서로 찾아낼 수 있을까 1주차 강의</div><div class="y">2023 · 동영상 · 영상</div></a><a href="https://ecoarchive.org/items/show/93741" target="_blank"><div>대전광역시 녹색일자리 진단</div><div class="y">2023 · 보고서</div></a><a href="https://ecoarchive.org/items/show/93813" target="_blank"><div>기업의 그린워싱 TCFD 보고서로 찾아낼 수 있을까 2주차 강의</div><div class="y">2023 · 동영상 · 영상</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "녹색전환연구소", "id": 49, "slug": "c49", "kind": "단체", "desc": "2013년 7월, 생명, 평화, 공생의 가치를 바탕으로 지속가능한 사회로의 전환에 대한 정책연구 및 교육사업을 하기 위해 만들어졌습니다. 지역전환과 경제전환을 전환의 큰 두축으로 기후위기 시대의 새로운 기후에너지 및 사회, 산업 정책에 대한 연구를 이어가면서, 경제성장주의, 과학기술제일주의, 인간예외주의 등에서 벗어나 성찰하는 힘을 가진 새로운 언어를 만들기 위해 노력하고 있습니다.", "total": 150, "public": 150, "private_rate": 0.0, "access_rate": 1.0, "year_min": 2015, "year_max": 2023, "year_median": 2022, "share_2020s": 0.8, "share_pre1990": 0.0, "subject_rate": 0.7133, "region_rate": 0.5067, "descriptors": 2, "added": [{"k": "2020", "v": 1}, {"k": "2023", "v": 149}], "rtype": [{"k": "문서류", "v": 76}, {"k": "영상음성류", "v": 51}, {"k": "사진그림류", "v": 23}], "rform": [{"k": "동영상", "v": 51}, {"k": "일반문서", "v": 44}, {"k": "보고서", "v": 32}, {"k": "사진", "v": 20}, {"k": "포스터", "v": 3}], "orig": [{"k": "전자", "v": 150}], "subject": [{"k": "기후에너지", "v": 82}, {"k": "대기오염", "v": 14}, {"k": "반핵탈핵", "v": 4}, {"k": "생태계보전", "v": 4}, {"k": "국제연대", "v": 2}, {"k": "자원순환", "v": 1}], "year": [{"k": 2015, "v": 13}, {"k": 2016, "v": 4}, {"k": 2017, "v": 3}, {"k": 2018, "v": 1}, {"k": 2019, "v": 9}, {"k": 2020, "v": 1}, {"k": 2021, "v": 23}, {"k": 2022, "v": 50}, {"k": 2023, "v": 46}], "decade": [{"k": "2010s", "v": 30}, {"k": "2020s", "v": 120}], "regions": [{"k": "서울", "v": 8}, {"k": "경기", "v": 6}, {"k": "광주", "v": 6}, {"k": "충남", "v": 6}, {"k": "제주", "v": 5}, {"k": "전남", "v": 5}, {"k": "경남", "v": 4}, {"k": "경북", "v": 4}, {"k": "대전", "v": 4}, {"k": "부산", "v": 4}, {"k": "세종", "v": 4}, {"k": "인천", "v": 4}, {"k": "충북", "v": 4}, {"k": "전북", "v": 3}, {"k": "강원", "v": 3}, {"k": "대구", "v": 3}, {"k": "울산", "v": 3}], "top_kw": [{"k": "기후위기", "v": 78}, {"k": "녹색전환", "v": 72}, {"k": "녹색전환공론장", "v": 35}, {"k": "녹색일자리", "v": 29}, {"k": "녹색일자리진단", "v": 17}, {"k": "카드뉴스", "v": 13}, {"k": "기본소득", "v": 12}, {"k": "탄소중립", "v": 10}, {"k": "그린뉴딜", "v": 8}, {"k": "녹색오리", "v": 8}, {"k": "서울", "v": 7}, {"k": "온실가스", "v": 7}, {"k": "경기도", "v": 6}, {"k": "광주", "v": 6}, {"k": "광주광역시", "v": 6}, {"k": "서울특별시", "v": 6}, {"k": "충남", "v": 6}, {"k": "충청남도", "v": 6}, {"k": "기후위기대응", "v": 6}, {"k": "TCFD", "v": 6}, {"k": "녹색일자리포럼", "v": 6}, {"k": "기본소득포럼", "v": 5}, {"k": "경기", "v": 5}, {"k": "시민이만든11가지녹색전환정책", "v": 5}, {"k": "시민이만든11대녹색전환정책", "v": 5}], "distinct_kw": [{"k": "기본소득포럼", "v": 5}, {"k": "녹색오리", "v": 8}, {"k": "녹색전환공론장", "v": 35}, {"k": "시민이만든11가지녹색전환정책", "v": 5}, {"k": "시민이만든11대녹색전환정책", "v": 5}, {"k": "녹색일자리포럼", "v": 6}, {"k": "녹색일자리진단", "v": 17}, {"k": "녹색전환", "v": 72}, {"k": "TCFD", "v": 6}, {"k": "카드뉴스", "v": 13}, {"k": "충남", "v": 6}, {"k": "기본소득", "v": 12}, {"k": "충청남도", "v": 6}, {"k": "제주특별자치도", "v": 5}, {"k": "광주광역시", "v": 6}, {"k": "경기", "v": 5}, {"k": "전남", "v": 5}, {"k": "기후위기대응", "v": 6}, {"k": "전라남도", "v": 5}, {"k": "녹색일자리", "v": 29}, {"k": "그린워싱", "v": 5}, {"k": "그린뉴딜", "v": 8}, {"k": "광주", "v": 6}, {"k": "서울특별시", "v": 6}, {"k": "기후위기", "v": 78}], "kw_by_decade": {"2010s": [{"k": "기본소득", "v": 12}, {"k": "그린뉴딜", "v": 5}, {"k": "기후위기", "v": 5}, {"k": "기본소득포럼", "v": 5}, {"k": "녹색강좌", "v": 4}, {"k": "제1회녹색강좌", "v": 4}, {"k": "서울NPO지원센터", "v": 4}, {"k": "청년배당", "v": 4}], "2020s": [{"k": "기후위기", "v": 73}, {"k": "녹색전환", "v": 72}, {"k": "녹색전환공론장", "v": 35}, {"k": "녹색일자리", "v": 27}, {"k": "녹색일자리진단", "v": 17}, {"k": "카드뉴스", "v": 13}, {"k": "탄소중립", "v": 10}, {"k": "녹색오리", "v": 8}]}, "creators": [], "external_rate": 0.0, "gov_n": 0, "creator_n": 150, "quality": {"설명": 1.0, "키워드": 1.0, "생산연도": 1.0, "주제": 0.7133, "연관": 0.0067, "권리": 0.0067, "원문": 1.0}, "samples": [{"id": 93676, "title": "청년정책 2015 토론회", "year": 2015, "type": "일반문서", "preview": ""}, {"id": 93692, "title": "2019 서울시 청년 녹색일자리 에너지 현황과 문제점 분석 최종보고서", "year": 2019, "type": "보고서", "preview": ""}, {"id": 93767, "title": "되살리고 적응하는 세계 생물다양성을 지킬 크고 작은 지혜", "year": 2021, "type": "동영상", "preview": "https://www.youtube.com/embed/A0jM03XwmTM"}, {"id": 93775, "title": "기후위기 시대 인천 녹색전환 정책 모여서 상상하고 이야기하기", "year": 2022, "type": "동영상", "preview": "https://www.youtube.com/embed/mEF9nvsZqgk"}, {"id": 93706, "title": "시민이 만든 11가지 녹색전환 정책 카드뉴스", "year": 2022, "type": "사진", "preview": ""}, {"id": 93786, "title": "기업의 그린워싱 TCFD 보고서로 찾아낼 수 있을까 1주차 강의", "year": 2023, "type": "동영상", "preview": "https://www.youtube.com/embed/lZ8Z2pS-TaM"}, {"id": 93741, "title": "대전광역시 녹색일자리 진단", "year": 2023, "type": "보고서", "preview": ""}, {"id": 93813, "title": "기업의 그린워싱 TCFD 보고서로 찾아낼 수 있을까 2주차 강의", "year": 2023, "type": "동영상", "preview": "https://www.youtube.com/embed/0ofQ5OAYKw4"}], "url": "https://ecoarchive.org/collections/show/id/49", "similar": [{"k": "생명평화아시아", "v": 0.204}, {"k": "더나은미래", "v": 0.193}, {"k": "환경정의", "v": 0.183}, {"k": "기후변화행동연구소", "v": 0.148}, {"k": "환경운동연합", "v": 0.145}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

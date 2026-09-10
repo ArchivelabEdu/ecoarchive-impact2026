@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>키워드 사전 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="환경아카이브 풀숲 Omeka 전수 111,106건의 소장현황·컬렉션·키워드 분석">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="active">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb">키워드</div><h1>키워드 사전</h1>
+<p class="lead">3건 이상 붙은 키워드 11,670개. 검색어를 입력하면 포함하는 키워드를 찾습니다(최대 300개 표시). 건수는 기록-일반 공개 기준이며, 주요 컬렉션은 가장 많이 붙인 컬렉션입니다.</p>
+<div class="controls"><input id="q" placeholder="키워드 검색" style="min-width:260px"><label>정렬 <select id="sort"><option value="n">건수</option><option value="first">첫 출현 연도</option><option value="last">마지막 출현 연도</option><option value="k">가나다</option></select></label><span class="note" id="cnt"></span></div>
+<table class="t"><thead><tr><th>키워드</th><th class="n">건수</th><th class="n">첫 출현</th><th class="n">마지막 출현</th><th>주요 컬렉션</th><th>풀숲 검색</th></tr></thead><tbody id="tb"></tbody></table>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+let DICT=[];fetch("../data/keywords_dict.json").then(r=>r.json()).then(d=>{DICT=d;render();});
+const tb=document.getElementById("tb"),q=document.getElementById("q"),so=document.getElementById("sort");
+function render(){const s=q.value.trim();let rows=s?DICT.filter(d=>d.k.includes(s)):DICT;const key=so.value;rows=[...rows].sort((a,b)=>key==="k"?a.k.localeCompare(b.k,"ko"):key==="n"?b.n-a.n:((b[key]||0)-(a[key]||0)));
+ document.getElementById("cnt").textContent=`${fmtN(rows.length)}개 중 ${Math.min(300,rows.length)}개 표시`;
+ tb.innerHTML=rows.slice(0,300).map(d=>`<tr><td>${d.k}</td><td class="n">${fmtN(d.n)}</td><td class="n">${d.first||""}</td><td class="n">${d.last||""}</td><td>${d.coll||""}</td><td><a href="https://ecoarchive.org/find?query=${encodeURIComponent(d.k)}" target="_blank">검색 ↗</a></td></tr>`).join("");}
+q.oninput=render;so.onchange=render;
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">키워드</div><h1>키워드 사전</h1>
+<p class="lead">3건 이상 붙은 키워드 {{ '{:,}'.format(N) }}개. 검색어를 입력하면 포함하는 키워드를 찾습니다(최대 300개 표시). 건수는 기록-일반 공개 기준이며, 주요 컬렉션은 가장 많이 붙인 컬렉션입니다.</p>
+<div class="controls"><input id="q" placeholder="키워드 검색" style="min-width:260px"><label>정렬 <select id="sort"><option value="n">건수</option><option value="first">첫 출현 연도</option><option value="last">마지막 출현 연도</option><option value="k">가나다</option></select></label><span class="note" id="cnt"></span></div>
+<table class="t"><thead><tr><th>키워드</th><th class="n">건수</th><th class="n">첫 출현</th><th class="n">마지막 출현</th><th>주요 컬렉션</th><th>풀숲 검색</th></tr></thead><tbody id="tb"></tbody></table>
+{% endblock %}{% block script %}<script>
+let DICT=[];fetch("../data/keywords_dict.json").then(r=>r.json()).then(d=>{DICT=d;render();});
+const tb=document.getElementById("tb"),q=document.getElementById("q"),so=document.getElementById("sort");
+function render(){const s=q.value.trim();let rows=s?DICT.filter(d=>d.k.includes(s)):DICT;const key=so.value;rows=[...rows].sort((a,b)=>key==="k"?a.k.localeCompare(b.k,"ko"):key==="n"?b.n-a.n:((b[key]||0)-(a[key]||0)));
+ document.getElementById("cnt").textContent=`${fmtN(rows.length)}개 중 ${Math.min(300,rows.length)}개 표시`;
+ tb.innerHTML=rows.slice(0,300).map(d=>`<tr><td>${d.k}</td><td class="n">${fmtN(d.n)}</td><td class="n">${d.first||""}</td><td class="n">${d.last||""}</td><td>${d.coll||""}</td><td><a href="https://ecoarchive.org/find?query=${encodeURIComponent(d.k)}" target="_blank">검색 ↗</a></td></tr>`).join("");}
+q.oninput=render;so.onchange=render;
+</script>{% endblock %}

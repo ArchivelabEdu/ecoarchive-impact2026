@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb"><a href="index.html">컬렉션</a> › {{ C.kind }}</div>
+<h1>{{ C.name }} <span class="pill {{ 'person' if C.kind=='개인' }}">{{ C.kind }} 컬렉션</span></h1>
+<p class="lead">{{ C.desc or '기증주체 소개문이 없습니다.' }}</p>
+<p class="note"><a href="{{ C.url }}" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">{{ '{:,}'.format(C.total) }}</div><div class="l">등록</div><div class="s">공개 {{ '{:,}'.format(C.public) }} · 비공개 {{ '%.1f'|format(C.private_rate*100) }}%</div></div>
+  <div class="kpi"><div class="v">{{ C.year_min or '—' }}–{{ C.year_max or '—' }}</div><div class="l">생산연도</div><div class="s">중앙값 {{ C.year_median or '—' }} · 2020s {{ '%.0f'|format(C.share_2020s*100) }}%</div></div>
+  <div class="kpi"><div class="v">{{ '%.1f'|format((C.access_rate or 0)*100) }}%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 {{ '%.0f'|format(C.subject_rate*100) }}% · 지역 식별 {{ '%.0f'|format(C.region_rate*100) }}%</div></div>
+  <div class="kpi"><div class="v">{{ '%.0f'|format((C.external_rate or 0)*100) }}%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 {{ '{:,}'.format(C.gov_n) }}건 · 기술자 {{ C.descriptors }}명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody>{% for d,ks in C.kw_by_decade.items() %}<tr><td>{{ d }}</td><td class="tags">{% for k in ks %}<span class="tag">{{ k.k }} <small>{{ k.v }}</small></span>{% endfor %}</td></tr>{% endfor %}</tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 {{ '{:,}'.format(C.creator_n) }}건 중 외부 생산 {{ '%.0f'|format((C.external_rate or 0)*100) }}%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p>{% for s in C.similar %}<div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="{{ SLUG[s.k] }}.html" style="width:200px">{{ s.k }}</a><div class="bar" style="flex:1"><i style="width:{{ (s.v*100)|round }}%"></i></div><span class="note">{{ '%.2f'|format(s.v) }}</span></div>{% endfor %}</div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples">{% for s in C.samples %}<a href="https://ecoarchive.org/items/show/{{ s.id }}" target="_blank"><div>{{ s.title }}</div><div class="y">{{ s.year or '' }} · {{ s.type }}{% if s.preview %} · 영상{% endif %}</div></a>{% endfor %}</div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+{% endblock %}{% block script %}<script>
+const C={{ C|tojson }};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>{% endblock %}

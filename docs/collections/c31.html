@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>숲과나눔 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="숲과나눔 컬렉션 2,522건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>숲과나눔 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">가정, 일터, 지역사회의 환경이 숲과 같이 건강하고, 안전하며, 지속가능한 곳이어야 한다는 우리 사회의 여망이 모여 2018년 7월 4일 만들어진 재단이다. '숲과나눔'은 국내외 환경, 안전, 보건 분야의 인재 양성, 국가 사회적 난제의 대안 개발과 실천, 사회 각 구성체 사이의 소통과 협력 등을 주요 사업으로 진행하고 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/31" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">2,522</div><div class="l">등록</div><div class="s">공개 2,430 · 비공개 3.6%</div></div>
+  <div class="kpi"><div class="v">2018–2025</div><div class="l">생산연도</div><div class="s">중앙값 2022 · 2020s 87%</div></div>
+  <div class="kpi"><div class="v">98.6%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 63% · 지역 식별 3%</div></div>
+  <div class="kpi"><div class="v">21%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 14건 · 기술자 7명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>2010s</td><td class="tags"><span class="tag">풀씨 <small>161</small></span><span class="tag">결과 <small>122</small></span><span class="tag">활동 <small>122</small></span><span class="tag">크리스 조던 <small>25</small></span><span class="tag">풀씨1기 <small>16</small></span><span class="tag">부산전 <small>12</small></span><span class="tag">성곡미술관 <small>12</small></span><span class="tag">서울전 <small>11</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">풀씨 <small>367</small></span><span class="tag">초록열매 <small>210</small></span><span class="tag">사랑의열매 <small>188</small></span><span class="tag">자원순환 <small>156</small></span><span class="tag">환경교육 <small>137</small></span><span class="tag">기후위기 <small>135</small></span><span class="tag">활동 <small>124</small></span><span class="tag">풀씨행동연구소 <small>121</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 2,430건 중 외부 생산 21%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c47.html" style="width:200px">더나은미래</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c49.html" style="width:200px">녹색전환연구소</a><div class="bar" style="flex:1"><i style="width:13.0%"></i></div><span class="note">0.13</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c29.html" style="width:200px">기후변화행동연구소</a><div class="bar" style="flex:1"><i style="width:12.0%"></i></div><span class="note">0.12</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c55.html" style="width:200px">한겨레</a><div class="bar" style="flex:1"><i style="width:10.0%"></i></div><span class="note">0.10</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c46.html" style="width:200px">생명평화아시아</a><div class="bar" style="flex:1"><i style="width:9.0%"></i></div><span class="note">0.09</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/15310" target="_blank"><div>2018년 숲과나눔 리플렛</div><div class="y">2018 · 리플렛/브로셔/팜플릿</div></a><a href="https://ecoarchive.org/items/show/53613" target="_blank"><div>모집 환경아카이브 풀숲 자료기증자 모집 상시운영</div><div class="y">2020 · 뉴스레터</div></a><a href="https://ecoarchive.org/items/show/96196" target="_blank"><div>[보건뉴스] 2021 세계행복보고서 _ 우리나라는 전 세계에서 50번째로 행복한 나라(세계에서 가장 행복한 </div><div class="y">2021 · 웹페이지</div></a><a href="https://ecoarchive.org/items/show/96009" target="_blank"><div>[초록열매] 마을 자원순환시스템을 향한 주민들의 작은 실천 _ 자원순환 환장 사회적협동조합</div><div class="y">2022 · 웹페이지</div></a><a href="https://ecoarchive.org/items/show/77098" target="_blank"><div>[초록열매] 석탄화력발전소, 이의 있습니다!  기후변화청년단체 GEYK</div><div class="y">2022 · 웹페이지</div></a><a href="https://ecoarchive.org/items/show/96513" target="_blank"><div>2024 '광주 동물권 단체 성난비건'팀의 풀씨 결과보고서</div><div class="y">2024 · 보고서</div></a><a href="https://ecoarchive.org/items/show/96997" target="_blank"><div>개발 논리와 제도의 벽을 넘어 '환경영향평가 대응 액션노트'가 던지는 질문</div><div class="y">2025 · 웹페이지</div></a><a href="https://ecoarchive.org/items/show/97067" target="_blank"><div>[노린내를 찾아서 노린재의 노린내를 찾아서</div><div class="y">2025 · 웹페이지</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "숲과나눔", "id": 31, "slug": "c31", "kind": "단체", "desc": "가정, 일터, 지역사회의 환경이 숲과 같이 건강하고, 안전하며, 지속가능한 곳이어야 한다는 우리 사회의 여망이 모여 2018년 7월 4일 만들어진 재단이다. '숲과나눔'은 국내외 환경, 안전, 보건 분야의 인재 양성, 국가 사회적 난제의 대안 개발과 실천, 사회 각 구성체 사이의 소통과 협력 등을 주요 사업으로 진행하고 있다.", "total": 2522, "public": 2430, "private_rate": 0.0365, "access_rate": 0.9864, "year_min": 2018, "year_max": 2025, "year_median": 2022, "share_2020s": 0.8691, "share_pre1990": 0.0, "subject_rate": 0.6313, "region_rate": 0.0288, "descriptors": 7, "added": [{"k": "2020", "v": 311}, {"k": "2021", "v": 391}, {"k": "2022", "v": 268}, {"k": "2023", "v": 397}, {"k": "2024", "v": 674}, {"k": "2025", "v": 39}, {"k": "2026", "v": 442}], "rtype": [{"k": "특수전자기록물류", "v": 1221}, {"k": "문서류", "v": 809}, {"k": "영상음성류", "v": 227}, {"k": "도서간행물류", "v": 148}, {"k": "사진그림류", "v": 25}], "rform": [{"k": "웹페이지", "v": 974}, {"k": "보고서", "v": 599}, {"k": "뉴스레터", "v": 235}, {"k": "동영상", "v": 227}, {"k": "보도자료", "v": 153}, {"k": "단행본", "v": 78}, {"k": "자료집", "v": 53}, {"k": "일반문서", "v": 39}, {"k": "사진", "v": 24}, {"k": "웹자보", "v": 12}, {"k": "정기간행물", "v": 11}, {"k": "리플렛/브로셔/팜플릿", "v": 10}], "orig": [{"k": "전자", "v": 2414}, {"k": "하이브리드", "v": 16}], "subject": [{"k": "기후에너지", "v": 444}, {"k": "생태계보전", "v": 412}, {"k": "자원순환", "v": 334}, {"k": "생활안전", "v": 86}, {"k": "국제연대", "v": 75}, {"k": "재난재해", "v": 53}, {"k": "대기오염", "v": 47}, {"k": "일반", "v": 39}, {"k": "도시환경", "v": 18}, {"k": "반공해", "v": 13}, {"k": "반핵탈핵", "v": 13}], "year": [{"k": 2018, "v": 41}, {"k": 2019, "v": 277}, {"k": 2020, "v": 235}, {"k": 2021, "v": 465}, {"k": 2022, "v": 358}, {"k": 2023, "v": 320}, {"k": 2024, "v": 330}, {"k": 2025, "v": 404}], "decade": [{"k": "2010s", "v": 318}, {"k": "2020s", "v": 2112}], "regions": [{"k": "제주", "v": 16}, {"k": "강원", "v": 13}, {"k": "서울", "v": 11}, {"k": "광주", "v": 8}, {"k": "경기", "v": 7}, {"k": "전북", "v": 7}, {"k": "대구", "v": 5}, {"k": "경북", "v": 2}, {"k": "충남", "v": 1}, {"k": "부산", "v": 1}, {"k": "인천", "v": 1}, {"k": "충북", "v": 1}, {"k": "경남", "v": 1}], "top_kw": [{"k": "풀씨", "v": 528}, {"k": "활동", "v": 246}, {"k": "결과", "v": 241}, {"k": "초록열매", "v": 210}, {"k": "사랑의열매", "v": 188}, {"k": "자원순환", "v": 156}, {"k": "환경교육", "v": 137}, {"k": "기후위기", "v": 135}, {"k": "풀씨행동연구소", "v": 121}, {"k": "시민참여", "v": 119}, {"k": "생물다양성", "v": 114}, {"k": "국제풀씨", "v": 96}, {"k": "탄소중립", "v": 94}, {"k": "시민아이디어 지원사업", "v": 93}, {"k": "환경학술포럼", "v": 81}, {"k": "활동영상", "v": 81}, {"k": "지속가능성", "v": 72}, {"k": "안전", "v": 69}, {"k": "종이팩", "v": 68}, {"k": "풀씨연구회", "v": 68}, {"k": "에코실험실", "v": 65}, {"k": "인재양성", "v": 62}, {"k": "보건", "v": 58}, {"k": "풀꽃", "v": 56}, {"k": "풀씨8기", "v": 54}], "distinct_kw": [{"k": "시민아이디어지원사업", "v": 14}, {"k": "인재양성 프로그램", "v": 10}, {"k": "시민아이디어 지원사업", "v": 93}, {"k": "생명자유공동체", "v": 28}, {"k": "일환경건강센터", "v": 10}, {"k": "국제풀씨", "v": 96}, {"k": "풀씨1기", "v": 16}, {"k": "동아사이언스", "v": 14}, {"k": "풀씨체험기", "v": 28}, {"k": "풀씨6기", "v": 48}, {"k": "환경아카이브풀숲", "v": 16}, {"k": "탄소중립포럼", "v": 19}, {"k": "풀씨9기", "v": 29}, {"k": "풀씨8기", "v": 54}, {"k": "특정주제연구", "v": 10}, {"k": "초록열매2기", "v": 12}, {"k": "풀씨 7기 이야기", "v": 24}, {"k": "국제풀씨 2기", "v": 18}, {"k": "풀씨 8기", "v": 29}, {"k": "인재의 숲", "v": 16}, {"k": "포럼 생명자유공동체", "v": 28}, {"k": "풀씨x풀꽃", "v": 10}, {"k": "출품작", "v": 10}, {"k": "풀씨 9기", "v": 10}, {"k": "더많은자연", "v": 16}], "kw_by_decade": {"2010s": [{"k": "풀씨", "v": 161}, {"k": "결과", "v": 122}, {"k": "활동", "v": 122}, {"k": "크리스 조던", "v": 25}, {"k": "풀씨1기", "v": 16}, {"k": "부산전", "v": 12}, {"k": "성곡미술관", "v": 12}, {"k": "서울전", "v": 11}], "2020s": [{"k": "풀씨", "v": 367}, {"k": "초록열매", "v": 210}, {"k": "사랑의열매", "v": 188}, {"k": "자원순환", "v": 156}, {"k": "환경교육", "v": 137}, {"k": "기후위기", "v": 135}, {"k": "활동", "v": 124}, {"k": "풀씨행동연구소", "v": 121}]}, "creators": [{"k": "장재연", "v": 9}, {"k": "The Butter", "v": 8}, {"k": "마을언덕사회적협동조합", "v": 4}, {"k": "제주자연의벗", "v": 4}, {"k": "아파트탐조단", "v": 3}, {"k": "그린오큐파이", "v": 3}, {"k": "가로수를아끼는사람들", "v": 3}, {"k": "물음표와쉼표", "v": 3}, {"k": "미래를위한예비교사모임오늘", "v": 3}, {"k": "플랜트버틀러", "v": 3}, {"k": "지구로온씨앗", "v": 3}, {"k": "유어스텝", "v": 2}, {"k": "대학생기후행동", "v": 2}, {"k": "새순", "v": 2}, {"k": "상상플러스", "v": 2}], "external_rate": 0.2058, "gov_n": 14, "creator_n": 2430, "quality": {"설명": 0.8181, "키워드": 0.9658, "생산연도": 1.0, "주제": 0.6313, "연관": 0.3564, "권리": 0.0037, "원문": 0.9864}, "samples": [{"id": 15310, "title": "2018년 숲과나눔 리플렛", "year": 2018, "type": "리플렛/브로셔/팜플릿", "preview": ""}, {"id": 53613, "title": "모집 환경아카이브 풀숲 자료기증자 모집 상시운영", "year": 2020, "type": "뉴스레터", "preview": ""}, {"id": 96196, "title": "[보건뉴스] 2021 세계행복보고서 _ 우리나라는 전 세계에서 50번째로 행복한 나라(세계에서 가장 행복한 ", "year": 2021, "type": "웹페이지", "preview": ""}, {"id": 96009, "title": "[초록열매] 마을 자원순환시스템을 향한 주민들의 작은 실천 _ 자원순환 환장 사회적협동조합", "year": 2022, "type": "웹페이지", "preview": ""}, {"id": 77098, "title": "[초록열매] 석탄화력발전소, 이의 있습니다!  기후변화청년단체 GEYK", "year": 2022, "type": "웹페이지", "preview": ""}, {"id": 96513, "title": "2024 '광주 동물권 단체 성난비건'팀의 풀씨 결과보고서", "year": 2024, "type": "보고서", "preview": ""}, {"id": 96997, "title": "개발 논리와 제도의 벽을 넘어 '환경영향평가 대응 액션노트'가 던지는 질문", "year": 2025, "type": "웹페이지", "preview": ""}, {"id": 97067, "title": "[노린내를 찾아서 노린재의 노린내를 찾아서", "year": 2025, "type": "웹페이지", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/31", "similar": [{"k": "더나은미래", "v": 0.187}, {"k": "녹색전환연구소", "v": 0.126}, {"k": "기후변화행동연구소", "v": 0.125}, {"k": "한겨레", "v": 0.097}, {"k": "생명평화아시아", "v": 0.092}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

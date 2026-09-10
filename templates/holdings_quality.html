@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">소장 현황</div><h1>메타데이터 품질</h1>
+<p class="lead">제목·설명·키워드·생산자·생산연도·주제·원문 7개 기본 필드의 완성도 지수는 88.6%로 높지만, 사건·조직·연표 전거와 연결된 기록은 {{ '%.1f'|format(S.rel_rate*100) }}%, 권리 표시는 {{ '%.1f'|format(S.rights_rate*100) }}%에 그칩니다.</p>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">필드 충족률 (기록-일반, 공개)</p><div id="c_q" class="chart"></div></div>
+  <div class="card"><p class="chart-title">기술(記述) 연도별 건수</p><p class="chart-sub">기술일자 필드 기준 · 2024년 이후 기재 없음</p><div id="c_dd" class="chart"></div></div>
+</div>
+<div class="card" style="margin-top:18px"><p class="chart-title">컬렉션별 필드 충족률</p><div id="c_cq" class="chart xtall"></div></div>
+<h2>정비 과제</h2>
+<table class="t"><thead><tr><th>과제</th><th>현황</th><th>효과</th></tr></thead><tbody>
+<tr><td>주제분류 미부여 보완, 오기 정리</td><td>미부여 41% · '자연순환'·'도시생활'·'누추' 등 오기</td><td>주제별 시계열·컬렉션 주제 프로파일 신뢰도</td></tr>
+<tr><td>사건·조직·연표 전거와 기록 연결</td><td>연결 14%</td><td>사건별 증거 밀도, 관계그래프 활용</td></tr>
+<tr><td>기록-일반 권리 필드</td><td>1.4%</td><td>재이용 조건 명시, 2차 활용 촉진</td></tr>
+<tr><td>생산자 표기 정규화</td><td>"환경운동연합" / "[환경운동연합]" / "서울환경운동연합" 병존</td><td>네트워크 지표 정확도</td></tr>
+<tr><td>지역 필드 신설</td><td>키워드 추정으로 7.5%만 식별</td><td>현장 커버리지 실측</td></tr>
+<tr><td>기술자·기술일자 기재 유지</td><td>2024년 이후 등록분 미기재</td><td>운영 추이 측정</td></tr>
+</tbody></table>
+{% endblock %}{% block script %}<script>
+const H={{ H|tojson }}, COLS={{ COLS|tojson }};
+hbar("c_q",Object.entries(H.quality).map(([k,v])=>({k,v})),{pct:true,left:100});
+vbar("c_dd",H.descdate,{});
+(function(){const keys=["설명","키워드","생산연도","주제","연관","권리","원문"];const cs=COLS.filter(c=>c.quality&&c.quality.설명!=null);heat("c_cq",cs.map(c=>c.name),keys,cs.map(c=>keys.map(k=>c.quality[k]||0)),{pct:true,left:190,rotate:0,min:.01,max:1});})();
+</script>{% endblock %}

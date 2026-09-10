@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>구도완 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="구도완 컬렉션 99건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 개인</div>
+<h1>구도완 <span class="pill person">개인 컬렉션</span></h1>
+<p class="lead">한국환경정책평가연구원에서 환경정책과 환경영향평가에 대하여 연구했고, 환경부 장관자문관, 대통령자문 지속가능발전위원회 수석연구위원으로 일했다. 한국환경사회학회 회장, 학회지 『ECO』 편집위원장직을 맡아 환경사회학의 발전에 힘을 보태기도 했다. 2005년 설립한 환경사회연구소 소장으로 활약하시며 포럼 생명자유공동체 운영위원장, (재)숲과나눔의 이사로 재직중이며 그간 환경운동사 연구와 환경사회학 연구를 이끌어왔다. 기증한 자료는 환경운동과 환경정책을 연구하면서 구하게 된 자료들로서 1991년 낙동강 페놀사태때 피해 임산부의 수기 등 다양한 자료가 포함되어 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/22" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">99</div><div class="l">등록</div><div class="s">공개 83 · 비공개 16.2%</div></div>
+  <div class="kpi"><div class="v">1978–2016</div><div class="l">생산연도</div><div class="s">중앙값 2000 · 2020s 0%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 100% · 지역 식별 19%</div></div>
+  <div class="kpi"><div class="v">100%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 16건 · 기술자 1명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1970s</td><td class="tags"><span class="tag">환경오염 <small>1</small></span><span class="tag">공해 <small>1</small></span></td></tr><tr><td>1980s</td><td class="tags"><span class="tag">공해 <small>3</small></span><span class="tag">환경보전 <small>2</small></span><span class="tag">국민의식 <small>2</small></span><span class="tag">공해연구 <small>2</small></span><span class="tag">반공해 <small>2</small></span><span class="tag">신문 <small>2</small></span><span class="tag">최루탄 <small>2</small></span><span class="tag">도시공해 <small>1</small></span></td></tr><tr><td>1990s</td><td class="tags"><span class="tag">공해 <small>2</small></span><span class="tag">환경정책 <small>2</small></span><span class="tag">핵발전소 <small>2</small></span><span class="tag">정기총회 <small>2</small></span><span class="tag">정관 <small>2</small></span><span class="tag">유엔환경개발회의 <small>2</small></span><span class="tag">약품 <small>2</small></span><span class="tag">우리환경되살리기백일장 <small>2</small></span></td></tr><tr><td>2000s</td><td class="tags"><span class="tag">동강 <small>3</small></span><span class="tag">환경정책 <small>3</small></span><span class="tag">새만금간척사업 <small>2</small></span><span class="tag">갯벌 <small>2</small></span><span class="tag">독일 <small>2</small></span><span class="tag">새만금 <small>2</small></span><span class="tag">태안 <small>2</small></span><span class="tag">허베이스피리트호 <small>2</small></span></td></tr><tr><td>2010s</td><td class="tags"><span class="tag">새만금 <small>4</small></span><span class="tag">주민조사 <small>2</small></span><span class="tag">기후변화 <small>2</small></span><span class="tag">탁발순례 <small>1</small></span><span class="tag">서원 <small>1</small></span><span class="tag">허베이스피리트호 <small>1</small></span><span class="tag">태안반도 <small>1</small></span><span class="tag">기름유출사고 <small>1</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 80건 중 외부 생산 100%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:27.0%"></i></div><span class="note">0.27</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c34.html" style="width:200px">환경운동연합</a><div class="bar" style="flex:1"><i style="width:20.0%"></i></div><span class="note">0.20</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c40.html" style="width:200px">불교환경연대</a><div class="bar" style="flex:1"><i style="width:20.0%"></i></div><span class="note">0.20</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c42.html" style="width:200px">기독교환경운동연대</a><div class="bar" style="flex:1"><i style="width:20.0%"></i></div><span class="note">0.20</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c41.html" style="width:200px">환경법률센터</a><div class="bar" style="flex:1"><i style="width:18.0%"></i></div><span class="note">0.18</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/27456" target="_blank"><div>ENVIRONMENTAL ATTITUDES AND CONSERVATION</div><div class="y">1978 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/27498" target="_blank"><div>공해와 생존 1988년 6월 제8호</div><div class="y">1988 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/27514" target="_blank"><div>생존과 평과 제20호</div><div class="y">1992 · 정기간행물</div></a><a href="https://ecoarchive.org/items/show/27469" target="_blank"><div>주민자치와 민회운동</div><div class="y">1999 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/27531" target="_blank"><div>동강 보전.관리 기본계획 자료집</div><div class="y">2001 · 임시간행물</div></a><a href="https://ecoarchive.org/items/show/27479" target="_blank"><div>환경권 분야 NAP 수립을 위한 기초조사</div><div class="y">2005 · 임시간행물</div></a><a href="https://ecoarchive.org/items/show/27484" target="_blank"><div>원전주변지역 인문 환경변화 과정과 지속발전을 위한 방안 연구 최종보고서</div><div class="y">2013 · 임시간행물</div></a><a href="https://ecoarchive.org/items/show/27552" target="_blank"><div>공해추방운동연합 연구위원회 안내서</div><div class="y"> · 일반문서</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "구도완", "id": 22, "slug": "c22", "kind": "개인", "desc": "한국환경정책평가연구원에서 환경정책과 환경영향평가에 대하여 연구했고, 환경부 장관자문관, 대통령자문 지속가능발전위원회 수석연구위원으로 일했다. 한국환경사회학회 회장, 학회지 『ECO』 편집위원장직을 맡아 환경사회학의 발전에 힘을 보태기도 했다. 2005년 설립한 환경사회연구소 소장으로 활약하시며 포럼 생명자유공동체 운영위원장, (재)숲과나눔의 이사로 재직중이며 그간 환경운동사 연구와 환경사회학 연구를 이끌어왔다. 기증한 자료는 환경운동과 환경정책을 연구하면서 구하게 된 자료들로서 1991년 낙동강 페놀사태때 피해 임산부의 수기 등 다양한 자료가 포함되어 있다.", "total": 99, "public": 83, "private_rate": 0.1616, "access_rate": 1.0, "year_min": 1978, "year_max": 2016, "year_median": 2000, "share_2020s": 0.0, "share_pre1990": 0.1687, "subject_rate": 1.0, "region_rate": 0.1928, "descriptors": 1, "added": [{"k": "2020", "v": 99}], "rtype": [{"k": "도서간행물류", "v": 75}, {"k": "문서류", "v": 8}], "rform": [{"k": "임시간행물", "v": 34}, {"k": "임의제본물", "v": 32}, {"k": "정기간행물", "v": 9}, {"k": "일반문서", "v": 5}, {"k": "보고서", "v": 2}, {"k": "리플렛/브로셔/팜플릿", "v": 1}], "orig": [{"k": "비전자", "v": 83}], "subject": [{"k": "반공해", "v": 24}, {"k": "일반", "v": 22}, {"k": "생태계보전", "v": 22}, {"k": "반핵탈핵", "v": 6}, {"k": "재난재해", "v": 3}, {"k": "기후에너지", "v": 2}, {"k": "생활안전", "v": 2}, {"k": "도시환경", "v": 1}, {"k": "자원순환", "v": 1}], "year": [{"k": 1978, "v": 1}, {"k": 1982, "v": 3}, {"k": 1983, "v": 1}, {"k": 1985, "v": 1}, {"k": 1987, "v": 2}, {"k": 1988, "v": 4}, {"k": 1989, "v": 2}, {"k": 1990, "v": 3}, {"k": 1991, "v": 3}, {"k": 1992, "v": 6}, {"k": 1993, "v": 3}, {"k": 1995, "v": 1}, {"k": 1996, "v": 1}, {"k": 1997, "v": 2}, {"k": 1998, "v": 2}, {"k": 1999, "v": 2}, {"k": 2000, "v": 7}, {"k": 2001, "v": 3}, {"k": 2002, "v": 5}, {"k": 2003, "v": 3}, {"k": 2004, "v": 3}, {"k": 2005, "v": 1}, {"k": 2007, "v": 1}, {"k": 2008, "v": 2}, {"k": 2009, "v": 1}, {"k": 2010, "v": 3}, {"k": 2011, "v": 2}, {"k": 2012, "v": 1}, {"k": 2013, "v": 2}, {"k": 2014, "v": 2}, {"k": 2015, "v": 2}, {"k": 2016, "v": 1}], "decade": [{"k": "1970s", "v": 1}, {"k": "1980s", "v": 13}, {"k": "1990s", "v": 23}, {"k": "2000s", "v": 26}, {"k": "2010s", "v": 13}], "regions": [{"k": "전북", "v": 7}, {"k": "강원", "v": 3}, {"k": "충남", "v": 3}, {"k": "서울", "v": 2}, {"k": "울산", "v": 1}], "top_kw": [{"k": "공해", "v": 7}, {"k": "새만금", "v": 6}, {"k": "환경정책", "v": 5}, {"k": "환경보전", "v": 4}, {"k": "환경오염", "v": 3}, {"k": "국민의식", "v": 3}, {"k": "새만금간척사업", "v": 3}, {"k": "동강", "v": 3}, {"k": "갯벌", "v": 3}, {"k": "허베이스피리트호", "v": 3}, {"k": "기름유출사고", "v": 3}, {"k": "핵발전소", "v": 3}, {"k": "정기총회", "v": 3}, {"k": "환경교육", "v": 3}, {"k": "선언문", "v": 2}, {"k": "한강", "v": 2}, {"k": "낙동강", "v": 2}, {"k": "독일", "v": 2}, {"k": "태안", "v": 2}, {"k": "태안반도", "v": 2}, {"k": "주민조사", "v": 2}, {"k": "기후변화", "v": 2}, {"k": "공해연구", "v": 2}, {"k": "반공해", "v": 2}, {"k": "영월댐", "v": 2}], "distinct_kw": [{"k": "공해", "v": 7}, {"k": "환경정책", "v": 5}, {"k": "새만금", "v": 6}], "kw_by_decade": {"1970s": [{"k": "환경오염", "v": 1}, {"k": "공해", "v": 1}], "1980s": [{"k": "공해", "v": 3}, {"k": "환경보전", "v": 2}, {"k": "국민의식", "v": 2}, {"k": "공해연구", "v": 2}, {"k": "반공해", "v": 2}, {"k": "신문", "v": 2}, {"k": "최루탄", "v": 2}, {"k": "도시공해", "v": 1}], "1990s": [{"k": "공해", "v": 2}, {"k": "환경정책", "v": 2}, {"k": "핵발전소", "v": 2}, {"k": "정기총회", "v": 2}, {"k": "정관", "v": 2}, {"k": "유엔환경개발회의", "v": 2}, {"k": "약품", "v": 2}, {"k": "우리환경되살리기백일장", "v": 2}], "2000s": [{"k": "동강", "v": 3}, {"k": "환경정책", "v": 3}, {"k": "새만금간척사업", "v": 2}, {"k": "갯벌", "v": 2}, {"k": "독일", "v": 2}, {"k": "새만금", "v": 2}, {"k": "태안", "v": 2}, {"k": "허베이스피리트호", "v": 2}], "2010s": [{"k": "새만금", "v": 4}, {"k": "주민조사", "v": 2}, {"k": "기후변화", "v": 2}, {"k": "탁발순례", "v": 1}, {"k": "서원", "v": 1}, {"k": "허베이스피리트호", "v": 1}, {"k": "태안반도", "v": 1}, {"k": "기름유출사고", "v": 1}]}, "creators": [{"k": "공해추방운동연합", "v": 11}, {"k": "한국공해문제연구소", "v": 4}, {"k": "영월댐공동조사단문화분과", "v": 3}, {"k": "환경부", "v": 3}, {"k": "[공해추방운동연합]", "v": 3}, {"k": "환경청", "v": 2}, {"k": "환경부; 월드리서치", "v": 2}, {"k": "강원도", "v": 2}, {"k": "안건혁; 권용우; 김성배; 이동근; 이성호; 이창수; 황희연", "v": 1}, {"k": "시민환경연구소", "v": 1}, {"k": "한국반핵반공해평화연구소", "v": 1}, {"k": "반핵평화운동연합", "v": 1}, {"k": "전국경제인연합; 산업환경위원회", "v": 1}, {"k": "한국불교사회교육원", "v": 1}, {"k": "감사원", "v": 1}], "external_rate": 1.0, "gov_n": 16, "creator_n": 80, "quality": {"설명": 1.0, "키워드": 1.0, "생산연도": 0.9157, "주제": 1.0, "연관": 0.0723, "권리": 0.0, "원문": 1.0}, "samples": [{"id": 27456, "title": "ENVIRONMENTAL ATTITUDES AND CONSERVATION", "year": 1978, "type": "임의제본물", "preview": ""}, {"id": 27498, "title": "공해와 생존 1988년 6월 제8호", "year": 1988, "type": "정기간행물", "preview": ""}, {"id": 27514, "title": "생존과 평과 제20호", "year": 1992, "type": "정기간행물", "preview": ""}, {"id": 27469, "title": "주민자치와 민회운동", "year": 1999, "type": "임의제본물", "preview": ""}, {"id": 27531, "title": "동강 보전.관리 기본계획 자료집", "year": 2001, "type": "임시간행물", "preview": ""}, {"id": 27479, "title": "환경권 분야 NAP 수립을 위한 기초조사", "year": 2005, "type": "임시간행물", "preview": ""}, {"id": 27484, "title": "원전주변지역 인문 환경변화 과정과 지속발전을 위한 방안 연구 최종보고서", "year": 2013, "type": "임시간행물", "preview": ""}, {"id": 27552, "title": "공해추방운동연합 연구위원회 안내서", "year": null, "type": "일반문서", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/22", "similar": [{"k": "함께사는길", "v": 0.266}, {"k": "환경운동연합", "v": 0.198}, {"k": "불교환경연대", "v": 0.198}, {"k": "기독교환경운동연대", "v": 0.196}, {"k": "환경법률센터", "v": 0.178}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>환경정의 · 환경아카이브 풀숲 소장현황</title>
+<meta name="description" content="환경정의 컬렉션 3,217건의 구성·시기·주제·지역·키워드">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="dot"></span>환경아카이브 풀숲 소장현황</a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="active">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../impact/index.html">임팩트 지표</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<main class="wrap">
+
+<div class="crumb"><a href="index.html">컬렉션</a> › 단체</div>
+<h1>환경정의 <span class="pill ">단체 컬렉션</span></h1>
+<p class="lead">1992년 브라질 리우에서 열린 환경과 개발에 관한 유엔회의(UNCED)를 계기로 같은 해 경실련 (사)환경개발센터로 창립하였다 환경개발센터는 정책 대안 마련 및 연구 중심의 활동을 펴왔으며, 1998년 환경정의시민연대로 명칭을 바꾸고 이듬해 1999년 독립을 하였고, 2004년 다시 환경정의로 명칭변경을 하여 국토난개발 대응, 생명의 물 살리기 운동, BLUE SKY 운동, 안전한 먹을거리 운동, 환경을 살리는 일자리 창출, 환경책큰잔치 등 대안적인 정책과 비젼을 제시하는 전성뿐만 아니라 시민참여를 근간으로 하는 환경운동을 펼치고 있다.</p>
+<p class="note"><a href="https://ecoarchive.org/collections/show/id/35" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<div class="grid g4">
+  <div class="kpi"><div class="v">3,217</div><div class="l">등록</div><div class="s">공개 2,763 · 비공개 14.1%</div></div>
+  <div class="kpi"><div class="v">1966–2023</div><div class="l">생산연도</div><div class="s">중앙값 2007 · 2020s 6%</div></div>
+  <div class="kpi"><div class="v">100.0%</div><div class="l">원문 열람 가능</div><div class="s">주제 부여 44% · 지역 식별 2%</div></div>
+  <div class="kpi"><div class="v">55%</div><div class="l">외부 생산 기록</div><div class="s">공공기관 문서 275건 · 기술자 7명</div></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록유형</p><div id="c_rtype" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록형태 상위</p><div id="c_rform" class="chart short"></div></div>
+  <div class="card" style="grid-column:1/-1"><p class="chart-title">연도별 생산 기록</p><p class="chart-sub">점선 = 연평균</p><div id="c_year" class="chart"></div></div>
+  <div class="card"><p class="chart-title">주제 분포 (부여 기록 기준)</p><div id="c_subj" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">지역 분포 (식별 기록 기준)</p><div id="c_reg" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">상위 키워드</p><div id="c_kw" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">특징 키워드</p><p class="chart-sub">전체 대비 이 컬렉션에서 출현 비율이 높은 순</p><div id="c_dkw" class="chart tall"></div></div>
+</div>
+<h2>연대별 상위 키워드</h2>
+<table class="t"><thead><tr><th>연대</th><th>키워드 (건수)</th></tr></thead><tbody><tr><td>1980s</td><td class="tags"><span class="tag">폐기물 <small>2</small></span><span class="tag">도시폐기물 <small>1</small></span></td></tr><tr><td>1990s</td><td class="tags"><span class="tag">그린벨트 <small>17</small></span><span class="tag">물 <small>13</small></span><span class="tag">개발제한구역 <small>10</small></span><span class="tag">수질 <small>10</small></span><span class="tag">폐기물 <small>8</small></span><span class="tag">산림 <small>8</small></span><span class="tag">에너지 <small>7</small></span><span class="tag">공공성 <small>7</small></span></td></tr><tr><td>2000s</td><td class="tags"><span class="tag">우리와 다음 <small>49</small></span><span class="tag">먹거리 <small>49</small></span><span class="tag">하천 <small>48</small></span><span class="tag">수질 <small>47</small></span><span class="tag">다지사 <small>44</small></span><span class="tag">경인운하 <small>39</small></span><span class="tag">미래세대 <small>39</small></span><span class="tag">주택 <small>34</small></span></td></tr><tr><td>2010s</td><td class="tags"><span class="tag">먹거리정의 <small>102</small></span><span class="tag">미세먼지 <small>86</small></span><span class="tag">미래세대 <small>82</small></span><span class="tag">유해화학물질 <small>79</small></span><span class="tag">4대강 <small>60</small></span><span class="tag">김포 <small>57</small></span><span class="tag">환경피해 <small>56</small></span><span class="tag">기후위기 <small>55</small></span></td></tr><tr><td>2020s</td><td class="tags"><span class="tag">기후위기 <small>25</small></span><span class="tag">환경책큰잔치 <small>20</small></span><span class="tag">기후정의 <small>17</small></span><span class="tag">유해화학물질 <small>14</small></span><span class="tag">북페스티벌 <small>13</small></span><span class="tag">먹거리정의 <small>11</small></span><span class="tag">코로나 <small>10</small></span><span class="tag">슬기로운 화학생활 <small>10</small></span></td></tr></tbody></table>
+<h2>교류 — 이 컬렉션이 보존한 남의 기록</h2>
+<div class="grid g2">
+  <div class="card"><p class="chart-title">외부 생산자 상위 15</p><p class="chart-sub">생산자 기재 2,755건 중 외부 생산 55%</p><div id="c_cr" class="chart tall"></div></div>
+  <div>
+    <div class="card"><p class="chart-title">연관 컬렉션</p><p class="chart-sub">키워드 프로파일 코사인 유사도</p><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c24.html" style="width:200px">장재연</a><div class="bar" style="flex:1"><i style="width:20.0%"></i></div><span class="note">0.20</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c34.html" style="width:200px">환경운동연합</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c39.html" style="width:200px">함께사는길</a><div class="bar" style="flex:1"><i style="width:19.0%"></i></div><span class="note">0.19</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c49.html" style="width:200px">녹색전환연구소</a><div class="bar" style="flex:1"><i style="width:18.0%"></i></div><span class="note">0.18</span></div><div style="display:flex;align-items:center;gap:10px;margin:6px 0"><a href="c30.html" style="width:200px">녹색연합</a><div class="bar" style="flex:1"><i style="width:17.0%"></i></div><span class="note">0.17</span></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">메타데이터 품질</p><div id="c_q" class="chart short"></div></div>
+    <div class="card" style="margin-top:18px"><p class="chart-title">등록 연도</p><div id="c_added" class="chart short"></div></div>
+  </div>
+</div>
+<h2>기록 예시</h2>
+<div class="samples"><a href="https://ecoarchive.org/items/show/22502" target="_blank"><div>영광원전 환경영향 토론회</div><div class="y">1966 · 사진</div></a><a href="https://ecoarchive.org/items/show/16535" target="_blank"><div>중랑천을 살리기 위한 지천 복원 및 수질 모니터링 운동</div><div class="y">2001 · 임의제본물</div></a><a href="https://ecoarchive.org/items/show/568" target="_blank"><div>2004 전국환경활동가 워크숍 자료집</div><div class="y">2004 · 자료집</div></a><a href="https://ecoarchive.org/items/show/40729" target="_blank"><div>폐기물 관리법 시행령 개정안 등에 대한 의견서</div><div class="y">2007 · 촉구서</div></a><a href="https://ecoarchive.org/items/show/40989" target="_blank"><div>2010년 기후정의청년단 캠프 안내 포스터</div><div class="y">2010 · 포스터</div></a><a href="https://ecoarchive.org/items/show/41222" target="_blank"><div>2014년 할머니네텃밭 어린이 먹거리 교육 사진</div><div class="y">2014 · 사진</div></a><a href="https://ecoarchive.org/items/show/41536" target="_blank"><div>2018년 미세먼지 없는 통학로를 위한 간담회 포스터</div><div class="y">2018 · 포스터</div></a><a href="https://ecoarchive.org/items/show/22575" target="_blank"><div>회원의 밤</div><div class="y"> · 사진</div></a></div>
+<p class="note">생산연도 순으로 고르게 뽑은 원문 있는 기록입니다. 링크는 풀숲 아이템 페이지로 연결됩니다.</p>
+
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+<script>
+const C={"name": "환경정의", "id": 35, "slug": "c35", "kind": "단체", "desc": "1992년 브라질 리우에서 열린 환경과 개발에 관한 유엔회의(UNCED)를 계기로 같은 해 경실련 (사)환경개발센터로 창립하였다 환경개발센터는 정책 대안 마련 및 연구 중심의 활동을 펴왔으며, 1998년 환경정의시민연대로 명칭을 바꾸고 이듬해 1999년 독립을 하였고, 2004년 다시 환경정의로 명칭변경을 하여 국토난개발 대응, 생명의 물 살리기 운동, BLUE SKY 운동, 안전한 먹을거리 운동, 환경을 살리는 일자리 창출, 환경책큰잔치 등 대안적인 정책과 비젼을 제시하는 전성뿐만 아니라 시민참여를 근간으로 하는 환경운동을 펼치고 있다.", "total": 3217, "public": 2763, "private_rate": 0.1411, "access_rate": 1.0, "year_min": 1966, "year_max": 2023, "year_median": 2007, "share_2020s": 0.0561, "share_pre1990": 0.0011, "subject_rate": 0.4405, "region_rate": 0.0239, "descriptors": 7, "added": [{"k": "2020", "v": 1792}, {"k": "2021", "v": 1304}, {"k": "2023", "v": 121}], "rtype": [{"k": "도서간행물류", "v": 1253}, {"k": "사진그림류", "v": 705}, {"k": "문서류", "v": 680}, {"k": "영상음성류", "v": 125}], "rform": [{"k": "임의제본물", "v": 702}, {"k": "사진", "v": 490}, {"k": "자료집", "v": 291}, {"k": "보도자료", "v": 259}, {"k": "포스터", "v": 213}, {"k": "촉구서", "v": 165}, {"k": "단행본", "v": 152}, {"k": "동영상", "v": 125}, {"k": "일반문서", "v": 96}, {"k": "리플렛/브로셔/팜플릿", "v": 93}, {"k": "정기간행물", "v": 78}, {"k": "보고서", "v": 39}], "orig": [{"k": "전자", "v": 1423}, {"k": "비전자", "v": 1340}], "subject": [{"k": "생활안전", "v": 286}, {"k": "생태계보전", "v": 229}, {"k": "대기오염", "v": 195}, {"k": "기후에너지", "v": 185}, {"k": "반공해", "v": 87}, {"k": "일반", "v": 78}, {"k": "자원순환", "v": 54}, {"k": "국제연대", "v": 35}, {"k": "반핵탈핵", "v": 35}, {"k": "도시환경", "v": 19}, {"k": "재난재해", "v": 14}], "year": [{"k": 1966, "v": 1}, {"k": 1989, "v": 2}, {"k": 1990, "v": 1}, {"k": 1991, "v": 2}, {"k": 1992, "v": 6}, {"k": 1993, "v": 14}, {"k": 1994, "v": 14}, {"k": 1995, "v": 14}, {"k": 1996, "v": 21}, {"k": 1997, "v": 35}, {"k": 1998, "v": 52}, {"k": 1999, "v": 81}, {"k": 2000, "v": 90}, {"k": 2001, "v": 99}, {"k": 2002, "v": 95}, {"k": 2003, "v": 139}, {"k": 2004, "v": 135}, {"k": 2005, "v": 189}, {"k": 2006, "v": 190}, {"k": 2007, "v": 201}, {"k": 2008, "v": 126}, {"k": 2009, "v": 66}, {"k": 2010, "v": 57}, {"k": 2011, "v": 112}, {"k": 2012, "v": 117}, {"k": 2013, "v": 104}, {"k": 2014, "v": 79}, {"k": 2015, "v": 87}, {"k": 2016, "v": 111}, {"k": 2017, "v": 117}, {"k": 2018, "v": 82}, {"k": 2019, "v": 70}, {"k": 2020, "v": 93}, {"k": 2021, "v": 34}, {"k": 2022, "v": 15}, {"k": 2023, "v": 13}], "decade": [{"k": "1980s", "v": 2}, {"k": "1990s", "v": 240}, {"k": "2000s", "v": 1330}, {"k": "2010s", "v": 936}, {"k": "2020s", "v": 155}], "regions": [{"k": "서울", "v": 38}, {"k": "강원", "v": 15}, {"k": "경기", "v": 6}, {"k": "경북", "v": 2}, {"k": "인천", "v": 2}, {"k": "전북", "v": 1}, {"k": "부산", "v": 1}, {"k": "전남", "v": 1}], "top_kw": [{"k": "미세먼지", "v": 122}, {"k": "미래세대", "v": 121}, {"k": "먹거리정의", "v": 113}, {"k": "기후위기", "v": 108}, {"k": "유해화학물질", "v": 100}, {"k": "에너지", "v": 91}, {"k": "수질", "v": 72}, {"k": "우리와 다음", "v": 69}, {"k": "경유차", "v": 67}, {"k": "4대강", "v": 66}, {"k": "하천", "v": 60}, {"k": "환경피해", "v": 58}, {"k": "수질오염", "v": 57}, {"k": "김포", "v": 57}, {"k": "먹거리", "v": 55}, {"k": "경인운하", "v": 51}, {"k": "유해물질", "v": 50}, {"k": "녹조", "v": 49}, {"k": "다지사", "v": 49}, {"k": "환경책", "v": 46}, {"k": "블루스카이", "v": 44}, {"k": "환경정책", "v": 43}, {"k": "기후변화", "v": 42}, {"k": "전시", "v": 41}, {"k": "기후정의", "v": 40}], "distinct_kw": [{"k": "환경부정의", "v": 24}, {"k": "안티패스트푸드운동", "v": 24}, {"k": "슈거프리", "v": 12}, {"k": "할머니네텃밭", "v": 12}, {"k": "먹거리교육", "v": 12}, {"k": "먹거리정의", "v": 113}, {"k": "우리와 다음", "v": 69}, {"k": "안심마트", "v": 37}, {"k": "마을부엌", "v": 26}, {"k": "미국산쇠고기", "v": 15}, {"k": "먹거리공동체", "v": 23}, {"k": "먹거리불평등", "v": 19}, {"k": "북페스티벌", "v": 13}, {"k": "주거공공성", "v": 27}, {"k": "다지사", "v": 49}, {"k": "블루스카이", "v": 44}, {"k": "정크푸드", "v": 24}, {"k": "공공급식", "v": 23}, {"k": "지방분권", "v": 21}, {"k": "어린이통학버스", "v": 14}, {"k": "완전표시제", "v": 14}, {"k": "미래세대", "v": 121}, {"k": "대안사회", "v": 12}, {"k": "새재미마을", "v": 12}, {"k": "기업감시", "v": 12}], "kw_by_decade": {"1980s": [{"k": "폐기물", "v": 2}, {"k": "도시폐기물", "v": 1}], "1990s": [{"k": "그린벨트", "v": 17}, {"k": "물", "v": 13}, {"k": "개발제한구역", "v": 10}, {"k": "수질", "v": 10}, {"k": "폐기물", "v": 8}, {"k": "산림", "v": 8}, {"k": "에너지", "v": 7}, {"k": "공공성", "v": 7}], "2000s": [{"k": "우리와 다음", "v": 49}, {"k": "먹거리", "v": 49}, {"k": "하천", "v": 48}, {"k": "수질", "v": 47}, {"k": "다지사", "v": 44}, {"k": "경인운하", "v": 39}, {"k": "미래세대", "v": 39}, {"k": "주택", "v": 34}], "2010s": [{"k": "먹거리정의", "v": 102}, {"k": "미세먼지", "v": 86}, {"k": "미래세대", "v": 82}, {"k": "유해화학물질", "v": 79}, {"k": "4대강", "v": 60}, {"k": "김포", "v": 57}, {"k": "환경피해", "v": 56}, {"k": "기후위기", "v": 55}], "2020s": [{"k": "기후위기", "v": 25}, {"k": "환경책큰잔치", "v": 20}, {"k": "기후정의", "v": 17}, {"k": "유해화학물질", "v": 14}, {"k": "북페스티벌", "v": 13}, {"k": "먹거리정의", "v": 11}, {"k": "코로나", "v": 10}, {"k": "슬기로운 화학생활", "v": 10}]}, "creators": [{"k": "환경정의시민연대", "v": 164}, {"k": "강살리기네트워크", "v": 30}, {"k": "4대강범대위", "v": 29}, {"k": "한국환경회의", "v": 26}, {"k": "1가구1주택국민운동", "v": 25}, {"k": "환경부", "v": 22}, {"k": "한국환경정책평가연구원", "v": 21}, {"k": "김포환경문제해결을위한범시민대책위", "v": 18}, {"k": "균형발전지방분권전국연대", "v": 14}, {"k": "한국환경기술개발원", "v": 12}, {"k": "한국환경정책.평가연구원", "v": 11}, {"k": "경제정의실천시민연합 환경개발센터", "v": 11}, {"k": "GMO반대전국행동", "v": 10}, {"k": "환경정의연구소", "v": 9}, {"k": "환경정의 다음을지키는사람들", "v": 9}], "external_rate": 0.5546, "gov_n": 275, "creator_n": 2755, "quality": {"설명": 0.9949, "키워드": 0.9019, "생산연도": 0.9642, "주제": 0.4405, "연관": 0.1386, "권리": 0.0007, "원문": 1.0}, "samples": [{"id": 22502, "title": "영광원전 환경영향 토론회", "year": 1966, "type": "사진", "preview": ""}, {"id": 16535, "title": "중랑천을 살리기 위한 지천 복원 및 수질 모니터링 운동", "year": 2001, "type": "임의제본물", "preview": ""}, {"id": 568, "title": "2004 전국환경활동가 워크숍 자료집", "year": 2004, "type": "자료집", "preview": ""}, {"id": 40729, "title": "폐기물 관리법 시행령 개정안 등에 대한 의견서", "year": 2007, "type": "촉구서", "preview": ""}, {"id": 40989, "title": "2010년 기후정의청년단 캠프 안내 포스터", "year": 2010, "type": "포스터", "preview": ""}, {"id": 41222, "title": "2014년 할머니네텃밭 어린이 먹거리 교육 사진", "year": 2014, "type": "사진", "preview": ""}, {"id": 41536, "title": "2018년 미세먼지 없는 통학로를 위한 간담회 포스터", "year": 2018, "type": "포스터", "preview": ""}, {"id": 22575, "title": "회원의 밤", "year": null, "type": "사진", "preview": ""}], "url": "https://ecoarchive.org/collections/show/id/35", "similar": [{"k": "장재연", "v": 0.197}, {"k": "환경운동연합", "v": 0.192}, {"k": "함께사는길", "v": 0.187}, {"k": "녹색전환연구소", "v": 0.183}, {"k": "녹색연합", "v": 0.174}]};
+donut("c_rtype",C.rtype);hbar("c_rform",C.rform.slice(0,10),{left:130});
+vbar("c_year",C.year.filter(d=>d.k>=1960),{avg:true,zoom:C.year.length>40});
+hbar("c_subj",C.subject.filter(d=>d.k),{left:100,color:d=>subjColor(d.k)});
+hbar("c_reg",C.regions.slice(0,12),{left:60});
+hbar("c_kw",C.top_kw.slice(0,20),{left:150});hbar("c_dkw",C.distinct_kw.slice(0,20),{left:170,color:()=>"#8ab17d"});
+hbar("c_cr",C.creators,{left:180,color:()=>"#6d597a"});
+radar("c_q",Object.keys(C.quality),[{name:C.name,data:Object.values(C.quality)}]);
+vbar("c_added",C.added,{color:"#e9c46a"});
+</script>
+</body>
+</html>

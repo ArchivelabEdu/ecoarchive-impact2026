@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block body %}
+<div class="crumb">소장 현황</div><h1>시간</h1>
+<p class="lead">생산연도가 기재된 기록은 {{ '%.1f'|format(S.year_rate*100) }}%이며 {{ S.year_min }}년부터 {{ S.year_max }}년까지 걸쳐 있습니다. 1990~2000년대가 전체의 64%를 차지하고, 1980년대 이전 기록은 2.4%로 희소합니다.</p>
+<div class="card"><p class="chart-title">연도별 생산 기록 수 (기록-일반, 공개)</p><p class="chart-sub">드래그로 확대 · 1999년 정점(4,723건)의 42%는 한겨레 컬렉션</p><div id="c_year" class="chart"></div></div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">연대별 분포</p><div id="c_dec" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">한겨레 제외 연도별 생산 기록</p><p class="chart-sub">언론 스캔분을 뺀 시민단체·개인 기록만</p><div id="c_year2" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">생산 월 분포 (계절성)</p><p class="chart-sub">생산일자가 월 단위까지 기재된 기록 · 4월(지구의 날)·6월(환경의 날)·10~12월 집중</p><div id="c_season" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">아이템 등록(이관) 추이</p><p class="chart-sub">Omeka 등록일 기준 월별 · 대량 등록 상위 7개월이 전체의 74%</p><div id="c_added" class="chart short"></div></div>
+</div>
+<h2>컬렉션별 생산연도 겹쳐 보기</h2>
+<div class="card"><div class="controls"><label>컬렉션 선택 (최대 6개) <select id="selColl" multiple size="6" style="min-width:220px"></select></label><button id="btnColl">그리기</button><button class="ghost" id="btnPct">비율로 보기</button></div><div id="c_multi" class="chart"></div></div>
+<div class="callout"><b>읽기</b> 1988~1999년의 급증은 환경운동연합·녹색연합의 결성기 기록과 한겨레 기사 스캔이 겹친 결과이고, 2000~2007년의 두 번째 고원은 새만금·국립공원·학교숲 운동기입니다. 2008년 이후 감소는 활동이 줄어서라기보다 전자기록의 이관이 아직 진행 중이기 때문으로, 2024~2025년 기록은 대부분 이관 전입니다.</div>
+{% endblock %}{% block script %}{% raw %}<script>{% endraw %}
+const H={{ H|tojson }}, SEASON={{ SEASON|tojson }}, YBC={{ YBC|tojson }};
+vbar("c_year",H.year.filter(d=>d.k>=1975),{zoom:true});
+vbar("c_dec",H.decade,{});
+(function(){const h=H.year.filter(d=>d.k>=1975);const hg=(YBC["한겨레"]||[]);const m={};hg.forEach(d=>m[d.k]=d.v);vbar("c_year2",h.map(d=>({k:d.k,v:d.v-(m[d.k]||0)})),{color:"#8ab17d"});})();
+vbar("c_season",SEASON.map(d=>({k:d.k+"월",v:d.v})),{color:"#e9c46a"});
+vbar("c_added",H.added_month,{rotate:45,color:"#6d597a"});
+(function(){const sel=document.getElementById("selColl");const names=Object.keys(YBC).sort((a,b)=>YBC[b].reduce((s,d)=>s+d.v,0)-YBC[a].reduce((s,d)=>s+d.v,0));names.forEach((n,i)=>{const o=document.createElement("option");o.value=n;o.textContent=n;if(i<4)o.selected=true;sel.appendChild(o);});
+ let pct=false;function draw(){const chosen=[...sel.selectedOptions].map(o=>o.value).slice(0,6);const years=[];for(let y=1975;y<=2025;y++)years.push(y);
+  const ser=chosen.map(n=>{const m={};YBC[n].forEach(d=>m[d.k]=d.v);const tot=Object.values(m).reduce((a,b)=>a+b,0);return {name:n,data:years.map(y=>pct?((m[y]||0)/tot):(m[y]||0))}});
+  charts.filter(c=>c.getDom().id==="c_multi").forEach(c=>c.dispose());lines("c_multi",years,ser,{pct});}
+ document.getElementById("btnColl").onclick=draw;document.getElementById("btnPct").onclick=()=>{pct=!pct;document.getElementById("btnPct").textContent=pct?"건수로 보기":"비율로 보기";draw();};draw();})();
+</script>{% endblock %}
