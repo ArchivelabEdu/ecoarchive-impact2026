@@ -3,7 +3,7 @@
 재단법인 숲과나눔이 운영하는 **환경아카이브 풀숲**(https://ecoarchive.org)의 임팩트 측정 프로젝트 저장소입니다. 두 가지를 공개합니다.
 
 1. **임팩트 측정 보고서** (v1.0, 2026-10-01 발행)와 그 작성에 쓴 데이터·그림·스크립트
-2. **소장현황 데이터 사이트** — Omeka 전수 111,106건을 컬렉션·시간·주제·지역·키워드로 분석한 공개 사이트와 그 데이터
+2. **풀숲 데이터 랩** — Omeka 전수 111,106건을 컬렉션·시간·주제·지역·키워드로 분석한 공개 사이트와 그 데이터
 
 <table><tr>
 <td width="220" valign="top"><a href="report/pulsoop-impact-report-2026-v1.0.pdf"><img src="report/cover.jpg" width="200" alt="임팩트 측정 보고서 표지"></a></td>
@@ -15,7 +15,7 @@
 디지털 아카이브 6년, 그리고 사진·공간으로의 확장. 풀숲 6년의 접속통계, 환경사진아카이브 5년의 이용현황, 공간풀숲 1년의 전시 성과, 전문가 인터뷰, Omeka 전수 소장현황 분석을 하나의 임팩트 틀로 종합했습니다.
 
 📄 [PDF 내려받기 (5.2MB)](report/pulsoop-impact-report-2026-v1.0.pdf) · [웹에서 보기](https://archivelabedu.github.io/ecoarchive-impact2026/report/pulsoop-impact-report-2026-v1.0.pdf)<br>
-🌐 소장현황 데이터 사이트: **https://archivelabedu.github.io/ecoarchive-impact2026/**<br>
+🌐 풀숲 데이터 랩: **https://archivelabedu.github.io/ecoarchive-impact2026/**<br>
 📊 보고서 데이터: [`data/impact/`](data/impact/) · 소장현황 데이터: [`data/holdings/`](data/holdings/)
 
 </td></tr></table>
@@ -26,7 +26,7 @@
 ecoarchive-impact2026/
 ├─ report/          보고서 PDF, 표지 이미지
 ├─ data/
-│   ├─ holdings/    소장현황 사이트 데이터 (Omeka 전수 집계 JSON 17종)
+│   ├─ holdings/    데이터 랩 사이트 데이터 (Omeka 전수 집계 JSON 17종)
 │   └─ impact/      보고서 데이터 패키지 (원자료 · 정제 CSV · 그림 · 스크립트 · README)
 ├─ templates/       사이트 페이지 템플릿 (Jinja2)
 ├─ content/         사이트 산문 (방법 · 소개 · 시대 서술 · 컬렉션 소개문)

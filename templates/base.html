@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ title }} · 환경아카이브 풀숲 소장현황</title>
+<title>{{ title }} · 환경아카이브 풀숲 데이터 랩</title>
 <meta name="description" content="{{ desc or '환경아카이브 풀숲 Omeka 전수 111,106건의 소장현황·컬렉션·키워드 분석' }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ root }}assets/favicon-32.png">
@@ -15,7 +15,7 @@
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="{{ root }}index.html"><img src="{{ root }}assets/logo-green.png" alt="환경아카이브 풀숲" class="logo"><span class="brand-sub">소장현황</span></a>
+  <a class="brand" href="{{ root }}index.html"><img src="{{ root }}assets/logo-green.png" alt="환경아카이브 풀숲" class="logo"><span class="brand-sub">데이터 랩</span></a>
   <button class="burger" aria-label="menu">☰</button>
   <ul class="menu">
     <li><a href="{{ root }}holdings/composition.html" class="{{ 'active' if section=='holdings' }}">소장 현황</a>
@@ -50,7 +50,7 @@
 </nav>{% endif %}
 </main>
 <footer><div class="in">
-  <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 {{ S.snapshot }} (Omeka REST API 전수 {{ '{:,}'.format(S['items']) }}건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div>환경아카이브 풀숲 데이터 랩 · 데이터 기준 {{ S.snapshot }} (Omeka REST API 전수 {{ '{:,}'.format(S['items']) }}건) · 재단법인 숲과나눔 × 아카이브랩</div>
   <div><a href="{{ root }}report/pulsoop-impact-report-2026-v1.0.pdf">임팩트 측정 보고서 PDF</a> · <a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
 </div></footer>
 {% block script %}{% endblock %}
