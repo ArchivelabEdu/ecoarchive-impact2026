@@ -95,8 +95,8 @@ for a,b in zip(ds,ds[1:]):
     for k in set(dec[a])|set(dec[b]):
         va,vb=dec[a][k],dec[b][k]
         if max(va,vb)<30: continue
-        sa,sb=va/decN[a],vb/decN[b]
-        rf.append({"from":f"{a}s","to":f"{b}s","k":k,"a":int(va),"b":int(vb),"ratio":round(math.log2((sb+1e-5)/(sa+1e-5)),2)})
+        sa,sb=(va+5)/decN[a],(vb+5)/decN[b]   # additive smoothing so brand-new terms rank by magnitude, not tie at the top
+        rf.append({"from":f"{a}s","to":f"{b}s","k":k,"a":int(va),"b":int(vb),"ratio":round(math.log2(sb/sa),2)})
 dump("keywords_change.json",rf)
 # co-occurrence among top 150
 top150=[k for k in topk[:150]]; idx=set(top150); co=C()
@@ -198,7 +198,10 @@ dump("photos.json",{"n":int(len(pa)),"lic":cnt(pa.lic),"year":[{"k":int(y),"v":i
  "regions":[{"k":k,"v":int(v)} for k,v in C(x for s in pa.regions for x in s).most_common()],
  "artists":[{"k":a,"v":int(v),"ymin":int(pa[pa.artist==a].year.min()) if pa[pa.artist==a].year.notna().any() else None,"ymax":int(pa[pa.artist==a].year.max()) if pa[pa.artist==a].year.notna().any() else None} for a,v in pa.artist.value_counts().head(60).items() if a],
  "kw":[{"k":k,"v":int(v)} for k,v in C(k for ks in pa.kws for k in ks if okk(k)).most_common(40)],
- "month":[{"k":int(m),"v":int(v)} for m,v in C(int(raw[i]["el"].get(D+"Date",["0000-00"])[0][5:7] or 0) for i in pa.id).items() if m]})
+ "month":[{"k":int(m),"v":int(v)} for m,v in C(int(raw[i]["el"].get(D+"Date",["0000-00"])[0][5:7] or 0) for i in pa.id).items() if m],
+ "type1":[{"k":k or "미기재","v":int(v)} for k,v in C(raw[i]["el"].get(P+"Type 1. Photography",[""])[0] for i in pa.id).most_common()],
+ "exhib":[{"k":"전시이력 기재","v":int(sum(1 for i in pa.id if raw[i]["el"].get(P+"Exhibition History",[""])[0].strip()))},{"k":"미기재","v":int(sum(1 for i in pa.id if not raw[i]["el"].get(P+"Exhibition History",[""])[0].strip()))}],
+ "artist_year":[{"k":a,"years":[{"k":int(y),"v":int(v)} for y,v in pa[pa.artist==a].year.value_counts().sort_index().items() if y==y]} for a,_ in pa.artist.value_counts().head(20).items() if a]})
 # seasonality for records (month of Date of Creation)
 mm=C()
 for i in gen.id:
