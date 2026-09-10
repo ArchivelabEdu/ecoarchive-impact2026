@@ -196,7 +196,7 @@ const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=yea
     {type:"line",xAxisIndex:1,yAxisIndex:2,data:orgsY,smooth:.3,showSymbol:false,lineStyle:{color:"#6d597a",width:2}}]}));})();
 // ---- events scatter + cards
 (function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start));const c=mk("c_ev");
- c.setOption(opt({grid:{left:60,right:30,top:20,bottom:40},xAxis:{type:"value",min:1975,max:2025,splitLine:{lineStyle:{color:"#eef2ef"}}},yAxis:{type:"log",name:"관련 기록 수",min:1,splitLine:{lineStyle:{color:"#eef2ef"}}},
+ c.setOption(opt({grid:{left:70,right:30,top:52,bottom:40},xAxis:{type:"value",min:1975,max:2025,splitLine:{lineStyle:{color:"#eef2ef"}}},yAxis:{type:"log",name:"관련 기록 수 (로그)",nameGap:18,nameTextStyle:{fontSize:11,color:"#5f6b65",align:"left"},min:1,splitLine:{lineStyle:{color:"#eef2ef"}}},
   tooltip:{formatter:p=>{const e=ev[p.dataIndex];return `<b>${e.title}</b><br>${e.start}–${e.end||''} · ${fmtN(e.n)}건`}},
   series:[{type:"scatter",data:ev.map(e=>[+e.start,Math.max(1,e.n)]),symbolSize:(v,p)=>{const e=ev[p.dataIndex];const d=(/^\d{4}$/.test(e.end)?+e.end:2025)-(+e.start)+1;return 8+Math.min(40,d*1.6)},itemStyle:{color:p=>subjColor(ev[p.dataIndex].subject),opacity:.8},label:{show:true,position:"right",fontSize:9,formatter:p=>ev[p.dataIndex].title.length>10?ev[p.dataIndex].title.slice(0,10)+"…":ev[p.dataIndex].title}}]}));
  const subjs=[...new Set(T.events.map(e=>e.subject).filter(Boolean))];const ss=document.getElementById("evSubj");subjs.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;ss.appendChild(o)});
