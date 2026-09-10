@@ -80,8 +80,8 @@ function lines(el, x, series, o={}){
 }
 /* bump chart: wins[], items {name: [rank per window or null]} */
 function bump(el, wins, items, o={}){
-  const c=mk(el); if(!c) return; const names=Object.keys(items); const K=o.k||15;
-  c.setOption(opt({grid:{left:40,right:130,top:20,bottom:30},
+  const c=mk(el); if(!c) return; const names=Object.keys(items); const K=o.k||15; const R=Math.min(130,Math.round(c.getDom().clientWidth*0.3));
+  c.setOption(opt({grid:{left:40,right:R,top:20,bottom:30},
     xAxis:{type:"category",data:wins,boundaryGap:false,axisLine:{show:false},axisTick:{show:false},axisLabel:{fontWeight:600}},
     yAxis:{type:"value",inverse:true,min:1,max:K,interval:1,axisLabel:{formatter:v=>v+"위"},splitLine:{lineStyle:{color:"#eef2ef"}}},
     tooltip:{trigger:"item",formatter:p=>`${p.seriesName}<br>${wins[p.dataIndex]}: <b>${p.value}위</b>`},

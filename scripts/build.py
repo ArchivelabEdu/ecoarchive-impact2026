@@ -4,7 +4,7 @@ import json, os, shutil, sys
 from jinja2 import Environment, FileSystemLoader
 import markdown
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-D=lambda n: json.load(open(os.path.join(ROOT,"data",n),encoding="utf-8"))
+D=lambda n: json.load(open(os.path.join(ROOT,"data","holdings",n),encoding="utf-8"))
 S=D("summary.json"); H=D("holdings.json"); COLS=D("collections.json"); KW=D("keywords_windows.json"); SER=D("keywords_series.json")
 CH=D("keywords_change.json"); LIFE=D("keywords_life.json"); G=D("keywords_cooc.json"); OK=D("org_keywords.json"); NW=D("network.json")
 EV=D("events.json"); OG=D("orgs.json"); CHR=D("chronology.json"); PH=D("photos.json"); SEASON=D("season.json"); DICT_N=len(D("keywords_dict.json"))
@@ -18,7 +18,7 @@ OUT=os.path.join(ROOT,"docs")
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 shutil.copytree(os.path.join(ROOT,"assets"),os.path.join(OUT,"assets"))
-shutil.copytree(os.path.join(ROOT,"data"),os.path.join(OUT,"data"))
+shutil.copytree(os.path.join(ROOT,"data","holdings"),os.path.join(OUT,"data"))
 shutil.copytree(os.path.join(ROOT,"report"),os.path.join(OUT,"report"))
 open(os.path.join(OUT,".nojekyll"),"w").close()
 SECTIONS={

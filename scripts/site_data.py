@@ -2,7 +2,7 @@
 import json,re,collections,math,itertools
 import pandas as pd, numpy as np
 C=collections.Counter; P="Item Type Metadata:"; D="Dublin Core:"
-import os; OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"data")+"/"
+import os; OUT=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"data","holdings")+"/"
 df=pd.read_pickle("out/df.pkl")
 raw={}
 for l in open("full/items.jsonl",encoding="utf-8"):

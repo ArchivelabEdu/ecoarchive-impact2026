@@ -87,14 +87,14 @@ const T={{ T|tojson }}, KW={{ KW|tojson }}, YBC={{ YBC|tojson }};
 const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=years.map(y=>T.org_founded_by_year[y]||0);
 // ---- strip: events gantt (one row per event, names on the left axis) + records/orgs below
 (function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start)).map(e=>({...e,s:+e.start,e2:(/^\d{4}$/.test(e.end)?+e.end:(e.end==="현재"||!e.end?2025:+e.start))})).sort((a,b)=>a.s-b.s||a.e2-b.e2);
- const ROW=17,TOP=20,H1=ev.length*ROW;document.getElementById("c_strip").style.height=(H1+TOP+400)+"px";
+ const ROW=17,TOP=20,H1=ev.length*ROW;const dom=document.getElementById("c_strip");dom.style.height=(H1+TOP+400)+"px";const L=Math.min(190,Math.round(dom.clientWidth*0.45));const NL=L>=170?16:10;
  const c=mk("c_strip");const maxN=Math.max(...ev.map(e=>e.n));
- c.setOption(opt({grid:[{left:190,right:60,top:TOP,height:H1},{left:190,right:70,top:TOP+H1+50,bottom:36}],
+ c.setOption(opt({grid:[{left:L,right:L>=170?60:44,top:TOP,height:H1},{left:L,right:L>=170?70:52,top:TOP+H1+50,bottom:36}],
   tooltip:{trigger:"item",confine:true,formatter:p=>{if(p.seriesIndex===0){const e=ev[p.dataIndex];return `<b>${e.title}</b><br>${e.start}–${e.end||''} · 관련 기록 ${fmtN(e.n)}건<br><span style="color:#5f6b65">${e.subject||''}</span>`;}
     const y=years[p.dataIndex];return `<b>${y}년</b> 기록 ${fmtN(T.rec_by_year[y]||0)}건 · 설립 조직 ${T.org_founded_by_year[y]||0} · 연표 ${T.chron_by_year[y]||0}<br>특징: ${(T.year_distinct[y]||[]).join(', ')||'—'}<br>상위: ${(T.year_top[y]||[]).join(', ')}`;}},
   xAxis:[{gridIndex:0,type:"value",min:1978,max:2026,position:"top",axisLabel:{formatter:v=>v,fontSize:10},splitLine:{lineStyle:{color:"#eef2ef"}},axisTick:{show:false},axisLine:{show:false}},
          {gridIndex:1,type:"category",data:years,axisLabel:{interval:4}}],
-  yAxis:[{gridIndex:0,type:"category",data:ev.map(e=>e.title.length>16?e.title.slice(0,16)+"…":e.title),inverse:true,axisLabel:{fontSize:10.5,width:176,overflow:"truncate"},axisTick:{show:false},axisLine:{show:false}},
+  yAxis:[{gridIndex:0,type:"category",data:ev.map(e=>e.title.length>NL?e.title.slice(0,NL)+"…":e.title),inverse:true,axisLabel:{fontSize:10.5,width:L-14,overflow:"truncate"},axisTick:{show:false},axisLine:{show:false}},
          {gridIndex:1,type:"value",name:"기록",splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"value",name:"설립 조직",splitLine:{show:false},position:"right"}],
   series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const i=params.dataIndex;const e=ev[i];const s=api.coord([e.s,i]);const en=api.coord([e.e2+0.9,i]);const w=Math.max(5,en[0]-s[0]);const h=5+8*Math.sqrt(e.n/maxN);
       return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:w,height:h,r:3},style:{fill:subjColor(e.subject)||"#8ab17d",opacity:.9}},
