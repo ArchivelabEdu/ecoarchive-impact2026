@@ -21,6 +21,6 @@ vbar("c_added",H.added_month,{rotate:45,color:"#6d597a"});
 (function(){const sel=document.getElementById("selColl");const names=Object.keys(YBC).sort((a,b)=>YBC[b].reduce((s,d)=>s+d.v,0)-YBC[a].reduce((s,d)=>s+d.v,0));names.forEach((n,i)=>{const o=document.createElement("option");o.value=n;o.textContent=n;if(i<4)o.selected=true;sel.appendChild(o);});
  let pct=false;function draw(){const chosen=[...sel.selectedOptions].map(o=>o.value).slice(0,6);const years=[];for(let y=1975;y<=2025;y++)years.push(y);
   const ser=chosen.map(n=>{const m={};YBC[n].forEach(d=>m[d.k]=d.v);const tot=Object.values(m).reduce((a,b)=>a+b,0);return {name:n,data:years.map(y=>pct?((m[y]||0)/tot):(m[y]||0))}});
-  charts.filter(c=>c.getDom().id==="c_multi").forEach(c=>c.dispose());lines("c_multi",years,ser,{pct});}
+  lines("c_multi",years,ser,{pct});}
  document.getElementById("btnColl").onclick=draw;document.getElementById("btnPct").onclick=()=>{pct=!pct;document.getElementById("btnPct").textContent=pct?"건수로 보기":"비율로 보기";draw();};draw();})();
 </script>{% endblock %}

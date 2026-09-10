@@ -53,11 +53,11 @@ const KW=[{"win": "1980-1989", "n": 1225, "top": [{"k": "공해", "v": 119, "sha
 (function(){const years=SER.years.filter(y=>y>=1985&&y<=2024);const tot={};Object.values(SER.series).forEach(s=>{});const top=Object.entries(SER.series).map(([k,s])=>[k,Object.values(s).reduce((a,b)=>a+b,0)]).sort((a,b)=>b[1]-a[1]).slice(0,25).map(x=>x[0]);
  const rows=[];top.forEach(k=>{const s=SER.series[k];years.forEach((y,i)=>{const v=((s[y]||0)+(s[y-1]||0)+(s[y+1]||0))/3;rows.push([String(y),Math.round(v*10)/10,k]);});});river("c_river",rows,top);})();
 (function(){const sel=document.getElementById("selWin");KW.forEach((w,i)=>{const o=document.createElement("option");o.value=i;o.textContent=`${w.win} (${fmtN(w.n)}건)`;sel.appendChild(o);});sel.value=KW.length-1;
- function draw(){const w=KW[sel.value];charts.filter(c=>["c_top","c_dis"].includes(c.getDom().id)).forEach(c=>c.dispose());hbar("c_top",w.top.slice(0,20),{left:150});hbar("c_dis",w.distinct.slice(0,20).map(d=>({k:d.k,v:d.score})),{left:170,color:()=>"#8ab17d"});}
+ function draw(){const w=KW[sel.value];hbar("c_top",w.top.slice(0,20),{left:150});hbar("c_dis",w.distinct.slice(0,20).map(d=>({k:d.k,v:d.score})),{left:170,color:()=>"#8ab17d"});}
  sel.onchange=draw;draw();})();
 (function(){const pairs=[...new Set(CH.map(d=>d.from+"→"+d.to))];const sel=document.getElementById("selPair");pairs.forEach(p=>{const o=document.createElement("option");o.value=p;o.textContent=p;sel.appendChild(o);});sel.value=pairs[pairs.length-1];
  function draw(){const [f,t]=sel.value.split("→");const rows=CH.filter(d=>d.from===f&&d.to===t);const up=rows.filter(d=>d.b>=30).sort((a,b)=>b.ratio-a.ratio).slice(0,18);const dn=rows.filter(d=>d.a>=30).sort((a,b)=>a.ratio-b.ratio).slice(0,18);
-  charts.filter(c=>["c_up","c_dn"].includes(c.getDom().id)).forEach(c=>c.dispose());hbar("c_up",up.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:d.ratio})),{left:190});hbar("c_dn",dn.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:-d.ratio})),{left:190,color:()=>"#e76f51"});}
+  hbar("c_up",up.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:d.ratio})),{left:190});hbar("c_dn",dn.map(d=>({k:`${d.k} (${d.a}→${d.b})`,v:-d.ratio})),{left:190,color:()=>"#e76f51"});}
  sel.onchange=draw;draw();})();
 ranges("c_life",LIFE.slice(0,60),{min:1980,max:2026});
 </script>

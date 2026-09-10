@@ -7,7 +7,9 @@ const BASE = {textStyle:{fontFamily:FONT,color:"#1f2a24"},color:PAL,animationDur
 const fmtN = n => (n==null?"—":Number(n).toLocaleString("ko-KR"));
 const fmtP = (x,d=1) => (x==null?"—":(x*100).toFixed(d)+"%");
 const charts = [];
-function mk(el){ const dom = typeof el==="string"?document.getElementById(el):el; if(!dom) return null; const c = echarts.init(dom,null,{renderer:"canvas"}); charts.push(c); return c; }
+function mk(el){ const dom = typeof el==="string"?document.getElementById(el):el; if(!dom) return null;
+  const prev = echarts.getInstanceByDom(dom); if(prev){ const i=charts.indexOf(prev); if(i>=0) charts.splice(i,1); prev.dispose(); }
+  const c = echarts.init(dom,null,{renderer:"canvas"}); charts.push(c); return c; }
 window.addEventListener("resize",()=>charts.forEach(c=>c.resize()));
 function opt(o){ return Object.assign({},BASE,o); }
 function subjColor(k){ return SUBJ[k]||"#999"; }

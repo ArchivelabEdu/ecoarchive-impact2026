@@ -6,6 +6,6 @@
 {% endblock %}{% block script %}<script>
 const G={{ G|tojson }};const rng=document.getElementById("rng");
 function draw(){const min=+rng.value;document.getElementById("rngv").textContent=min;const edges=G.edges.filter(e=>e.w>=min);const used=new Set();edges.forEach(e=>{used.add(e.s);used.add(e.t)});const nodes=G.nodes.filter(n=>used.has(n.id));
- charts.filter(c=>c.getDom().id==="c_g").forEach(c=>c.dispose());graph("c_g",nodes,edges,{rep:260,len:[30,120],maxSize:50,labelMin:0});}
+ graph("c_g",nodes,edges,{rep:260,len:[30,120],maxSize:50,labelMin:0});}
 rng.oninput=draw;draw();
 </script>{% endblock %}

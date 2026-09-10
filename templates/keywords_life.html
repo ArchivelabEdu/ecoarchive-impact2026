@@ -13,7 +13,7 @@
 const SER={{ SER|tojson }};const years=SER.years.filter(y=>y>=1982&&y<=2024);let chosen=["공해","환경오염","기후변화","기후위기"];let pct=true;
 const dl=document.getElementById("kwList");Object.keys(SER.series).forEach(k=>{const o=document.createElement("option");o.value=k;dl.appendChild(o);});
 function draw(){document.getElementById("chosen").innerHTML=chosen.map(k=>`<span class="tag hi">${k} <a href="#" data-k="${k}">✕</a></span>`).join("");document.querySelectorAll("#chosen a").forEach(a=>a.onclick=e=>{e.preventDefault();chosen=chosen.filter(x=>x!==a.dataset.k);draw();});
- charts.filter(c=>c.getDom().id==="c_life").forEach(c=>c.dispose());
+ 
  lines("c_life",years,chosen.filter(k=>SER.series[k]).map(k=>({name:k,data:years.map(y=>{const v=SER.series[k][y]||0;return pct?v/(SER.yearN[y]||1):v;})})),{pct,endLabel:true});}
 function add(k){k=k.trim();if(!k||!SER.series[k]){if(k)alert("상위 400개 키워드에 없습니다: "+k);return;}if(!chosen.includes(k)&&chosen.length<6)chosen.push(k);draw();}
 document.getElementById("btnAdd").onclick=()=>{add(document.getElementById("kwInput").value);document.getElementById("kwInput").value="";};
