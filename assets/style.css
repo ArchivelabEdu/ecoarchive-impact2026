@@ -57,7 +57,7 @@ table.t td.n,table.t th.n{text-align:right;font-variant-numeric:tabular-nums}
 .tag.hi{background:#dfeee4;color:var(--green);font-weight:600}
 .bar{height:8px;background:#e3e8e4;border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}
 .list-cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-.list-cards a.card{display:block;color:inherit}
+.list-cards a.card{display:block;color:inherit}.list-cards .ico{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:10px;background:#e6f1ea;color:var(--green);margin-bottom:10px}.list-cards .ico svg{width:22px;height:22px}
 .list-cards a.card:hover{border-color:var(--green);text-decoration:none}
 .list-cards .nm{font-weight:700}
 .list-cards .meta{font-size:.82rem;color:var(--muted)}
