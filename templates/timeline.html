@@ -1,25 +1,116 @@
 {% extends "base.html" %}{% block body %}
-<div class="crumb">환경운동 40년</div><h1>사건 연표와 기록 밀도 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span></h1>
-<p class="lead">풀숲의 정보사전은 사건 {{ EV|length }}건, 연표 {{ '{:,}'.format(S.chron) }}건, 조직 {{ S.org }}건으로 기록의 맥락을 보강합니다. 연표 항목 수와 그 해에 생산된 기록 수를 함께 놓으면, 어떤 시기의 활동이 얼마나 두텁게 남았는지 보입니다.</p>
-<div class="card"><p class="chart-title">연도별 연표 항목 수 vs 생산 기록 수</p><p class="chart-sub">막대 = 연표 항목, 선 = 기록-일반 생산 건수(오른쪽 축)</p><div id="c_ch" class="chart"></div></div>
-<div class="grid g2" style="margin-top:18px">
-  <div class="card"><p class="chart-title">연표 구분</p><div id="c_cls" class="chart short"></div></div>
-  <div class="card"><p class="chart-title">연표를 작성한 단체</p><div id="c_org" class="chart short"></div></div>
+<div class="crumb">환경운동 40년</div><h1>기록으로 본 환경운동 40년 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span></h1>
+<p class="lead">풀숲에 남은 기록의 연도, 주제, 키워드와 정보사전의 사건 {{ T.events|length }}건·조직 {{ T.orgs|length }}건·연표 {{ '{:,}'.format(S.chron) }}건을 한 축에 놓았습니다. 어떤 시기의 활동이 얼마나 두텁게 남았는지, 사건마다 기록이 얼마나 쌓였는지, 조직은 언제 생겨나고 무엇을 남겼는지를 봅니다.</p>
+
+<h2 id="strip">40년 한 줄 타임라인</h2>
+<div class="card"><p class="chart-sub">위: 사건 {{ T.events|length }}건의 기간(막대 굵기 = 관련 기록 수) · 아래: 연도별 생산 기록 수(막대)와 그 해 설립된 조직 수(선) · 연도에 마우스를 올리면 그 해의 특징 키워드가 보입니다. 1999년 급증은 한겨레 컬렉션.</p><div id="c_strip" class="chart" style="height:760px"></div></div>
+
+<h2 id="eras">다섯 시대</h2>
+<p class="note">시대별 수치는 공개 기록-일반의 생산연도 기준이며, 키워드는 한겨레 컬렉션을 제외했습니다. 서술은 데이터와 풀숲 정보사전을 바탕으로 작성한 초안입니다.</p>
+{% for e in T.eras %}
+<div class="card era" style="margin-top:14px">
+  <div class="era-head"><div><div class="kicker">{{ e.label }}</div><h3 style="margin:.1em 0 .3em;font-size:1.25rem">{{ e.name }}</h3></div><div class="era-n"><b>{{ '{:,}'.format(e.n) }}</b>건 · 전체의 {{ '%.0f'|format(e.share*100) }}%</div></div>
+  <p style="margin:.4em 0 1em">{{ ERA_TEXT.get(e.label,'') }}</p>
+  <div class="grid g3">
+    <div><div class="lbl">주제 구성</div>{% for s in e.subjects %}<div class="sbar"><span>{{ s.k }}</span><div class="bar"><i style="width:{{ (s.v*100)|round }}%;background:{{ SUBJ_COLOR.get(s.k,'#999') }}"></i></div><small>{{ '%.0f'|format(s.v*100) }}%</small></div>{% endfor %}</div>
+    <div><div class="lbl">특징 키워드</div><div class="tags">{% for k in e.distinct_kw %}<span class="tag hi">{{ k }}</span>{% endfor %}</div><div class="lbl" style="margin-top:10px">상위 키워드</div><div class="tags">{% for k in e.top_kw[:8] %}<span class="tag">{{ k }}</span>{% endfor %}</div></div>
+    <div><div class="lbl">이 시대의 사건 ({{ e.events|length }})</div><div class="tags">{% for ev in e.events %}<span class="tag">{{ ev }}</span>{% endfor %}{% if not e.events %}<span class="note">정보사전에 등록된 사건 없음</span>{% endif %}</div>
+      <div class="lbl" style="margin-top:10px">이 시대에 설립된 조직 ({{ e.orgs_n }})</div><div class="tags">{% for o in e.orgs %}<span class="tag">{{ o }}</span>{% endfor %}{% if not e.orgs %}<span class="note">설립연도 기재 조직 없음</span>{% endif %}</div>
+      <div class="lbl" style="margin-top:10px">기록을 남긴 컬렉션</div><div class="note">{% for c in e.colls %}{{ c.k }} {{ '{:,}'.format(c.v) }}{{ ' · ' if not loop.last }}{% endfor %}</div></div>
+  </div>
+  <div class="lbl" style="margin-top:12px">대표 기록 (원문 있음, 연도순)</div>
+  <div class="samples">{% for s in e.samples %}<a href="https://ecoarchive.org/items/show/{{ s.id }}" target="_blank"><div>{{ s.title }}</div><div class="y">{{ s.year }} · {{ s.form }} · {{ s.coll }}</div></a>{% endfor %}</div>
 </div>
-<h2>사건 {{ EV|length }}건</h2>
-<p class="note">"연결 기록"은 기록의 연관사건 필드가 이 사건을 가리키는 건수입니다. 대부분 0인 것은 사건이 없어서가 아니라 연결 작업이 아직 안 되었기 때문이며, 정비 과제입니다.</p>
-<table class="t sortable"><thead><tr><th class="n">시작</th><th class="n">종료</th><th>사건</th><th>구분</th><th class="n">연결 기록</th><th>식별번호</th></tr></thead><tbody>{% for e in EV %}<tr><td class="n">{{ e.start }}</td><td class="n">{{ e.end }}</td><td><a href="{{ e.url }}" target="_blank">{{ e.title }}</a></td><td>{{ e.cls }}</td><td class="n" data-v="{{ e.related }}">{{ e.related }}</td><td>{{ e.ident }}</td></tr>{% endfor %}</tbody></table>
-<h2>조직 전거 {{ S.org }}건의 생멸</h2>
+{% endfor %}
+
+<h2 id="events">사건 {{ T.events|length }}건 — 기록의 두께</h2>
+<p class="note">사건마다 검색어(예: 새만금 → '새만금')로 키워드·제목을 맞춰 관련 기록을 추정했습니다. 풀숲의 연관사건 필드가 채워지면 그 값으로 교체합니다. 검색어는 각 카드에 표시했습니다.</p>
+<div class="card"><p class="chart-title">사건 기간과 기록 수</p><p class="chart-sub">가로 = 사건 시작 연도, 세로 = 관련 기록 수(로그), 원 크기 = 지속 기간 · 오래 싸웠지만 기록이 얇은 사건이 오른쪽 아래에 모입니다</p><div id="c_ev" class="chart tall"></div></div>
+<div class="controls" style="margin-top:14px"><label>정렬 <select id="evSort"><option value="n">기록 많은 순</option><option value="start">연대순</option><option value="dur">지속 기간 순</option></select></label><label>주제 <select id="evSubj"><option value="">전체</option></select></label></div>
+<div class="list-cards" id="evCards"></div>
+
+<h2 id="orgs">조직 {{ T.orgs|length }}건 — 생성의 흐름과 남긴 기록</h2>
 <div class="grid g2">
-  <div class="card"><p class="chart-title">설립 연도 분포</p><p class="chart-sub">설립연도 기재 {{ OG|selectattr('founded')|list|length }}건</p><div id="c_f" class="chart short"></div></div>
-  <div class="card"><p class="chart-title">조직 구분</p><div id="c_oc" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">설립 연대별 조직 수와 활동영역</p><p class="chart-sub">설립연도 기재 {{ T.orgs|selectattr('founded')|list|length }}건 · 활동영역 코드는 사건 데이터에서 추정 매핑</p><div id="c_of" class="chart short"></div></div>
+  <div class="card"><p class="chart-title">기록으로 남은 조직 vs 이름만 남은 조직</p><p class="chart-sub">조직명이 기록의 생산자·컬렉션에 등장하는지 기준</p><div id="c_or" class="chart short"></div></div>
 </div>
-<div class="callout"><b>읽기</b> 연표는 2000~2010년대에 집중되어 있고 1980~90년대는 얇습니다. 사건 47건은 온산병·낙동강 페놀·새만금·부안 방폐장 등 환경운동사의 표지석이지만 기록과의 연결은 대부분 비어 있어, 이 표는 "무엇을 연결해야 하는가"의 작업 목록이기도 합니다.</div>
+<div class="card" style="margin-top:18px"><p class="chart-title">연합 관계 네트워크</p><p class="chart-sub">조직 전거의 '연합 조직' 필드 {{ T.orgs|map(attribute='coalition')|map('length')|sum }}건 · 원 크기 = 관련 기록 수</p><div id="c_og" class="chart" style="height:640px"></div></div>
+<div class="grid g2" style="margin-top:18px">
+  <div class="card"><p class="chart-title">기록을 가장 많이 남긴 조직 30</p><div id="c_ot" class="chart xtall"></div></div>
+  <div class="card"><p class="chart-title">이름만 남은 조직 — 수집 후보</p><p class="chart-sub">설립연도가 있고 기록이 0건인 조직(연대순, 최대 60)</p><table class="t" style="font-size:.85rem"><thead><tr><th>설립</th><th>조직</th><th>구분</th><th>활동영역</th></tr></thead><tbody>{% for o in T.orgs|selectattr('founded')|rejectattr('n_rec')|sort(attribute='founded') %}{% if loop.index <= 60 %}<tr><td>{{ o.founded }}</td><td><a href="{{ o.url }}" target="_blank">{{ o.name }}</a></td><td>{{ o.cls }}</td><td>{{ o.areas|join(', ') }}</td></tr>{% endif %}{% endfor %}</tbody></table></div>
+</div>
+
+<h2 id="year">그 해에 무슨 일이</h2>
+<div class="card">
+  <div class="controls"><label>연도 <select id="ySel"></select></label><span class="note" id="yStat"></span></div>
+  <div class="grid g3">
+    <div><div class="lbl">특징 키워드</div><div class="tags" id="yKw"></div><div class="lbl" style="margin-top:10px">상위 키워드</div><div class="tags" id="yTop"></div><div class="lbl" style="margin-top:10px">시작된 사건</div><div class="tags" id="yEv"></div><div class="lbl" style="margin-top:10px">설립된 조직</div><div class="tags" id="yOrg"></div></div>
+    <div style="grid-column:span 2"><div class="lbl">연표 항목 <span id="yChronN" class="note"></span></div><div id="yChron" style="max-height:520px;overflow:auto;font-size:.88rem"></div></div>
+  </div>
+</div>
+
+<h2 id="words">어휘의 세대교체</h2>
+<div class="card"><div id="c_bump" class="chart tall"></div><p class="note">5년 단위 상위 10위 키워드. 더 자세한 분석은 <a href="../keywords/change.html">키워드 › 연대별 변화</a>에 있습니다.</p></div>
+<div class="callout"><b>읽기</b> 공해(1980년대) → 핵폐기물·반핵(1990년대) → 새만금·학교숲·국립공원(2000년대) → 기후변화·탈핵·4대강·미세먼지(2010년대) → 기후위기·탄소중립(2020년대). 사건 47건 가운데 기록이 가장 두터운 것은 기후위기 대응·새만금·4대강이고, 매향리(27년)·시화호처럼 오래 이어졌지만 기록이 얇은 사건은 수집의 우선순위이기도 합니다.</div>
+<style>
+.era-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.era-n{font-size:.95rem;color:var(--muted)}.era-n b{font-size:1.4rem;color:var(--green)}
+.lbl{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.04em;margin-bottom:4px}
+.sbar{display:grid;grid-template-columns:80px 1fr 40px;gap:8px;align-items:center;font-size:.85rem;margin:3px 0}
+.sbar small{text-align:right;color:var(--muted)}
+.ev-card{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.ev-card .t{font-weight:700}.ev-card .m{font-size:.8rem;color:var(--muted);margin:2px 0 6px}
+.ev-card .n{font-size:1.3rem;font-weight:800;color:var(--green)}
+.ev-card .spark{height:26px;margin:4px 0}
+.chron-row{display:grid;grid-template-columns:78px 1fr 110px;gap:8px;padding:4px 0;border-bottom:1px solid var(--line)}
+.chron-row .d{color:var(--muted);font-variant-numeric:tabular-nums}.chron-row .o{color:var(--muted);font-size:.8rem;text-align:right}
+</style>
 {% endblock %}{% block script %}<script>
-const CHR={{ CHR|tojson }}, H={{ H|tojson }}, OG={{ OG|tojson }};
-(function(){const years=[];for(let y=1980;y<=2024;y++)years.push(y);const cm={};CHR.by_year.forEach(d=>cm[d.k]=d.v);const rm={};H.year.forEach(d=>rm[d.k]=d.v);const c=mk("c_ch");
- c.setOption(opt({grid:{left:60,right:70,top:20,bottom:50},legend:{bottom:0},tooltip:{trigger:"axis"},xAxis:{type:"category",data:years},yAxis:[{type:"value",name:"연표",splitLine:{lineStyle:{color:"#eef2ef"}}},{type:"value",name:"기록",splitLine:{show:false}}],
-  series:[{name:"연표 항목",type:"bar",data:years.map(y=>cm[y]||0),itemStyle:{color:"#8ab17d"}},{name:"생산 기록",type:"line",yAxisIndex:1,smooth:.3,showSymbol:false,lineStyle:{width:2.5,color:"#2f6f4e"},data:years.map(y=>rm[y]||0)}]}));})();
-hbar("c_cls",CHR.by_cls.slice(0,12),{left:90});hbar("c_org",CHR.by_org.slice(0,12),{left:130});
-(function(){const m={};OG.forEach(o=>{if(o.founded){const d=Math.floor(o.founded/10)*10;if(d>=1950)m[d]=(m[d]||0)+1;}});vbar("c_f",Object.keys(m).sort().map(k=>({k:k+"s",v:m[k]})),{});const cc={};OG.forEach(o=>{cc[o.cls||"미상"]=(cc[o.cls||"미상"]||0)+1});donut("c_oc",Object.entries(cc).map(([k,v])=>({k,v})));})();
+const T={{ T|tojson }}, KW={{ KW|tojson }};
+const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=years.map(y=>T.org_founded_by_year[y]||0);
+// ---- strip: events gantt (top grid) + records/orgs (bottom grid)
+(function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start)).map(e=>({...e,s:+e.start,e2:(/^\d{4}$/.test(e.end)?+e.end:(e.end==="현재"||!e.end?2025:+e.start))})).sort((a,b)=>a.s-b.s||b.n-a.n);
+ // lane assignment
+ const lanes=[];ev.forEach(e=>{let i=lanes.findIndex(l=>l< e.s);if(i<0){i=lanes.length;lanes.push(0);}lanes[i]=e.e2;e.lane=i;});
+ const c=mk("c_strip");const maxN=Math.max(...ev.map(e=>e.n));
+ c.setOption(opt({grid:[{left:60,right:30,top:20,height:380},{left:60,right:70,top:440,bottom:40}],
+  tooltip:{trigger:"item",confine:true,formatter:p=>{if(p.seriesIndex===0){const e=ev[p.dataIndex];return `<b>${e.title}</b><br>${e.start}–${e.end||''} · 관련 기록 ${fmtN(e.n)}건<br><span style="color:#5f6b65">${e.subject||''}</span>`;}
+    const y=years[p.dataIndex];return `<b>${y}년</b> 기록 ${fmtN(T.rec_by_year[y]||0)}건 · 설립 조직 ${T.org_founded_by_year[y]||0} · 연표 ${T.chron_by_year[y]||0}<br>특징: ${(T.year_distinct[y]||[]).join(', ')||'—'}<br>상위: ${(T.year_top[y]||[]).join(', ')}`;}},
+  xAxis:[{gridIndex:0,type:"value",min:1980,max:2026,axisLabel:{show:false},splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"category",data:years,axisLabel:{interval:4}}],
+  yAxis:[{gridIndex:0,type:"value",min:-0.5,max:lanes.length-0.5,inverse:true,show:false},{gridIndex:1,type:"value",name:"기록",splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"value",name:"설립 조직",splitLine:{show:false},position:"right"}],
+  series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const s=api.coord([api.value(0),api.value(2)]);const e=api.coord([api.value(1)+0.9,api.value(2)]);const h=6+16*Math.sqrt(api.value(3)/maxN);
+      return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:Math.max(4,e[0]-s[0]),height:h,r:3},style:{fill:subjColor(ev[params.dataIndex].subject)||"#8ab17d",opacity:.85}},
+        {type:"text",style:{x:s[0]+3,y:s[1],text:ev[params.dataIndex].title.length>12?ev[params.dataIndex].title.slice(0,12)+"…":ev[params.dataIndex].title,fontSize:9,fill:"#1f2a24",textVerticalAlign:"middle",fontFamily:FONT}}]}},
+      data:ev.map(e=>[e.s,e.e2,e.lane,e.n])},
+    {type:"bar",xAxisIndex:1,yAxisIndex:1,data:recs,itemStyle:{color:"#cfe3d5"},barMaxWidth:16},
+    {type:"line",xAxisIndex:1,yAxisIndex:2,data:orgsY,smooth:.3,showSymbol:false,lineStyle:{color:"#6d597a",width:2}}]}));})();
+// ---- events scatter + cards
+(function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start));const c=mk("c_ev");
+ c.setOption(opt({grid:{left:60,right:30,top:20,bottom:40},xAxis:{type:"value",min:1975,max:2025,splitLine:{lineStyle:{color:"#eef2ef"}}},yAxis:{type:"log",name:"관련 기록 수",min:1,splitLine:{lineStyle:{color:"#eef2ef"}}},
+  tooltip:{formatter:p=>{const e=ev[p.dataIndex];return `<b>${e.title}</b><br>${e.start}–${e.end||''} · ${fmtN(e.n)}건`}},
+  series:[{type:"scatter",data:ev.map(e=>[+e.start,Math.max(1,e.n)]),symbolSize:(v,p)=>{const e=ev[p.dataIndex];const d=(/^\d{4}$/.test(e.end)?+e.end:2025)-(+e.start)+1;return 8+Math.min(40,d*1.6)},itemStyle:{color:p=>subjColor(ev[p.dataIndex].subject),opacity:.8},label:{show:true,position:"right",fontSize:9,formatter:p=>ev[p.dataIndex].title.length>10?ev[p.dataIndex].title.slice(0,10)+"…":ev[p.dataIndex].title}}]}));
+ const subjs=[...new Set(T.events.map(e=>e.subject).filter(Boolean))];const ss=document.getElementById("evSubj");subjs.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;ss.appendChild(o)});
+ function spark(e){const ys=Object.keys(e.by_year).map(Number);if(!ys.length)return "";const a=Math.max(1975,Math.min(...ys)),b=2025;const mx=Math.max(...Object.values(e.by_year));let s='<svg class="spark" viewBox="0 0 200 26" preserveAspectRatio="none" width="100%" height="26">';for(let y=a;y<=b;y++){const v=e.by_year[y]||0;const x=(y-a)/(b-a+1)*200;s+=`<rect x="${x}" y="${26-v/mx*24}" width="${200/(b-a+1)*0.9}" height="${v/mx*24}" fill="#8ab17d"/>`;}return s+"</svg>";}
+ function render(){const key=document.getElementById("evSort").value;const sj=ss.value;let rows=T.events.filter(e=>!sj||e.subject===sj);
+  rows=[...rows].sort((a,b)=>key==="n"?b.n-a.n:key==="start"?(a.start||"9999").localeCompare(b.start||"9999"):((/^\d{4}$/.test(b.end)?+b.end:2025)-(+b.start||2025))-((/^\d{4}$/.test(a.end)?+a.end:2025)-(+a.start||2025)));
+  document.getElementById("evCards").innerHTML=rows.map(e=>`<div class="ev-card"><div class="t">${e.title}</div><div class="m">${e.start||'?'}–${e.end||''} · ${e.subject||''} · 검색어: ${e.terms.join(', ')}</div><div class="n">${fmtN(e.n)}<span class="note"> 건</span> <span class="note">${e.y10?`· 기록 ${e.y10}–${e.y90}`:''}</span></div>${spark(e)}<div class="note">${e.colls.map(c=>c.k+" "+fmtN(c.v)).join(" · ")}</div><div class="note" style="margin-top:4px">${e.samples.map(s=>`<a href="https://ecoarchive.org/items/show/${s.id}" target="_blank">${s.title}</a> (${s.year||''})`).join("<br>")}</div><div class="note" style="margin-top:4px"><a href="${e.url}" target="_blank">풀숲 사건 페이지 ↗</a></div></div>`).join("");}
+ document.getElementById("evSort").onchange=render;ss.onchange=render;render();})();
+// ---- orgs
+(function(){const O=T.orgs;const decs=["1980s 이전","1980s","1990s","2000s","2010s","2020s"];const areas=[...new Set(O.flatMap(o=>o.areas))].filter(Boolean);
+ const dec=o=>o.founded<1980?"1980s 이전":Math.floor(o.founded/10)*10+"s";
+ stacked("c_of",decs,areas.map(a=>({name:a,data:decs.map(d=>O.filter(o=>o.founded&&dec(o)===d&&(o.areas.includes(a))).length)})),{subj:true});
+ const withR=O.filter(o=>o.n_rec>0).length;donut("c_or",[{k:"기록으로 남은 조직",v:withR},{k:"이름만 남은 조직",v:O.length-withR}]);
+ hbar("c_ot",[...O].sort((a,b)=>b.n_rec-a.n_rec).slice(0,30).map(o=>({k:o.name,v:o.n_rec})),{left:200});
+ const nodes={};const edges=[];O.forEach(o=>{o.coalition.forEach(t=>{if(!t)return;nodes[o.name]=nodes[o.name]||{id:o.name,n:o.n_rec||1};nodes[t]=nodes[t]||{id:t,n:(O.find(x=>x.name===t)||{}).n_rec||1};edges.push({s:o.name,t,w:1});});});
+ graph("c_og",Object.values(nodes),edges,{rep:180,len:[20,100],maxSize:40,labelMin:0});})();
+// ---- year explorer
+(function(){const sel=document.getElementById("ySel");years.slice().reverse().forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y;sel.appendChild(o)});sel.value=2003;
+ function tag(a,cls="tag"){return a.length?a.map(x=>`<span class="${cls}">${x}</span>`).join(""):'<span class="note">—</span>'}
+ function draw(){const y=+sel.value;document.getElementById("yStat").textContent=`기록 ${fmtN(T.rec_by_year[y]||0)}건 · 연표 ${T.chron_by_year[y]||0}건 · 설립 조직 ${T.org_founded_by_year[y]||0}`;
+  document.getElementById("yKw").innerHTML=tag(T.year_distinct[y]||[],"tag hi");document.getElementById("yTop").innerHTML=tag(T.year_top[y]||[]);
+  document.getElementById("yEv").innerHTML=tag(T.events.filter(e=>+e.start===y).map(e=>e.title));document.getElementById("yOrg").innerHTML=tag(T.orgs.filter(o=>o.founded===y).map(o=>o.name));
+  const ch=T.chron[y]||[];document.getElementById("yChronN").textContent=`(${ch.length})`;document.getElementById("yChron").innerHTML=ch.length?ch.map(c=>`<div class="chron-row"><span class="d">${c.d||''}</span><a href="https://ecoarchive.org/items/show/${c.id}" target="_blank">${c.t}</a><span class="o">${c.o||c.c||''}</span></div>`).join(""):'<span class="note">이 해의 연표 항목이 없습니다.</span>';}
+ sel.onchange=draw;draw();})();
+// ---- bump
+(function(){const wins=KW.map(w=>w.win);const K=10;const names={};KW.forEach((w,i)=>w.top.slice(0,K).forEach((t,r)=>{(names[t.k]=names[t.k]||wins.map(()=>null))[i]=r+1;}));bump("c_bump",wins,names,{k:K});})();
 </script>{% endblock %}
