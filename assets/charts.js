@@ -103,9 +103,9 @@ function graph(el, nodes, edges, o={}){
     series:[{type:"graph",layout:"force",roam:true,draggable:true,categories:o.cats||null,
       force:{repulsion:o.rep||120,edgeLength:o.len||[40,140],gravity:.08,friction:.4},
       data:nodes.map(n=>({name:n.id,n:n.n,category:n.cat,symbolSize:8+Math.sqrt((n.n||1)/mx)*(o.maxSize||42),
-        label:{show:(n.n||0)>=(o.labelMin||0),fontSize:11},itemStyle:n.color?{color:n.color}:null})),
+        label:{show:(n.n||0)>=(o.labelMin||0),position:"right",fontSize:11,color:"#1f2a24",textBorderWidth:0,backgroundColor:"rgba(255,255,255,.82)",padding:[1,4],borderRadius:3},itemStyle:n.color?{color:n.color}:null})),
       links:edges.map(e=>({source:e.s,target:e.t,value:e.w,lineStyle:{width:.6+Math.log2(e.w||1),opacity:.35,curveness:.1}})),
-      lineStyle:{color:"source"},emphasis:{focus:"adjacency",label:{show:true}}}]}));
+      lineStyle:{color:"source"},emphasis:{focus:"adjacency",label:{show:true,fontWeight:600}},blur:{label:{show:false}}}]}));
 }
 function radar(el, ind, vals, o={}){
   const c=mk(el); if(!c) return;

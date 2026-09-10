@@ -19,8 +19,10 @@
 <div class="grid g2">
   <div class="card"><p class="chart-title">소장 기록의 생산연도 분포</p><p class="chart-sub">기록-일반, 공개 · 1999년 급증은 한겨레 컬렉션 스캔분</p><div id="c_year" class="chart"></div></div>
   <div class="card"><p class="chart-title">연대별 주제 구성비</p><p class="chart-sub">주제가 부여된 기록 기준 · 반공해 → 생태계보전 → 기후에너지</p><div id="c_subj" class="chart"></div></div>
+  <div class="card"><p class="chart-title">기록유형 구성</p><p class="chart-sub">기록-일반, 공개 · 문서 51%·간행물 34%·사진 9%</p><div id="c_rtype" class="chart"></div></div>
   <div class="card"><p class="chart-title">컬렉션별 등록 기록 수</p><p class="chart-sub">상위 20개 · 회색은 비공개</p><div id="c_coll" class="chart tall"></div></div>
   <div class="card"><p class="chart-title">5년 단위 상위 키워드 순위 변화</p><p class="chart-sub">각 구간 상위 12위 · 언론(한겨레) 컬렉션 제외</p><div id="c_bump" class="chart tall"></div></div>
+  <div class="card"><p class="chart-title">기록의 지역 분포</p><p class="chart-sub">키워드·태그에서 식별된 시도 · 식별 기록 6,125건 기준</p><div id="c_reg" class="chart tall"></div></div>
 </div>
 
 <h2>둘러보기</h2>
@@ -35,6 +37,8 @@
 {% endblock %}{% block script %}<script>
 const H={{ H|tojson }}, COLS={{ COLS|tojson }}, KW={{ KW|tojson }};
 vbar("c_year",H.year.filter(d=>d.k>=1975),{});
+donut("c_rtype",H.rtype.filter(d=>d.k!=="문서"));
+(function(){const O=["서울","경기","인천","강원","충북","충남","대전","세종","전북","전남","광주","경북","경남","대구","울산","부산","제주"];const m={};H.regions.forEach(d=>m[d.k]=d.v);hbar("c_reg",O.map(k=>({k,v:m[k]||0})),{left:60});})();
 (function(){const dec=H.subject_by_decade;const subs=["반공해","반핵탈핵","생태계보전","기후에너지","자원순환","생활안전","재난재해","국제연대","대기오염","도시환경","일반"];
  stacked("c_subj",dec.map(d=>d.decade),subs.map(s=>({name:s,data:dec.map(d=>d[s]||0)})),{percent:true,subj:true});})();
 (function(){const it=COLS.slice(0,20);const c=mk("c_coll");c.setOption(opt({grid:{left:150,right:80,top:10,bottom:20},xAxis:{type:"value",splitLine:{lineStyle:{color:"#eef2ef"}}},yAxis:{type:"category",inverse:true,data:it.map(d=>d.name),axisLabel:{fontSize:12}},tooltip:{trigger:"axis",axisPointer:{type:"shadow"},valueFormatter:fmtN},
