@@ -95,4 +95,4 @@ https://ecoarchive.org/api/files?item=1134
 
 ## 6. 만든 게임 알려 주기
 
-완성한 게임의 주소를 [데이터 랩 저장소 이슈](https://github.com/ArchivelabEdu/ecoarchive-impact2026/issues)에 남겨 주시면 이 페이지의 예시 목록에 추가합니다. 규칙 아이디어만 있어도 환영합니다.
+완성한 게임의 주소와 한 줄 소개를 **daejin@archivelab.co.kr**(아카이브랩)로 보내 주세요. [데이터 랩 저장소 이슈](https://github.com/ArchivelabEdu/ecoarchive-impact2026/issues)에 남기셔도 됩니다. 규칙과 데이터 이용 조건을 검토한 뒤 이 페이지의 예시 목록에 추가합니다. 규칙 아이디어만 있어도 환영합니다.
