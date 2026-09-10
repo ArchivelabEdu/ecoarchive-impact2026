@@ -20,6 +20,7 @@ os.makedirs(OUT)
 shutil.copytree(os.path.join(ROOT,"assets"),os.path.join(OUT,"assets"))
 shutil.copytree(os.path.join(ROOT,"data","holdings"),os.path.join(OUT,"data"))
 shutil.copytree(os.path.join(ROOT,"report"),os.path.join(OUT,"report"))
+shutil.copytree(os.path.join(ROOT,"games"),os.path.join(OUT,"games"))
 open(os.path.join(OUT,".nojekyll"),"w").close()
 SECTIONS={
  "holdings":("소장 현황",[("규모와 구성","holdings/composition.html"),("시간","holdings/time.html"),("주제","holdings/subject.html"),("지역","holdings/region.html"),("메타데이터 품질","holdings/quality.html")]),

@@ -1,0 +1,32 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>컬렉션 룰렛 · 풀숲 보드게임</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
+<style>
+.wheelbox{display:flex;justify-content:center;margin:10px 0;position:relative}
+.wheel{width:260px;height:260px;border-radius:50%;border:8px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:transform 3s cubic-bezier(.17,.67,.12,1);background:conic-gradient(#2f6f4e 0 30deg,#8ab17d 30deg 60deg,#e9c46a 60deg 90deg,#f4a261 90deg 120deg,#e76f51 120deg 150deg,#6d597a 150deg 180deg,#b56576 180deg 210deg,#355070 210deg 240deg,#a8dadc 240deg 270deg,#457b9d 270deg 300deg,#1d3557 300deg 330deg,#999 330deg 360deg)}
+.pin{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:22px solid var(--ink)}
+.kw{font-size:1.15rem;margin:6px 4px;padding:6px 14px;background:#fff;border:2px solid var(--g2);border-radius:999px;display:inline-block;animation:pop .35s both}
+@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+</style></head><body>
+<div class="top"><a href="index.html">‹ 게임 목록</a><h1>⑤ 컬렉션 룰렛</h1><span class="sc" id="score"></span></div>
+<div class="wrap">
+<p class="note">룰렛을 돌리면 컬렉션 하나가 뽑히고 <b>특징 키워드 5개</b>만 보입니다. 어느 단체(사람)의 기록일까요? 10문제, 정답 10점.</p>
+<div class="wheelbox"><div class="pin"></div><div class="wheel" id="wheel"></div></div>
+<p style="text-align:center"><button class="btn" id="spin" onclick="spin()">룰렛 돌리기</button></p>
+<div id="kws" style="text-align:center;min-height:50px"></div>
+<div class="opts" id="opts"></div><div id="msg"></div>
+<div class="result" id="result" hidden></div>
+</div>
+<script src="common.js"></script><script>
+let ALL=[],pool=[],cur=null,n=0,score=0,deg=0,busy=false;
+function spin(){if(busy)return;busy=true;document.getElementById("spin").disabled=true;document.getElementById("kws").innerHTML="";document.getElementById("opts").innerHTML="";document.getElementById("msg").innerHTML="";
+ cur=pool[n%pool.length];deg+=1440+Math.floor(Math.random()*360);document.getElementById("wheel").style.transform=`rotate(${deg}deg)`;
+ setTimeout(()=>{const kws=pick(cur.keywords,5);document.getElementById("kws").innerHTML=kws.map((k,i)=>`<span class="kw" style="animation-delay:${i*.15}s">${esc(k)}</span>`).join("");
+  const wrong=pick(ALL.filter(c=>c.type==="collection"&&c.front!==cur.front&&c.kind===cur.kind),3);
+  setTimeout(()=>{document.getElementById("opts").innerHTML=shuffle([cur,...wrong]).map(o=>`<button class="opt" onclick="answer(this,'${esc(o.front)}')">${esc(o.front)}</button>`).join("");busy=false;},900);},3100);}
+function answer(btn,name){const ok=name===cur.front;if(ok)score+=10;n++;
+ document.querySelectorAll(".opt").forEach(b=>{if(b.textContent===cur.front)b.classList.add("ok");else if(b===btn)b.classList.add("bad");b.disabled=true;});
+ document.getElementById("msg").innerHTML=`<div class="msg ${ok?'ok':'bad'}">${ok?"정답! +10점":"아쉽습니다. 정답은 "+esc(cur.front)}</div><div class="note">${esc(cur.back)}</div><span class="tag">등록 ${fmt(cur.count)}건 · ${cur.year}년부터</span> <a class="tag" href="${cur.url}" target="_blank">풀숲 컬렉션 ↗</a>`;
+ document.getElementById("score").textContent=`${n}/10 · ${score}점`;
+ if(n>=10){document.getElementById("result").hidden=false;document.getElementById("result").innerHTML=`<b>끝!</b> ${score}점 / 100점 <button class="btn" onclick="location.reload()">다시</button>`;}else document.getElementById("spin").disabled=false;}
+loadCards().then(c=>{ALL=c;pool=pick(ALL.filter(x=>x.type==="collection"&&x.keywords.length>=5),10);document.getElementById("score").textContent="0/10 · 0점";});
+</script></body></html>

@@ -1,0 +1,40 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>40년 여정 · 풀숲 보드게임</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
+<style>
+.board{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin:10px 0}
+.cell{aspect-ratio:1;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:.7rem;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;color:var(--muted)}
+.cell b{color:var(--ink);font-size:.78rem}.cell.ev{background:#eef4ef;border-color:var(--g2)}.cell.here{background:var(--g);color:#fff}.cell.here b{color:#fff}
+.cell .pawn{position:absolute;top:-6px;right:-4px;font-size:1.1rem}
+.dice{font-size:3rem;line-height:1;display:inline-block;min-width:60px;text-align:center}
+.players{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.pl{padding:6px 12px;border-radius:10px;background:#fff;border:2px solid var(--line)}.pl.turn{border-color:var(--g)}
+.qcard{background:#fff;border:2px solid var(--g2);border-radius:14px;padding:14px;margin-top:12px}
+</style></head><body>
+<div class="top"><a href="index.html">‹ 게임 목록</a><h1>⑦ 40년 여정</h1><span class="sc" id="score"></span></div>
+<div class="wrap">
+<p class="note">1982년에서 출발해 2025년 결승선까지. 주사위를 굴려 이동하고, 도착한 해의 퀴즈를 맞히면 그 해의 기록 두께만큼 점수(기록 100건당 1점, 최대 40점)를 얻습니다. 두 사람이 번갈아 굴립니다. 초록 칸은 사건이 시작된 해.</p>
+<div class="players" id="players"></div>
+<div class="board" id="board"></div>
+<p><span class="dice" id="dice">🎲</span> <button class="btn" id="roll" onclick="roll()">주사위 굴리기</button></p>
+<div class="qcard" id="q" hidden></div>
+<div class="result" id="result" hidden></div>
+</div>
+<script src="common.js"></script><script>
+const FACES=["⚀","⚁","⚂","⚃","⚄","⚅"];let ALL=[],YEARS=[],pos=[0,0],score=[0,0],turn=0,busy=false;
+function y(i){return YEARS[i]}
+function board(){document.getElementById("board").innerHTML=YEARS.map((c,i)=>`<div class="cell ${c.events.length?'ev':''} ${pos[turn]===i?'here':''}"><b>${c.year}</b>${c.events.length?"📌":""}${pos[0]===i?'<span class="pawn">🟢</span>':''}${pos[1]===i?'<span class="pawn" style="top:auto;bottom:-6px">🟡</span>':''}</div>`).join("");
+ document.getElementById("players").innerHTML=[0,1].map(p=>`<div class="pl ${turn===p?'turn':''}">${p?'🟡':'🟢'} ${p+1}번 · ${score[p]}점 · ${y(pos[p]).year}년</div>`).join("");
+ document.getElementById("score").textContent=`${turn+1}번 차례`;}
+function roll(){if(busy)return;busy=true;document.getElementById("roll").disabled=true;let k=0;const t=setInterval(()=>{document.getElementById("dice").textContent=FACES[Math.floor(Math.random()*6)];if(++k>10){clearInterval(t);const d=1+Math.floor(Math.random()*6);document.getElementById("dice").textContent=FACES[d-1];pos[turn]=Math.min(YEARS.length-1,pos[turn]+d);board();ask();}},70);}
+function ask(){const c=y(pos[turn]);const q=document.getElementById("q");q.hidden=false;
+ let type,question,answer,opts;
+ if(c.events.length){type="ev";answer=c.events[0];question=`<b>${c.year}년</b>에 시작된 환경 사건은?`;const wrong=pick(ALL.filter(x=>x.type==="event"&&x.year&&Math.abs(x.year-c.year)>=3).map(x=>x.front),3);opts=shuffle([answer,...wrong]);}
+ else{type="kw";const clean=k=>k&&k.length<=8&&!/[.\/()]/.test(k);answer=(c.keywords.filter(clean)[0])||(c.top.filter(clean)[0])||c.keywords[0]||c.top[0];question=`<b>${c.year}년</b> 기록의 특징 키워드는? <span class="note">(그 해 ${fmt(c.count)}건)</span>`;const wrong=pick([...new Set(YEARS.filter(x=>Math.abs(x.year-c.year)>=8).flatMap(x=>x.keywords.slice(0,2)).filter(k=>clean(k)&&k!==answer))],3);opts=shuffle([answer,...wrong]);}
+ q.innerHTML=`<div>${question}</div><div class="opts">${opts.map(o=>`<button class="opt" onclick="answer(this,'${esc(o)}','${esc(answer)}')">${esc(o)}</button>`).join("")}</div><div id="msg"></div>`;}
+function answer(btn,v,ans){const c=y(pos[turn]);const ok=v===ans;const pts=Math.max(1,Math.min(40,Math.round(c.count/100)));if(ok)score[turn]+=pts;
+ document.querySelectorAll(".opt").forEach(b=>{if(b.textContent===ans)b.classList.add("ok");else if(b===btn)b.classList.add("bad");b.disabled=true;});
+ document.getElementById("msg").innerHTML=`<div class="msg ${ok?'ok':'bad'}">${ok?`정답! +${pts}점`:`아쉽습니다. 정답은 ${esc(ans)}`}</div><div class="note">${c.year}년: 기록 ${fmt(c.count)}건 · 특징 키워드 ${c.keywords.join(", ")||"—"}${c.orgs.length?" · 설립 "+c.orgs.slice(0,3).join(", "):""}</div>`;
+ if(pos[turn]>=YEARS.length-1){finish();return;}
+ turn=1-turn;busy=false;board();setTimeout(()=>{document.getElementById("roll").disabled=false;},400);}
+function finish(){board();const r=document.getElementById("result");r.hidden=false;const w=score[0]===score[1]?"무승부":(score[0]>score[1]?"🟢 1번":"🟡 2번")+" 승리";r.innerHTML=`<b>결승선 도착!</b> 🟢 ${score[0]}점 · 🟡 ${score[1]}점 — ${w} <button class="btn" onclick="location.reload()">다시</button>`;document.getElementById("roll").disabled=true;}
+loadCards().then(c=>{ALL=c;YEARS=c.filter(x=>x.type==="year"&&x.year>=1982&&x.year<=2025).sort((a,b)=>a.year-b.year);board();});
+</script></body></html>
