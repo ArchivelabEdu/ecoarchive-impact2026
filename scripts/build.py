@@ -25,7 +25,7 @@ open(os.path.join(OUT,".nojekyll"),"w").close()
 SECTIONS={
  "holdings":("소장 현황",[("규모와 구성","holdings/composition.html"),("시간","holdings/time.html"),("주제","holdings/subject.html"),("지역","holdings/region.html"),("메타데이터 품질","holdings/quality.html")]),
  "keywords":("키워드",[("연대별 변화","keywords/change.html"),("키워드 생애곡선","keywords/life.html"),("공출현 네트워크","keywords/cooc.html"),("단체별 키워드","keywords/orgs.html"),("키워드 사전","keywords/dict.html")]),
- "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("임팩트 측정","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
+ "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("보드게임","games/index.html"),("보드게임 만들기 가이드","guide/index.html"),("임팩트 측정","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
  "collections":("컬렉션",[("컬렉션 비교","collections/index.html")]+[(c["name"],f"collections/{c['slug']}.html") for c in COLS]),
 }
 def render(tpl,path,**ctx):
@@ -95,4 +95,5 @@ render("photos.html","photos/index.html",title="사진 아카이브",PH=PH,secti
 render("impact.html","impact/index.html",title="임팩트 측정",IND=IND,section="more")
 render("data.html","data/index.html",title="데이터·방법",FILES=FILES,METHODS=md("methods.md"),section="more")
 render("about.html","about.html",title="소개",ABOUT=md("about.md"),section="more")
+render("guide.html","guide/index.html",title="보드게임 만들기 가이드",GUIDE=md("guide.md"),section="more",desc="환경아카이브 풀숲 데이터로 보드게임을 만드는 방법: 카드 덱 JSON, 집계 데이터, Omeka API, 템플릿, 이용 조건")
 print("built", sum(len(f) for _,_,f in os.walk(OUT)), "files ->", OUT)

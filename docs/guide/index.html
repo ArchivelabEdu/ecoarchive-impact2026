@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>보드게임 만들기 가이드 · 환경아카이브 풀숲 데이터 랩</title>
+<meta name="description" content="환경아카이브 풀숲 데이터로 보드게임을 만드는 방법: 카드 덱 JSON, 집계 데이터, Omeka API, 템플릿, 이용 조건">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="../assets/charts.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><img src="../assets/logo-green.png" alt="환경아카이브 풀숲" class="logo"><span class="brand-sub">데이터 랩</span></a>
+  <button class="burger" aria-label="menu">☰</button>
+  <ul class="menu">
+    <li><a href="../holdings/composition.html" class="">소장 현황</a>
+      <ul class="sub"><li><a href="../holdings/composition.html">규모와 구성</a></li><li><a href="../holdings/time.html">시간</a></li><li><a href="../holdings/subject.html">주제</a></li><li><a href="../holdings/region.html">지역</a></li><li><a href="../holdings/quality.html">메타데이터 품질</a></li></ul></li>
+    <li><a href="../collections/index.html" class="">컬렉션</a></li>
+    <li><a href="../keywords/change.html" class="">키워드</a>
+      <ul class="sub"><li><a href="../keywords/change.html">연대별 변화</a></li><li><a href="../keywords/life.html">키워드 생애곡선</a></li><li><a href="../keywords/cooc.html">공출현 네트워크</a></li><li><a href="../keywords/orgs.html">단체별 키워드</a></li><li><a href="../keywords/dict.html">키워드 사전</a></li></ul></li>
+    <li><a href="../timeline/index.html" class="">환경운동 40년</a></li>
+    <li><span>더보기 ▾</span>
+      <ul class="sub"><li><a href="../network/index.html">네트워크</a></li><li><a href="../photos/index.html">사진 아카이브</a></li><li><a href="../games/index.html">보드게임</a></li><li><a href="../guide/index.html">보드게임 만들기 가이드</a></li><li><a href="../impact/index.html">임팩트 측정</a></li><li><a href="../data/index.html">데이터·방법</a></li><li><a href="../about.html">소개</a></li></ul></li>
+  </ul>
+</div></nav>
+<div class="subnav"><div class="subnav-wrap"><div class="subnav-in">
+  <span class="subnav-title">더보기</span>
+  
+    <a href="../network/index.html" class="">네트워크</a><a href="../photos/index.html" class="">사진 아카이브</a><a href="../games/index.html" class="">보드게임</a><a href="../guide/index.html" class="active">보드게임 만들기 가이드</a><a href="../impact/index.html" class="">임팩트 측정</a><a href="../data/index.html" class="">데이터·방법</a><a href="../about.html" class="">소개</a>
+  
+</div></div></div>
+<main class="wrap">
+
+<div class="crumb">더보기</div><h1>보드게임 만들기 가이드</h1>
+<p class="lead">풀숲의 기록으로 나만의 환경 보드게임을 만드는 방법. 데이터 받는 곳, 시작하는 순서, 이용 조건.</p>
+<div class="md"><p>환경아카이브 풀숲의 기록으로 보드게임을 만들고 싶은 분을 위한 안내입니다. 코딩 경험이 없어도 됩니다. 아래 데이터는 모두 <strong>키 없이, 브라우저에서 바로</strong> 읽을 수 있고, 읽기만 가능하므로 원본 아카이브를 건드릴 일이 없습니다.</p>
+<h2>1. 무엇을 만들 수 있나</h2>
+<p>풀숲 데이터 랩이 먼저 만든 다섯 가지가 예시입니다. 모두 HTML 파일 하나로 되어 있고, 같은 카드 덱을 씁니다.</p>
+<table>
+<thead>
+<tr>
+<th>게임</th>
+<th>규칙 한 줄</th>
+<th>쓰는 데이터</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../games/journey.html">에코폴리</a></td>
+<td>1982→2025 말판을 주사위로 이동하며 도착한 해의 퀴즈</td>
+<td>연도 카드</td>
+</tr>
+<tr>
+<td><a href="../games/timeline.html">타임라인 카드배치</a></td>
+<td>사건·단체 카드를 연대순 줄의 올바른 자리에 끼워 넣기</td>
+<td>사건·단체 카드</td>
+</tr>
+<tr>
+<td><a href="../games/who.html">인물 스무고개</a></td>
+<td>힌트가 한 줄씩 열리는 인물·단체 맞히기</td>
+<td>인물·단체 카드</td>
+</tr>
+<tr>
+<td><a href="../games/roulette.html">컬렉션 룰렛</a></td>
+<td>특징 키워드 5개만 보고 어느 컬렉션인지 맞히기</td>
+<td>컬렉션 카드</td>
+</tr>
+<tr>
+<td><a href="../games/photos.html">에코 도블</a></td>
+<td>작품사진 4장을 작가·장소·사건과 짝 짓기</td>
+<td>작품사진 카드</td>
+</tr>
+</tbody>
+</table>
+<p>그 밖에 생각해 볼 만한 것: 카드 뒤집기 짝 맞추기(사건↔연도), 키워드 빙고, 지역별 사건 지도 퀴즈, 컬렉션 규모 순서 맞히기, 사진 촬영 연대 맞히기.</p>
+<h2>2. 데이터는 어디서 받나</h2>
+<p>세 가지 경로가 있습니다. 브라우저 게임이라면 <strong>A만으로 충분</strong>합니다.</p>
+<h3>A. 카드 덱 JSON (권장)</h3>
+<p>게임용으로 미리 정리한 덱 두 개입니다. 주소를 그대로 <code>fetch</code>로 읽으면 됩니다.</p>
+<table>
+<thead>
+<tr>
+<th>파일</th>
+<th>내용</th>
+<th>주소</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cards.json</td>
+<td>235장: 사건 47 · 인물 68 · 단체 40 · 컬렉션 34 · 연도 46</td>
+<td><code>https://archivelabedu.github.io/ecoarchive-impact2026/data/cards.json</code></td>
+</tr>
+<tr>
+<td>photo_cards.json</td>
+<td>작품사진 180장 (작가 46인)</td>
+<td><code>https://archivelabedu.github.io/ecoarchive-impact2026/data/photo_cards.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>cards.json의 카드 종류와 필드</strong> — 모든 카드에 <code>type</code>, <code>front</code>(이름), <code>url</code>(풀숲 원본 링크)이 있고, 종류별로 아래 필드가 더 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>필드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>event</code> (사건)</td>
+<td><code>year</code>, <code>end</code>, <code>subject</code>, <code>back</code>, <code>count</code>, <code>colls</code>, <code>image</code></td>
+<td>시작·종료 연도, 주제, 설명, 관련 기록 수, 관련 컬렉션, 썸네일</td>
+</tr>
+<tr>
+<td><code>person</code> (인물)</td>
+<td><code>role</code>, <code>hints</code>, <code>back</code>, <code>image</code></td>
+<td>역할(사진작가·기증자), 힌트 목록, 설명, 썸네일(현재 없음)</td>
+</tr>
+<tr>
+<td><code>org</code> (단체)</td>
+<td><code>year</code>, <code>areas</code>, <code>count</code>, <code>hints</code>, <code>back</code></td>
+<td>설립 연도, 활동영역 코드, 관련 기록 수, 힌트 목록, 설명</td>
+</tr>
+<tr>
+<td><code>collection</code> (컬렉션)</td>
+<td><code>kind</code>, <code>keywords</code>, <code>count</code>, <code>year</code>, <code>back</code></td>
+<td>단체/개인, 특징 키워드, 등록 건수, 최초 생산연도, 소개</td>
+</tr>
+<tr>
+<td><code>year</code> (연도)</td>
+<td><code>year</code>, <code>count</code>, <code>keywords</code>, <code>top</code>, <code>events</code>, <code>orgs</code>, <code>chron</code></td>
+<td>그 해 기록 수, 특징 키워드, 상위 키워드, 시작된 사건, 설립된 단체, 연표 건수</td>
+</tr>
+</tbody>
+</table>
+<p><strong>photo_cards.json 필드</strong> — <code>id</code>, <code>title</code>, <code>artist</code>, <code>year</code>, <code>region</code>(시도), <code>loc</code>(촬영지), <code>keywords</code>, <code>event</code>(연결된 사건), <code>org</code>, <code>lic</code>(라이선스), <code>image</code>, <code>url</code>.</p>
+<p><strong>이미지 경로 규칙</strong> — <code>image</code> 값은 <code>img/ev_1134.jpg</code>처럼 상대경로입니다. 앞에 <code>https://archivelabedu.github.io/ecoarchive-impact2026/games/</code> 를 붙여야 사진이 보입니다.</p>
+<h3>B. 집계 데이터 JSON</h3>
+<p>데이터 랩의 그래프를 그리는 데 쓴 17개 파일입니다. 카드 덱보다 크고 구조가 다양해서, 통계형 게임(어느 해가 더 많을까, 키워드 순위 맞히기 등)에 씁니다. 목록과 필드 설명은 <a href="../data/index.html">데이터·방법</a> 페이지에 있습니다. 주소는 <code>https://archivelabedu.github.io/ecoarchive-impact2026/data/파일이름.json</code> 입니다.</p>
+<h3>C. 풀숲 Omeka API (고급)</h3>
+<p>원본 아카이브(ecoarchive.org)는 Omeka Classic으로 운영되며 REST API가 열려 있습니다. <strong>공개 기록은 키 없이 읽을 수 있고, 키 없이는 아무것도 바꿀 수 없습니다.</strong> 다만 브라우저에서 직접 호출하는 것은 막혀 있으므로(CORS 미허용), 파이썬 스크립트 등으로 데이터를 내려받아 정리하는 용도입니다.</p>
+<p><code>https://ecoarchive.org/api/items?per_page=50&amp;page=1
+https://ecoarchive.org/api/items/1134
+https://ecoarchive.org/api/collections
+https://ecoarchive.org/api/files?item=1134</code></p>
+<ul>
+<li>한 번에 최대 50건입니다. 전체(11만 건)를 받으면 2,200회가 넘는 요청이 되므로, 필요한 컬렉션이나 기간만 받고 결과를 파일로 저장해 다시 쓰세요.</li>
+<li>원본 아카이브의 서버 부담을 줄이기 위해, 게임에서는 API를 실시간으로 부르지 말고 미리 내려받은 JSON을 쓰는 것이 원칙입니다.</li>
+<li>자세한 사용법: <a href="https://omeka.readthedocs.io/en/latest/Reference/api/">Omeka Classic API 문서</a></li>
+</ul>
+<h2>3. 시작하기</h2>
+<ol>
+<li><strong>템플릿 복사</strong> — <a href="https://github.com/ArchivelabEdu/ecoarchive-vibe-template">ecoarchive-vibe-template</a> 저장소에서 <strong>Use this template</strong>을 눌러 내 리포지터리를 만듭니다. <code>index.html</code> 하나와 프롬프트 카드(<code>PROMPTS.md</code>)가 들어 있습니다.</li>
+<li><strong>AI 코딩 도구 열기</strong> — Claude Code, Codex 등 어느 것이든 좋습니다. 폴더를 열고 아래 준비 프롬프트를 먼저 넣습니다.</li>
+</ol>
+<p><code>이 폴더의 index.html을 기준으로 작업할 거야. 파일은 index.html 하나만 쓰고, 외부 라이브러리는 CDN으로만 불러와.
+데이터는 https://archivelabedu.github.io/ecoarchive-impact2026/data/cards.json 을 fetch로 읽어.
+카드의 image 값은 상대경로라서 앞에 https://archivelabedu.github.io/ecoarchive-impact2026/games/ 를 붙여야 해.
+한국어로, 모바일에서도 보이게 만들어 줘.</code></p>
+<ol>
+<li><strong>게임 규칙을 한 문단으로</strong> — 카드 몇 장을 뽑아, 무엇을 보여 주고, 무엇을 맞히면, 몇 점인지. 예시 프롬프트 다섯 개가 <code>PROMPTS.md</code>에 있습니다.</li>
+<li><strong>작게 시작해 한 문장씩 늘리기</strong> — 카드 4장, 1라운드부터. 되면 "6×6으로 늘려 줘", "2인용으로 바꿔 줘"처럼 하나씩 추가합니다.</li>
+<li><strong>배포</strong> — GitHub 리포지터리 → Settings → Pages → Branch <code>main</code>, 폴더 <code>/(root)</code>. 1~2분 뒤 <code>https://아이디.github.io/리포지터리이름/</code> 에서 열립니다.</li>
+</ol>
+<h2>4. 이용 조건</h2>
+<ul>
+<li><strong>집계 데이터와 카드 덱</strong>(A·B): CC BY 4.0. 출처를 밝히면 자유롭게 쓸 수 있습니다. 표기 예: <code>데이터: 재단법인 숲과나눔 환경아카이브 풀숲 · 풀숲 데이터 랩 (archivelabedu.github.io/ecoarchive-impact2026)</code></li>
+<li><strong>사건 썸네일과 작품사진</strong>: 각 기록의 라이선스를 따릅니다. 작품사진은 <code>lic</code> 필드에 라이선스가 적혀 있으며(공공누리·CC 등), 대부분 출처 표시 조건입니다. 사진을 잘라 쓰거나 색을 바꾸는 것은 "변경금지" 조건이면 안 됩니다. 게임 화면에 작가 이름과 풀숲 링크(<code>url</code>)를 함께 보여 주세요.</li>
+<li><strong>원본 기록의 본문</strong>(C): 풀숲 각 기록 페이지에 표시된 이용 조건을 따릅니다.</li>
+<li>상업적 이용이나 인쇄물 제작은 재단법인 숲과나눔에 먼저 문의해 주세요.</li>
+</ul>
+<h2>5. 자주 막히는 곳</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카드가 안 보임</td>
+<td>데이터 주소를 브라우저 주소창에 직접 열어 JSON이 보이는지 확인. <code>file://</code>로 연 페이지는 fetch가 막히므로 로컬 서버(<code>python3 -m http.server</code>)로 여세요</td>
+</tr>
+<tr>
+<td>사진이 깨짐</td>
+<td><code>image</code> 앞에 <code>…/games/</code> 경로를 붙였는지 확인</td>
+</tr>
+<tr>
+<td>인물 카드에 사진이 없음</td>
+<td>현재 <code>person</code>의 <code>image</code>는 모두 비어 있습니다. 실루엣이나 이니셜로 대신하세요</td>
+</tr>
+<tr>
+<td>Omeka API가 브라우저에서 안 됨</td>
+<td>정상입니다(CORS 미허용). 스크립트로 내려받아 JSON으로 저장한 뒤 쓰세요</td>
+</tr>
+<tr>
+<td>한글이 깨짐</td>
+<td><code>&lt;meta charset="utf-8"&gt;</code>를 넣어 달라고 하세요</td>
+</tr>
+</tbody>
+</table>
+<h2>6. 만든 게임 알려 주기</h2>
+<p>완성한 게임의 주소를 <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026/issues">데이터 랩 저장소 이슈</a>에 남겨 주시면 이 페이지의 예시 목록에 추가합니다. 규칙 아이디어만 있어도 환영합니다.</p></div>
+
+<nav class="pager">
+  <a href="../games/index.html"><span class="note">이전</span><br>‹ 보드게임</a>
+  <a href="../impact/index.html" style="text-align:right"><span class="note">다음</span><br>임팩트 측정 ›</a>
+</nav>
+</main>
+<footer><div class="in">
+  <div>환경아카이브 풀숲 데이터 랩 · 데이터 기준 2026-09-10 (Omeka REST API 전수 111,106건) · 재단법인 숲과나눔 × 아카이브랩</div>
+  <div><a href="../report/pulsoop-impact-report-2026-v1.0.pdf">임팩트 측정 보고서 PDF</a> · <a href="https://ecoarchive.org">ecoarchive.org</a> · <a href="https://github.com/ArchivelabEdu/ecoarchive-impact2026">GitHub</a> · CC BY 4.0</div>
+</div></footer>
+
+</body>
+</html>
