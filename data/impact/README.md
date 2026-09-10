@@ -7,7 +7,7 @@ Omeka 소장기록 전수 분석(Ⅰ부 2장 「소장 기록의 구성」·「�
 
 | 폴더 | 내용 |
 |---|---|
-| `raw/` | 재단이 제공한 원자료 엑셀 (GA 통계 2종). 공간풀숲 전시 기록 엑셀은 관람객 후기가 포함되어 검토 후 공개 예정 |
+| `raw/` | 재단이 제공한 원자료 엑셀 3종 (GA 통계 2종, 공간풀숲 전시 기록) |
 | `processed/` | 원자료 시트별 CSV 내보내기 + 보고서에 수록한 정제 표 CSV |
 | `figures/` | 보고서 수록 그림 PNG (그림 번호 = 보고서 v1.0 기준, `captions.json`에 캡션) |
 | `scripts/` | 그림 생성·보고서 조판 스크립트 (Python) |
@@ -22,7 +22,7 @@ Omeka 소장기록 전수 분석(Ⅰ부 2장 「소장 기록의 구성」·「�
 
 풀숲의 2020-21~2024-25 운영연도 수치는 v0.1 보고서(2026.5)에 수록된 이전 GA 집계를 그대로 사용했으며, 원자료 파일은 이 패키지에 없습니다(`processed/pulsoop_yearly_2020-2026.csv`에 수치만 수록).
 
-**비공개 파일**: `raw/gongan_pulsoop_exhibitions_2025-07_2026-08.xlsx`와 `processed/gongan_exhibitions__정성자료.csv`에는 방명록·SNS 댓글 등 관람객이 남긴 문장이 있어, 개인 식별 표현을 검토한 뒤 공개하기로 하고 이 저장소에는 넣지 않았습니다. 전시 목록·상세·정량성과·임팩트 기록·기사 링크 CSV는 수록되어 있습니다.
+**이용 시 유의**: `gongan_pulsoop_exhibitions_*.xlsx`의 「정성자료」 시트와 `processed/gongan_exhibitions__정성자료.csv`에는 방명록·SNS 댓글 등 관람객이 남긴 문장이 있습니다. 재단의 검토를 거쳐 공개하며, 인용 시 작성자를 특정하지 않도록 유의하시기 바랍니다.
 
 ## processed/ — 정제 표 (보고서 수록 수치)
 
@@ -64,6 +64,7 @@ Omeka 소장기록 전수 분석(Ⅰ부 2장 「소장 기록의 구성」·「�
 | processed/gongan_exhibitions__전시_목록.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/gongan_exhibitions__전시_상세.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/gongan_exhibitions__정량성과.csv | 원자료 시트 그대로 내보낸 CSV |
+| processed/gongan_exhibitions__정성자료.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/gongan_exhibitions__임팩트_기록.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/gongan_exhibitions__기사링크.csv | 원자료 시트 그대로 내보낸 CSV |
 
