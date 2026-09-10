@@ -29,7 +29,7 @@
 <main class="wrap">
 
 <div class="crumb">환경운동 40년</div><h1>기록으로 본 환경운동 40년 <span class="note" style="font-size:1rem;font-weight:500">1982–2025</span></h1>
-<p class="lead">풀숲에 남은 기록의 연도, 주제, 키워드와 정보사전의 사건 47건·조직 542건·연표 3,617건을 한 축에 놓았습니다. 어떤 시기의 활동이 얼마나 두텁게 남았는지, 사건마다 기록이 얼마나 쌓였는지, 조직은 언제 생겨나고 무엇을 남겼는지를 봅니다.</p>
+<p class="lead">풀숲에 보존된 기록의 연도, 주제, 키워드와 정보사전의 사건 47건·조직 542건·연표 3,617건을 한 축에 놓았습니다. 어떤 시기의 활동이 얼마나 두텁게 남았는지, 사건마다 기록이 얼마나 쌓였는지, 조직은 언제 생겨나고 무엇을 남겼는지를 봅니다.</p>
 
 <div class="grid g2" style="margin-top:6px">
   <div class="card"><h3 style="margin-top:0">한눈에 보는 다섯 가지</h3>
@@ -126,7 +126,7 @@
 <div class="controls" style="margin-top:14px"><label>정렬 <select id="evSort"><option value="n">기록 많은 순</option><option value="start">연대순</option><option value="dur">지속 기간 순</option></select></label><label>주제 <select id="evSubj"><option value="">전체</option></select></label></div>
 <div class="list-cards" id="evCards"></div>
 
-<h2 id="orgs">조직 542건 — 생성의 흐름과 남긴 기록</h2>
+<h2 id="orgs">환경단체 542건 — 생성의 흐름과 남긴 기록</h2>
 <div class="grid g2">
   <div class="card"><p class="chart-title">설립 연대별 조직 수와 활동영역</p><p class="chart-sub">설립연도 기재 251건 · 활동영역 코드는 사건 데이터에서 추정 매핑</p><div id="c_of" class="chart short"></div></div>
   <div class="card"><p class="chart-title">기록으로 남은 조직 vs 이름만 남은 조직</p><p class="chart-sub">조직명이 기록의 생산자·컬렉션에 등장하는지 기준</p><div id="c_or" class="chart short"></div></div>
@@ -187,9 +187,12 @@ const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=yea
     const y=years[p.dataIndex];return `<b>${y}년</b> 기록 ${fmtN(T.rec_by_year[y]||0)}건 · 설립 조직 ${T.org_founded_by_year[y]||0} · 연표 ${T.chron_by_year[y]||0}<br>특징: ${(T.year_distinct[y]||[]).join(', ')||'—'}<br>상위: ${(T.year_top[y]||[]).join(', ')}`;}},
   xAxis:[{gridIndex:0,type:"value",min:1980,max:2026,axisLabel:{show:false},splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"category",data:years,axisLabel:{interval:4}}],
   yAxis:[{gridIndex:0,type:"value",min:-0.5,max:lanes.length-0.5,inverse:true,show:false},{gridIndex:1,type:"value",name:"기록",splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"value",name:"설립 조직",splitLine:{show:false},position:"right"}],
-  series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const s=api.coord([api.value(0),api.value(2)]);const e=api.coord([api.value(1)+0.9,api.value(2)]);const h=6+16*Math.sqrt(api.value(3)/maxN);
-      return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:Math.max(4,e[0]-s[0]),height:h,r:3},style:{fill:subjColor(ev[params.dataIndex].subject)||"#8ab17d",opacity:.85}},
-        {type:"text",style:{x:s[0]+3,y:s[1],text:ev[params.dataIndex].title.length>12?ev[params.dataIndex].title.slice(0,12)+"…":ev[params.dataIndex].title,fontSize:9,fill:"#1f2a24",textVerticalAlign:"middle",fontFamily:FONT}}]}},
+  series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const s=api.coord([api.value(0),api.value(2)]);const e=api.coord([api.value(1)+0.9,api.value(2)]);const h=8+16*Math.sqrt(api.value(3)/maxN);const w=Math.max(4,e[0]-s[0]);
+      const col=subjColor(ev[params.dataIndex].subject)||"#8ab17d";const lum=(c=>{const n=parseInt(c.slice(1),16);return (0.299*(n>>16&255)+0.587*(n>>8&255)+0.114*(n&255))/255})(col);
+      const label=ev[params.dataIndex].title.length>12?ev[params.dataIndex].title.slice(0,12)+"…":ev[params.dataIndex].title;const inside=h>=13&&w>=label.length*9.5;
+      return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:w,height:h,r:3},style:{fill:col,opacity:.9}},
+        {type:"text",style:{x:inside?s[0]+4:s[0]+w+4,y:s[1],text:label,fontSize:9.5,fontWeight:600,fill:inside?(lum<0.6?"#ffffff":"#1f2a24"):"#1f2a24",textVerticalAlign:"middle",fontFamily:FONT,
+          backgroundColor:inside?"transparent":"rgba(255,255,255,.85)",padding:inside?0:[1,3],borderRadius:3}}]}},
       data:ev.map(e=>[e.s,e.e2,e.lane,e.n])},
     {type:"bar",xAxisIndex:1,yAxisIndex:1,data:recs,itemStyle:{color:"#cfe3d5"},barMaxWidth:16},
     {type:"line",xAxisIndex:1,yAxisIndex:2,data:orgsY,smooth:.3,showSymbol:false,lineStyle:{color:"#6d597a",width:2}}]}));})();
