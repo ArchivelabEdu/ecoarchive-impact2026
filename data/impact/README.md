@@ -45,6 +45,8 @@ Omeka 소장기록 전수 분석(Ⅰ부 2장 「소장 기록의 구성」·「�
 
 원자료 시트 CSV (파일명 = `원자료__시트명.csv`):
 
+| 파일 | 내용 |
+|---|---|
 | processed/pulsoop_ga_2025-26__개요.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/pulsoop_ga_2025-26__03_이벤트_수.csv | 원자료 시트 그대로 내보낸 CSV |
 | processed/pulsoop_ga_2025-26__04_유입_경로.csv | 원자료 시트 그대로 내보낸 CSV |
