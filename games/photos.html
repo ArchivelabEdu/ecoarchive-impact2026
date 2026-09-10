@@ -1,0 +1,45 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>사진 연결하기 · 풀숲 보드게임</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="games.css">
+<style>
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:640px){.photos{grid-template-columns:repeat(2,1fr)}}
+.ph{position:relative;border:3px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;aspect-ratio:1}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph.sel{border-color:var(--g);box-shadow:0 0 0 3px #dfeee4}
+.ph .badge{position:absolute;left:8px;top:8px;background:var(--g);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:.9rem}
+.ph .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.62);color:#fff;font-size:.72rem;padding:6px 8px;line-height:1.3;display:none}
+.ph.reveal .cap{display:block}.ph.ok{border-color:var(--g)}.ph.bad{border-color:#e76f51}
+.labels{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.lab{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font:inherit;font-size:1rem;cursor:pointer}
+.lab:hover{border-color:var(--g2)}.lab.used{background:#eef2ef;color:var(--muted)}
+.lab .b{display:inline-block;background:var(--g);color:#fff;border-radius:999px;padding:0 8px;font-weight:800;margin-right:6px;font-size:.85rem}
+.modes{display:flex;flex-wrap:wrap;gap:6px}.modes button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;cursor:pointer}.modes button.on{background:var(--g);color:#fff;border-color:var(--g)}
+</style></head><body>
+<div class="top"><a href="index.html">‹ 게임 목록</a><h1>⑨ 사진 연결하기</h1><span class="sc" id="score"></span></div>
+<div class="wrap">
+<p class="note">환경사진아카이브 작품사진 4장과 라벨 4개가 섞여 나옵니다. <b>사진을 누른 뒤 라벨을 누르면</b> 짝이 이어집니다. 4쌍을 다 이으면 확인. 5라운드, 한 쌍에 5점.</p>
+<div class="modes" id="modes"></div>
+<div style="margin:10px 0" class="note" id="qtext"></div>
+<div class="photos" id="photos"></div>
+<div class="labels" id="labels"></div>
+<p><button class="btn" id="check" onclick="check()" disabled>확인</button> <button class="btn ghost" id="next" onclick="round()" hidden>다음 라운드 ›</button></p>
+<div id="msg"></div>
+<div class="result" id="result" hidden></div>
+</div>
+<script src="common.js"></script><script>
+const MODES={artist:{name:"작가",q:"이 사진을 찍은 작가는?",f:p=>p.artist},region:{name:"장소",q:"이 사진의 촬영지(시도)는?",f:p=>p.region},keyword:{name:"키워드",q:"이 사진에 붙은 키워드는?",f:p=>p.keywords[0]},event:{name:"사건",q:"이 사진과 이어지는 환경 사건은?",f:p=>p.event},decade:{name:"연대",q:"이 사진이 촬영된 연대는?",f:p=>p.year?Math.floor(p.year/10)*10+"년대":null}};
+let ALL=[],mode="artist",cur=[],labels=[],pairs={},selPhoto=null,rounds=0,score=0,checked=false;
+function setMode(m){mode=m;rounds=0;score=0;document.getElementById("result").hidden=true;document.querySelectorAll(".modes button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));round();}
+function round(){checked=false;pairs={};selPhoto=null;document.getElementById("msg").innerHTML="";document.getElementById("next").hidden=true;
+ const f=MODES[mode].f;const pool=shuffle(ALL.filter(p=>f(p)));cur=[];const seen=new Set();
+ for(const p of pool){const v=f(p);if(seen.has(v))continue;seen.add(v);cur.push(p);if(cur.length===4)break;}
+ labels=shuffle(cur.map(p=>f(p)));document.getElementById("qtext").innerHTML=`<b>라운드 ${rounds+1}/5</b> · ${MODES[mode].q}`;render();}
+function render(){const f=MODES[mode].f;document.getElementById("photos").innerHTML=cur.map((p,i)=>{const lab=pairs[i];const idx=lab!==undefined?labels.indexOf(lab)+1:"";return `<div class="ph ${selPhoto===i?'sel':''} ${checked?(f(p)===lab?'ok':'bad'):''} ${checked?'reveal':''}" onclick="pickPhoto(${i})"><img src="${p.image}" alt=""><span class="badge" ${idx?'':'hidden'}>${idx}</span><div class="cap">${esc(p.title)}<br>${esc(p.artist)} · ${p.year||''} · ${esc(p.loc||p.region)}${p.event?' · '+esc(p.event):''}</div></div>`}).join("");
+ document.getElementById("labels").innerHTML=labels.map((l,j)=>{const used=Object.values(pairs).includes(l);return `<button class="lab ${used?'used':''}" onclick="pickLabel(${j})"><span class="b">${j+1}</span>${esc(l)}</button>`}).join("");
+ document.getElementById("check").disabled=checked||Object.keys(pairs).length<4;document.getElementById("score").textContent=`${score}점 · 라운드 ${Math.min(rounds+1,5)}/5`;}
+function pickPhoto(i){if(checked)return;selPhoto=selPhoto===i?null:i;render();}
+function pickLabel(j){if(checked||selPhoto===null)return;const l=labels[j];for(const k in pairs)if(pairs[k]===l)delete pairs[k];pairs[selPhoto]=l;selPhoto=null;render();}
+function check(){checked=true;const f=MODES[mode].f;let ok=0;cur.forEach((p,i)=>{if(pairs[i]===f(p))ok++;});score+=ok*5;rounds++;render();
+ document.getElementById("msg").innerHTML=`<div class="msg ${ok===4?'ok':(ok?'':'bad')}">${ok}쌍 정답 · +${ok*5}점</div><div class="note">사진 위의 설명에 작가·연도·촬영지가 보입니다. ${cur.map(p=>`<a class="tag" href="${p.url}" target="_blank">${esc(p.artist)} ↗</a>`).join("")}</div>`;
+ if(rounds>=5){const r=document.getElementById("result");r.hidden=false;r.innerHTML=`<b>끝!</b> ${score}점 / 100점 <button class="btn" onclick="setMode(mode)">다시</button>`;}else document.getElementById("next").hidden=false;}
+fetch("../data/photo_cards.json").then(r=>r.json()).then(d=>{ALL=d;document.getElementById("modes").innerHTML=Object.entries(MODES).map(([k,m])=>`<button data-m="${k}" onclick="setMode('${k}')">${m.name}</button>`).join("");setMode("artist");});
+</script></body></html>
