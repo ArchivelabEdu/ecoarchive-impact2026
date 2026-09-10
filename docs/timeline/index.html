@@ -44,7 +44,7 @@
 </div>
 
 <h2 id="strip">40년 한 줄 타임라인</h2>
-<div class="card"><p class="chart-sub">위: 사건 47건의 기간(막대 굵기 = 관련 기록 수) · 아래: 연도별 생산 기록 수(막대)와 그 해 설립된 조직 수(선) · 연도에 마우스를 올리면 그 해의 특징 키워드가 보입니다. 1999년 급증은 한겨레 컬렉션.</p><div id="c_strip" class="chart" style="height:760px"></div></div>
+<div class="card"><p class="chart-sub">위: 사건 47건의 기간(시작 연도순, 막대 색 = 주제, 굵기 = 관련 기록 수, 끝의 숫자 = 관련 기록 건수) · 아래: 연도별 생산 기록 수(막대)와 그 해 설립된 조직 수(선) · 연도에 마우스를 올리면 그 해의 특징 키워드가 보입니다. 1999년 급증은 한겨레 컬렉션.</p><div id="c_strip" class="chart" style="height:1200px"></div></div>
 
 <h2 id="eras">다섯 시대</h2>
 <p class="note">시대별 수치는 공개 기록-일반의 생산연도 기준이며, 키워드는 한겨레 컬렉션을 제외했습니다. 서술은 데이터와 풀숲 정보사전을 바탕으로 작성한 초안입니다.</p>
@@ -177,23 +177,21 @@ const T={"years": [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1
  const series=top.map(c=>({name:c,data:eras.map(e=>val(c,e))}));series.push({name:"기타",data:eras.map(e=>Object.keys(YBC).filter(c=>!top.includes(c)).reduce((s,c)=>s+val(c,e),0)),color:"#cfd6d1"});
  stacked("c_ce",eras.map(e=>e.label),series,{percent:true,horizontal:true,left:90});})();
 const years=T.years;const recs=years.map(y=>T.rec_by_year[y]||0);const orgsY=years.map(y=>T.org_founded_by_year[y]||0);
-// ---- strip: events gantt (top grid) + records/orgs (bottom grid)
-(function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start)).map(e=>({...e,s:+e.start,e2:(/^\d{4}$/.test(e.end)?+e.end:(e.end==="현재"||!e.end?2025:+e.start))})).sort((a,b)=>a.s-b.s||b.n-a.n);
- // lane assignment
- const lanes=[];ev.forEach(e=>{let i=lanes.findIndex(l=>l< e.s);if(i<0){i=lanes.length;lanes.push(0);}lanes[i]=e.e2;e.lane=i;});
+// ---- strip: events gantt (one row per event, names on the left axis) + records/orgs below
+(function(){const ev=T.events.filter(e=>/^\d{4}$/.test(e.start)).map(e=>({...e,s:+e.start,e2:(/^\d{4}$/.test(e.end)?+e.end:(e.end==="현재"||!e.end?2025:+e.start))})).sort((a,b)=>a.s-b.s||a.e2-b.e2);
+ const ROW=17,TOP=20,H1=ev.length*ROW;document.getElementById("c_strip").style.height=(H1+TOP+400)+"px";
  const c=mk("c_strip");const maxN=Math.max(...ev.map(e=>e.n));
- c.setOption(opt({grid:[{left:60,right:30,top:20,height:380},{left:60,right:70,top:440,bottom:40}],
+ c.setOption(opt({grid:[{left:190,right:60,top:TOP,height:H1},{left:190,right:70,top:TOP+H1+50,bottom:36}],
   tooltip:{trigger:"item",confine:true,formatter:p=>{if(p.seriesIndex===0){const e=ev[p.dataIndex];return `<b>${e.title}</b><br>${e.start}–${e.end||''} · 관련 기록 ${fmtN(e.n)}건<br><span style="color:#5f6b65">${e.subject||''}</span>`;}
     const y=years[p.dataIndex];return `<b>${y}년</b> 기록 ${fmtN(T.rec_by_year[y]||0)}건 · 설립 조직 ${T.org_founded_by_year[y]||0} · 연표 ${T.chron_by_year[y]||0}<br>특징: ${(T.year_distinct[y]||[]).join(', ')||'—'}<br>상위: ${(T.year_top[y]||[]).join(', ')}`;}},
-  xAxis:[{gridIndex:0,type:"value",min:1980,max:2026,axisLabel:{show:false},splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"category",data:years,axisLabel:{interval:4}}],
-  yAxis:[{gridIndex:0,type:"value",min:-0.5,max:lanes.length-0.5,inverse:true,show:false},{gridIndex:1,type:"value",name:"기록",splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"value",name:"설립 조직",splitLine:{show:false},position:"right"}],
-  series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const s=api.coord([api.value(0),api.value(2)]);const e=api.coord([api.value(1)+0.9,api.value(2)]);const h=8+16*Math.sqrt(api.value(3)/maxN);const w=Math.max(4,e[0]-s[0]);
-      const col=subjColor(ev[params.dataIndex].subject)||"#8ab17d";const lum=(c=>{const n=parseInt(c.slice(1),16);return (0.299*(n>>16&255)+0.587*(n>>8&255)+0.114*(n&255))/255})(col);
-      const label=ev[params.dataIndex].title.length>12?ev[params.dataIndex].title.slice(0,12)+"…":ev[params.dataIndex].title;const inside=h>=13&&w>=label.length*9.5;
-      return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:w,height:h,r:3},style:{fill:col,opacity:.9}},
-        {type:"text",style:{x:inside?s[0]+4:s[0]+w+4,y:s[1],text:label,fontSize:9.5,fontWeight:600,fill:inside?(lum<0.6?"#ffffff":"#1f2a24"):"#1f2a24",textVerticalAlign:"middle",fontFamily:FONT,
-          backgroundColor:inside?"transparent":"rgba(255,255,255,.85)",padding:inside?0:[1,3],borderRadius:3}}]}},
-      data:ev.map(e=>[e.s,e.e2,e.lane,e.n])},
+  xAxis:[{gridIndex:0,type:"value",min:1978,max:2026,position:"top",axisLabel:{formatter:v=>v,fontSize:10},splitLine:{lineStyle:{color:"#eef2ef"}},axisTick:{show:false},axisLine:{show:false}},
+         {gridIndex:1,type:"category",data:years,axisLabel:{interval:4}}],
+  yAxis:[{gridIndex:0,type:"category",data:ev.map(e=>e.title.length>16?e.title.slice(0,16)+"…":e.title),inverse:true,axisLabel:{fontSize:10.5,width:176,overflow:"truncate"},axisTick:{show:false},axisLine:{show:false}},
+         {gridIndex:1,type:"value",name:"기록",splitLine:{lineStyle:{color:"#eef2ef"}}},{gridIndex:1,type:"value",name:"설립 조직",splitLine:{show:false},position:"right"}],
+  series:[{type:"custom",xAxisIndex:0,yAxisIndex:0,renderItem:(params,api)=>{const i=params.dataIndex;const e=ev[i];const s=api.coord([e.s,i]);const en=api.coord([e.e2+0.9,i]);const w=Math.max(5,en[0]-s[0]);const h=5+8*Math.sqrt(e.n/maxN);
+      return {type:"group",children:[{type:"rect",shape:{x:s[0],y:s[1]-h/2,width:w,height:h,r:3},style:{fill:subjColor(e.subject)||"#8ab17d",opacity:.9}},
+        {type:"text",style:{x:s[0]+w+5,y:s[1],text:fmtN(e.n),fontSize:9,fill:"#5f6b65",fontFamily:FONT,verticalAlign:"middle",align:"left"}}]}},
+      data:ev.map((e,i)=>[e.s,i,e.n])},
     {type:"bar",xAxisIndex:1,yAxisIndex:1,data:recs,itemStyle:{color:"#cfe3d5"},barMaxWidth:16},
     {type:"line",xAxisIndex:1,yAxisIndex:2,data:orgsY,smooth:.3,showSymbol:false,lineStyle:{color:"#6d597a",width:2}}]}));})();
 // ---- events scatter + cards
