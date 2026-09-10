@@ -131,4 +131,7 @@ function sortable(tbl){
     rows.forEach(r=>tb.appendChild(r));}));
 }
 document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("table.t.sortable").forEach(sortable);
-  const b=document.querySelector(".burger"); if(b) b.addEventListener("click",()=>document.querySelector(".menu").classList.toggle("open"));});
+  const b=document.querySelector(".burger"); if(b) b.addEventListener("click",()=>document.querySelector(".menu").classList.toggle("open"));
+  const sn=document.querySelector(".subnav-in"); if(sn){const wrap=sn.parentElement;const upd=()=>wrap.classList.toggle("at-end",sn.scrollLeft+sn.clientWidth>=sn.scrollWidth-4);
+    sn.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd); upd();
+    const act=sn.querySelector("a.active,option:checked"); const el=sn.querySelector("a.active")||sn.querySelector("select"); if(el&&sn.scrollWidth>sn.clientWidth){sn.scrollLeft=Math.max(0,el.offsetLeft-40);upd();}}});

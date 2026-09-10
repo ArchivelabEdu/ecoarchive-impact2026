@@ -25,7 +25,7 @@
       <ul class="sub"><li><a href="{{ root }}network/index.html">네트워크</a></li><li><a href="{{ root }}photos/index.html">사진 아카이브</a></li><li><a href="{{ root }}impact/index.html">임팩트 지표</a></li><li><a href="{{ root }}data/index.html">데이터·방법</a></li><li><a href="{{ root }}about.html">소개</a></li></ul></li>
   </ul>
 </div></nav>
-{% if NAV %}<div class="subnav"><div class="subnav-in">
+{% if NAV %}<div class="subnav"><div class="subnav-wrap"><div class="subnav-in">
   <span class="subnav-title">{{ NAV.title }}</span>
   {% if NAV.title == '컬렉션' %}
     <a href="{{ root }}collections/index.html" class="{{ 'active' if NAV.idx == 0 }}">컬렉션 비교</a>
@@ -38,7 +38,7 @@
   {% else %}
     {% for n,p in NAV['items'] %}<a href="{{ root }}{{ p }}" class="{{ 'active' if p == NAV.path }}">{{ n }}</a>{% endfor %}
   {% endif %}
-</div></div>{% endif %}
+</div></div></div>{% endif %}
 <main class="wrap">
 {% block body %}{% endblock %}
 {% if NAV and (NAV.prev or NAV.next) %}<nav class="pager">
