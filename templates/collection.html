@@ -1,8 +1,9 @@
 {% extends "base.html" %}{% block body %}
 <div class="crumb"><a href="index.html">컬렉션</a> › {{ C.kind }}</div>
 <h1>{{ C.name }} <span class="pill {{ 'person' if C.kind=='개인' }}">{{ C.kind }} 컬렉션</span></h1>
-<p class="lead">{{ C.desc or '기증주체 소개문이 없습니다.' }}</p>
-<p class="note"><a href="{{ C.url }}" target="_blank">풀숲 컬렉션 페이지 ↗</a></p>
+<p class="lead">{{ C.who }}</p>
+{% if C.what %}<p class="lead" style="color:var(--ink)">{{ C.what }}</p>{% endif %}
+<p class="note"><a href="{{ C.url }}" target="_blank">풀숲 컬렉션 페이지 ↗</a> · 소개문은 풀숲 컬렉션 설명을 바탕으로 이 사이트가 요약했으며, 둘째 문단은 전수 집계에서 산출한 특성입니다.</p>
 <div class="grid g4">
   <div class="kpi"><div class="v">{{ '{:,}'.format(C.total) }}</div><div class="l">등록</div><div class="s">공개 {{ '{:,}'.format(C.public) }} · 비공개 {{ '%.1f'|format(C.private_rate*100) }}%</div></div>
   <div class="kpi"><div class="v">{{ C.year_min or '—' }}–{{ C.year_max or '—' }}</div><div class="l">생산연도</div><div class="s">중앙값 {{ C.year_median or '—' }} · 2020s {{ '%.0f'|format(C.share_2020s*100) }}%</div></div>

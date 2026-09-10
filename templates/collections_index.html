@@ -10,8 +10,8 @@
   <div class="card"><p class="chart-title">생산연대 분포</p><div id="h_dec" class="chart xtall"></div></div>
 </div>
 <div class="card" style="margin-top:18px"><p class="chart-title">주제 분포 (주제 부여 기록 기준)</p><div id="h_subj" class="chart xtall"></div></div>
-<h2>컬렉션 목록</h2>
-<div class="list-cards">{% for c in COLS %}<a class="card" href="{{ c.slug }}.html"><div class="nm">{{ c.name }} <span class="pill {{ 'person' if c.kind=='개인' }}">{{ c.kind }}</span></div><div class="meta">{{ '{:,}'.format(c.total) }}건 · {{ c.year_min }}–{{ c.year_max }} · {{ c.subject[0].k if c.subject else '주제 미부여' }}</div></a>{% endfor %}</div>
+<h2>컬렉션 분석</h2>
+<div class="list-cards">{% for c in COLS %}<a class="card" href="{{ c.slug }}.html"><div class="nm">{{ c.name }} <span class="pill {{ 'person' if c.kind=='개인' }}">{{ c.kind }}</span></div><div class="meta">{{ '{:,}'.format(c.total) }}건 · {{ c.year_min }}–{{ c.year_max }} · {{ c.subject[0].k if c.subject else '주제 미부여' }}</div><div class="meta" style="margin-top:6px;color:var(--ink)">{{ c.who[:90] }}{% if c.who|length > 90 %}…{% endif %}</div></a>{% endfor %}</div>
 {% endblock %}{% block script %}<script>
 const COLS={{ COLS|tojson }};const cs=COLS.filter(c=>c.total>=100);
 (function(){const T=["문서류","도서간행물류","사진그림류","영상음성류","특수전자기록물류"];heat("h_type",cs.map(c=>c.name),T,cs.map(c=>{const m={};c.rtype.forEach(d=>m[d.k]=d.v);const t=c.public||1;return T.map(k=>(m[k]||0)/t)}),{pct:true,left:180,rotate:0,min:.05,max:1});})();

@@ -9,6 +9,9 @@ S=D("summary.json"); H=D("holdings.json"); COLS=D("collections.json"); KW=D("key
 CH=D("keywords_change.json"); LIFE=D("keywords_life.json"); G=D("keywords_cooc.json"); OK=D("org_keywords.json"); NW=D("network.json")
 EV=D("events.json"); OG=D("orgs.json"); CHR=D("chronology.json"); PH=D("photos.json"); SEASON=D("season.json"); DICT_N=len(D("keywords_dict.json"))
 SLUG={c["name"]:c["slug"] for c in COLS}
+INTRO=json.load(open(os.path.join(ROOT,"content","collections_intro.json"),encoding="utf-8"))
+for c in COLS:
+    i=INTRO.get(c["name"]); c["who"]=i["who"] if i else c["desc"]; c["what"]=i["what"] if i else ""
 env=Environment(loader=FileSystemLoader(os.path.join(ROOT,"templates")),autoescape=False)
 env.filters["tojson"]=lambda v: json.dumps(v,ensure_ascii=False).replace("</","<\\/")
 OUT=os.path.join(ROOT,"docs")
