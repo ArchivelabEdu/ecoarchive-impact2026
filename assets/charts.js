@@ -131,6 +131,7 @@ function sortable(tbl){
     rows.forEach(r=>tb.appendChild(r));}));
 }
 document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("table.t.sortable").forEach(sortable);
+  document.querySelectorAll("table.t").forEach(tb=>{if(tb.parentElement.classList.contains("table-wrap"))return;const w=document.createElement("div");w.className="table-wrap";tb.parentNode.insertBefore(w,tb);w.appendChild(tb);});
   const b=document.querySelector(".burger"); if(b) b.addEventListener("click",()=>document.querySelector(".menu").classList.toggle("open"));
   const sn=document.querySelector(".subnav-in"); if(sn){const wrap=sn.parentElement;const upd=()=>wrap.classList.toggle("at-end",sn.scrollLeft+sn.clientWidth>=sn.scrollWidth-4);
     sn.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd); upd();

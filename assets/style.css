@@ -112,4 +112,6 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
 .btn{display:inline-block;padding:9px 16px;border-radius:9px;background:var(--green);color:#fff;font-weight:700;border:1px solid var(--green)}
 .btn:hover{text-decoration:none;background:var(--green-2)}
 .btn.ghost{background:#fff;color:var(--green)}
-@media(max-width:700px){.report-card{grid-template-columns:1fr}.report-cover{max-width:220px}}
+@media(max-width:700px){.report-card{grid-template-columns:1fr}.report-cover{max-width:200px}.report-card h2{font-size:1.25rem!important}}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1em}
+.table-wrap>table.t{min-width:520px}
