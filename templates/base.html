@@ -25,8 +25,26 @@
       <ul class="sub"><li><a href="{{ root }}network/index.html">네트워크</a></li><li><a href="{{ root }}photos/index.html">사진 아카이브</a></li><li><a href="{{ root }}impact/index.html">임팩트 지표</a></li><li><a href="{{ root }}data/index.html">데이터·방법</a></li><li><a href="{{ root }}about.html">소개</a></li></ul></li>
   </ul>
 </div></nav>
+{% if NAV %}<div class="subnav"><div class="subnav-in">
+  <span class="subnav-title">{{ NAV.title }}</span>
+  {% if NAV.title == '컬렉션' %}
+    <a href="{{ root }}collections/index.html" class="{{ 'active' if NAV.idx == 0 }}">컬렉션 비교</a>
+    <select class="subnav-select" onchange="if(this.value)location.href=this.value">
+      <option value="">컬렉션 바로 가기…</option>
+      {% for n,p in NAV['items'][1:] %}<option value="{{ root }}{{ p }}" {{ 'selected' if p == NAV.path }}>{{ n }}</option>{% endfor %}
+    </select>
+    {% if NAV.idx and NAV.idx > 1 %}<a href="{{ root }}{{ NAV.prev[1] }}" class="pn">‹ {{ NAV.prev[0] }}</a>{% endif %}
+    {% if NAV.next and NAV.idx %}<a href="{{ root }}{{ NAV.next[1] }}" class="pn">{{ NAV.next[0] }} ›</a>{% endif %}
+  {% else %}
+    {% for n,p in NAV['items'] %}<a href="{{ root }}{{ p }}" class="{{ 'active' if p == NAV.path }}">{{ n }}</a>{% endfor %}
+  {% endif %}
+</div></div>{% endif %}
 <main class="wrap">
 {% block body %}{% endblock %}
+{% if NAV and (NAV.prev or NAV.next) %}<nav class="pager">
+  {% if NAV.prev %}<a href="{{ root }}{{ NAV.prev[1] }}"><span class="note">이전</span><br>‹ {{ NAV.prev[0] }}</a>{% else %}<span></span>{% endif %}
+  {% if NAV.next %}<a href="{{ root }}{{ NAV.next[1] }}" style="text-align:right"><span class="note">다음</span><br>{{ NAV.next[0] }} ›</a>{% endif %}
+</nav>{% endif %}
 </main>
 <footer><div class="in">
   <div>환경아카이브 풀숲 소장현황 분석 · 데이터 기준 {{ S.snapshot }} (Omeka REST API 전수 {{ '{:,}'.format(S['items']) }}건) · 재단법인 숲과나눔 × 아카이브랩</div>

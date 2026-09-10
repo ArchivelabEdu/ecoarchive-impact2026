@@ -20,9 +20,20 @@ os.makedirs(OUT)
 shutil.copytree(os.path.join(ROOT,"assets"),os.path.join(OUT,"assets"))
 shutil.copytree(os.path.join(ROOT,"data"),os.path.join(OUT,"data"))
 open(os.path.join(OUT,".nojekyll"),"w").close()
+SECTIONS={
+ "holdings":("소장 현황",[("규모와 구성","holdings/composition.html"),("시간","holdings/time.html"),("주제","holdings/subject.html"),("지역","holdings/region.html"),("메타데이터 품질","holdings/quality.html")]),
+ "keywords":("키워드",[("연대별 변화","keywords/change.html"),("키워드 생애곡선","keywords/life.html"),("공출현 네트워크","keywords/cooc.html"),("단체별 키워드","keywords/orgs.html"),("키워드 사전","keywords/dict.html")]),
+ "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("임팩트 지표","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
+ "collections":("컬렉션",[("컬렉션 비교","collections/index.html")]+[(c["name"],f"collections/{c['slug']}.html") for c in COLS]),
+}
 def render(tpl,path,**ctx):
     depth=path.count("/"); root="../"*depth
-    html=env.get_template(tpl).render(S=S,root=root,SLUG=SLUG,**ctx)
+    sec=ctx.get("section"); sub=SECTIONS.get(sec)
+    nav=None
+    if sub:
+        items=sub[1]; idx=next((i for i,(n,p_) in enumerate(items) if p_==path),None)
+        nav={"title":sub[0],"items":items,"idx":idx,"prev":items[idx-1] if idx not in (None,0) else None,"next":items[idx+1] if idx is not None and idx+1<len(items) else None,"path":path}
+    html=env.get_template(tpl).render(S=S,root=root,SLUG=SLUG,NAV=nav,**ctx)
     p=os.path.join(OUT,path); os.makedirs(os.path.dirname(p),exist_ok=True); open(p,"w",encoding="utf-8").write(html)
 md=lambda f: markdown.markdown(open(os.path.join(ROOT,"content",f),encoding="utf-8").read(),extensions=["tables"])
 # ---- indicators for impact page

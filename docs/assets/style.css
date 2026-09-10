@@ -80,3 +80,18 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
 @media(max-width:900px){.two{grid-template-columns:1fr}.toc{position:static}}
 .md table{width:100%;border-collapse:collapse;font-size:.9rem}.md th,.md td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}.md th{background:#eef2ef}
 .md blockquote{border-left:4px solid var(--green);margin:1em 0;padding:8px 14px;background:#eef4ef;border-radius:0 8px 8px 0}
+
+/* section sub-navigation */
+.subnav{position:sticky;top:56px;z-index:40;background:#fff;border-bottom:1px solid var(--line)}
+.subnav-in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:6px;height:44px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.subnav-in::-webkit-scrollbar{display:none}
+.subnav-title{font-size:.8rem;font-weight:700;color:var(--muted);margin-right:8px;letter-spacing:.04em}
+.subnav-in a{display:inline-block;padding:5px 12px;border-radius:999px;font-size:.9rem;font-weight:600;color:var(--ink)}
+.subnav-in a:hover{background:#eef2ef;text-decoration:none}
+.subnav-in a.active{background:var(--green);color:#fff}
+.subnav-in a.pn{color:var(--green);font-weight:600}
+.subnav-select{font:inherit;font-size:.88rem;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;max-width:240px}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{font-weight:700;font-size:1rem;color:var(--green)}
+.pager a .note{font-weight:500}
+@media(max-width:860px){.subnav{top:56px}}
