@@ -9,13 +9,13 @@
 <td width="220" valign="top"><a href="report/pulsoop-impact-report-2026-v1.0.pdf"><img src="report/cover.jpg" width="200" alt="임팩트 측정 보고서 표지"></a></td>
 <td valign="top">
 
-**환경아카이브 풀숲 · 환경사진아카이브 · 공간풀숲 임팩트 측정 보고서**
+**환경아카이브 풀숲 · 환경사진아카이브 · 공간풀숲 임팩트 측정 보고서**<br>
 재단법인 숲과나눔 · v1.0 · 2026년 10월 1일 · 82쪽
 
 디지털 아카이브 6년, 그리고 사진·공간으로의 확장. 풀숲 6년의 접속통계, 환경사진아카이브 5년의 이용현황, 공간풀숲 1년의 전시 성과, 전문가 인터뷰, Omeka 전수 소장현황 분석을 하나의 임팩트 틀로 종합했습니다.
 
-📄 [PDF 내려받기 (5.2MB)](report/pulsoop-impact-report-2026-v1.0.pdf) · [웹에서 보기](https://archivelabedu.github.io/ecoarchive-impact2026/report/pulsoop-impact-report-2026-v1.0.pdf)
-🌐 소장현황 데이터 사이트: **https://archivelabedu.github.io/ecoarchive-impact2026/**
+📄 [PDF 내려받기 (5.2MB)](report/pulsoop-impact-report-2026-v1.0.pdf) · [웹에서 보기](https://archivelabedu.github.io/ecoarchive-impact2026/report/pulsoop-impact-report-2026-v1.0.pdf)<br>
+🌐 소장현황 데이터 사이트: **https://archivelabedu.github.io/ecoarchive-impact2026/**<br>
 📊 보고서 데이터: [`data/impact/`](data/impact/) · 소장현황 데이터: [`data/holdings/`](data/holdings/)
 
 </td></tr></table>
