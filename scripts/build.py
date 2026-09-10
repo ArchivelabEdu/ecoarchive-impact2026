@@ -19,11 +19,12 @@ if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(OUT)
 shutil.copytree(os.path.join(ROOT,"assets"),os.path.join(OUT,"assets"))
 shutil.copytree(os.path.join(ROOT,"data"),os.path.join(OUT,"data"))
+shutil.copytree(os.path.join(ROOT,"report"),os.path.join(OUT,"report"))
 open(os.path.join(OUT,".nojekyll"),"w").close()
 SECTIONS={
  "holdings":("소장 현황",[("규모와 구성","holdings/composition.html"),("시간","holdings/time.html"),("주제","holdings/subject.html"),("지역","holdings/region.html"),("메타데이터 품질","holdings/quality.html")]),
  "keywords":("키워드",[("연대별 변화","keywords/change.html"),("키워드 생애곡선","keywords/life.html"),("공출현 네트워크","keywords/cooc.html"),("단체별 키워드","keywords/orgs.html"),("키워드 사전","keywords/dict.html")]),
- "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("임팩트 지표","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
+ "more":("더보기",[("네트워크","network/index.html"),("사진 아카이브","photos/index.html"),("임팩트 측정","impact/index.html"),("데이터·방법","data/index.html"),("소개","about.html")]),
  "collections":("컬렉션",[("컬렉션 비교","collections/index.html")]+[(c["name"],f"collections/{c['slug']}.html") for c in COLS]),
 }
 def render(tpl,path,**ctx):
@@ -71,7 +72,7 @@ IND=[
   ("E4 비공개율","비공개 / 등록",pct(1-S["public"]/S["items"])+" (정태석 86.5% ~ 0%)","public"),
   ("E5 원본 형태","비전자 : 전자","75.3 : 24.7","Format of Originals")]),
 ]
-FILES=[("summary.json","핵심 수치"),("holdings.json","유형·형태·연도·주제·지역·품질·등록 추이"),("collections.json","컬렉션 34개 상세(유형·연도·주제·지역·키워드·생산자·품질·예시)"),("keywords_windows.json","5년 단위 상위·특징 키워드"),("keywords_series.json","상위 400 키워드의 연도별 건수"),("keywords_life.json","키워드 등장·정점·퇴장"),("keywords_change.json","연대 간 급상승·급락"),("keywords_cooc.json","공출현 네트워크"),("keywords_dict.json","키워드 사전(3건 이상)"),("org_keywords.json","단체 × 공통 키워드"),("network.json","생산자→기증주체, 공공기관 문서"),("events.json","사건 47건"),("orgs.json","조직 전거 542건"),("chronology.json","연표 집계"),("photos.json","작품사진 집계"),("season.json","생산 월 분포")]
+FILES=[("REPORT","환경아카이브 풀숲·환경사진아카이브·공간풀숲 임팩트 측정 보고서 v1.0 (PDF, 82쪽, 5.2MB, 2026-10-01 발행)"),("summary.json","핵심 수치"),("holdings.json","유형·형태·연도·주제·지역·품질·등록 추이"),("collections.json","컬렉션 34개 상세(유형·연도·주제·지역·키워드·생산자·품질·예시)"),("keywords_windows.json","5년 단위 상위·특징 키워드"),("keywords_series.json","상위 400 키워드의 연도별 건수"),("keywords_life.json","키워드 등장·정점·퇴장"),("keywords_change.json","연대 간 급상승·급락"),("keywords_cooc.json","공출현 네트워크"),("keywords_dict.json","키워드 사전(3건 이상)"),("org_keywords.json","단체 × 공통 키워드"),("network.json","생산자→기증주체, 공공기관 문서"),("events.json","사건 47건"),("orgs.json","조직 전거 542건"),("chronology.json","연표 집계"),("photos.json","작품사진 집계"),("season.json","생산 월 분포")]
 render("index.html","index.html",title="홈",H=H,COLS=COLS,KW=KW,section="home")
 render("holdings_composition.html","holdings/composition.html",title="규모와 구성",H=H,section="holdings")
 render("holdings_time.html","holdings/time.html",title="시간",H=H,SEASON=SEASON,YBC=H["year_by_coll"],section="holdings")
@@ -90,7 +91,7 @@ SUBJ_COLOR={"생태계보전":"#2f6f4e","반핵탈핵":"#8ab17d","기후에너�
 render("timeline.html","timeline/index.html",title="환경운동 40년",T=T,KW=KW,YBC=H["year_by_coll"],ERA_TEXT=ERA_TEXT,SUBJ_COLOR=SUBJ_COLOR,section="timeline",desc="풀숲 기록의 연도·주제·키워드와 사건 47건·조직 542건·연표 3,617건으로 본 한국 환경운동 40년")
 render("network.html","network/index.html",title="네트워크",NW=NW,COLS=COLS,section="more")
 render("photos.html","photos/index.html",title="사진 아카이브",PH=PH,section="more")
-render("impact.html","impact/index.html",title="임팩트 지표",IND=IND,section="more")
+render("impact.html","impact/index.html",title="임팩트 측정",IND=IND,section="more")
 render("data.html","data/index.html",title="데이터·방법",FILES=FILES,METHODS=md("methods.md"),section="more")
 render("about.html","about.html",title="소개",ABOUT=md("about.md"),section="more")
 print("built", sum(len(f) for _,_,f in os.walk(OUT)), "files ->", OUT)

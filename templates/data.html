@@ -3,7 +3,7 @@
 <h2>데이터 내려받기</h2>
 <p>이 사이트의 모든 그래프는 아래 JSON에서 그려집니다. 라이선스 CC BY 4.0(집계 데이터). 원자료의 저작권은 각 기증주체와 재단법인 숲과나눔에 있으며 풀숲 이용약관을 따릅니다.</p>
 <table class="t"><thead><tr><th>파일</th><th>내용</th></tr></thead><tbody>
-{% for f,d in FILES %}<tr><td><a href="../data/{{ f }}">{{ f }}</a></td><td>{{ d }}</td></tr>{% endfor %}
+{% for f,d in FILES %}<tr><td>{% if f == "REPORT" %}<a href="../report/pulsoop-impact-report-2026-v1.0.pdf">pulsoop-impact-report-2026-v1.0.pdf</a>{% else %}<a href="../data/{{ f }}">{{ f }}</a>{% endif %}</td><td>{{ d }}</td></tr>{% endfor %}
 </tbody></table>
 <h2>산출 방법</h2>
 <div class="md">{{ METHODS|safe }}</div>

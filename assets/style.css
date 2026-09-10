@@ -105,3 +105,11 @@ footer .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;j
   .subnav-in{gap:4px;padding:0 12px}
   .subnav-in a{padding:5px 10px;font-size:.86rem}
 }
+
+/* report card */
+.report-card{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start;margin-top:10px}
+.report-cover{width:100%;border:1px solid var(--line);border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.08);display:block}
+.btn{display:inline-block;padding:9px 16px;border-radius:9px;background:var(--green);color:#fff;font-weight:700;border:1px solid var(--green)}
+.btn:hover{text-decoration:none;background:var(--green-2)}
+.btn.ghost{background:#fff;color:var(--green)}
+@media(max-width:700px){.report-card{grid-template-columns:1fr}.report-cover{max-width:220px}}

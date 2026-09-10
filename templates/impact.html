@@ -1,7 +1,18 @@
 {% extends "base.html" %}{% block body %}
-<div class="crumb">임팩트 지표</div><h1>Omeka 목록에서 산출한 임팩트 지표</h1>
-<p class="lead">「환경아카이브 풀숲 통합 임팩트 측정 보고서」의 다섯 임팩트 영역(학술·지식 생산, 사회·운동사, 정책·제도, 이용자 경험, 조직·운영)에 대응하는 22개 지표입니다. 모두 Omeka 필드에서 직접 산출되며 매년 API로 재산출할 수 있습니다.</p>
-{% for area, rows in IND %}<h2>{{ area }}</h2>
+<div class="crumb">임팩트 측정</div><h1>임팩트 측정</h1>
+<div class="card report-card">
+  <a href="../report/pulsoop-impact-report-2026-v1.0.pdf" target="_blank"><img src="../report/cover.jpg" alt="임팩트 측정 보고서 표지" class="report-cover"></a>
+  <div>
+    <div class="kicker">재단법인 숲과나눔 · 2026년 10월 1일 발행 · v1.0</div>
+    <h2 style="margin:.2em 0 .3em;border:0;padding:0;font-size:1.5rem">환경아카이브 풀숲 · 환경사진아카이브 · 공간풀숲<br>임팩트 측정 보고서</h2>
+    <p style="margin:.3em 0 .8em">디지털 아카이브 6년, 그리고 사진·공간으로의 확장. 환경아카이브 풀숲 6년의 접속통계, 환경사진아카이브 5년의 이용현황, 공간풀숲 1년의 전시 성과, 전문가 인터뷰, 그리고 Omeka 전수 소장현황 분석을 하나의 임팩트 틀로 종합한 보고서입니다. 이 사이트의 소장현황·컬렉션·키워드 분석은 보고서 Ⅰ장 2절 「소장 기록 현황」의 근거 자료이며, 아래 22개 지표는 보고서 Ⅵ장에서 제안한 것입니다.</p>
+    <div class="tags" style="margin-bottom:12px"><span class="tag">82쪽</span><span class="tag">PDF 5.2MB</span><span class="tag">분석 기간 2020.06–2026.08</span><span class="tag">Google Analytics · Omeka DB · 전시 기록 · 전문가 인터뷰</span></div>
+    <div class="controls" style="margin:0"><a class="btn" href="../report/pulsoop-impact-report-2026-v1.0.pdf" download="환경아카이브_풀숲_임팩트_측정_보고서_v1.0.pdf">PDF 내려받기</a><a class="btn ghost" href="../report/pulsoop-impact-report-2026-v1.0.pdf" target="_blank">새 창에서 보기</a></div>
+  </div>
+</div>
+<h2>Omeka 목록에서 산출한 임팩트 지표</h2>
+<p class="lead">보고서의 다섯 임팩트 영역(학술·지식 생산, 사회·운동사, 정책·제도, 이용자 경험, 조직·운영)에 대응하는 22개 지표입니다. 모두 Omeka 필드에서 직접 산출되며 매년 API로 재산출할 수 있습니다.</p>
+{% for area, rows in IND %}<h3>{{ area }}</h3>
 <table class="t"><thead><tr><th>지표</th><th>정의·산출</th><th class="n">값</th><th>Omeka 원천</th></tr></thead><tbody>{% for r in rows %}<tr><td><b>{{ r[0] }}</b></td><td>{{ r[1] }}</td><td class="n">{{ r[2] }}</td><td><code>{{ r[3] }}</code></td></tr>{% endfor %}</tbody></table>{% endfor %}
 <div class="callout"><b>보완 지표(비-Omeka)</b> Google Scholar·RISS 인용 검색, 논문 공모 응모·수상 편수, 오류신고·목록받기 GA4 이벤트, 접속통계와 결합한 "많이 읽힌 기록"의 프로파일.</div>
 {% endblock %}
